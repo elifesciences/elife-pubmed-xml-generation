@@ -11,8 +11,6 @@ import re
 import os
 from conf import config, parse_raw_config
 
-# todo - refactor this value into settings
-YEAR = 2011
 TMP_DIR = 'tmp'
 
 class PubMedXML(object):
@@ -25,6 +23,9 @@ class PubMedXML(object):
         get the article type from the object passed in to the class
         set default values for items that are boilder plate for this XML
         """
+        # Set the config
+        self.pubmed_config = pubmed_config
+        # Create the root XML node
         self.root = Element('ArticleSet')
 
         # set the boiler plate values
@@ -111,6 +112,7 @@ class PubMedXML(object):
         self.issn.text = self.elife_epub_issn
 
         #self.journal_pubdate = SubElement(self.journal, "PubDate")
+        a_date = None
         pub_type = self.get_pub_type(poa_article)
         if pub_type == "epublish":
             a_date = poa_article.get_date("pub").date
@@ -128,7 +130,9 @@ class PubMedXML(object):
         if poa_article.volume:
             self.volume.text = poa_article.volume
         else:
-            self.volume.text = eautils.calculate_journal_volume(a_date, YEAR)
+            if a_date and self.pubmed_config.get("year_of_first_volume"):
+                self.volume.text = eautils.calculate_journal_volume(
+                    a_date, self.pubmed_config.get("year_of_first_volume"))
 
         self.issue = SubElement(self.journal, "Issue")
         self.issue.text = self.elife_journal_issue

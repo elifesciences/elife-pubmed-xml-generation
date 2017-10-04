@@ -11,6 +11,8 @@ def parse_raw_config(raw_config):
     int_values = []
     list_values = []
 
+    int_values.append("year_of_first_volume")
+
     for value_name in raw_config:
         if value_name in boolean_values:
             pubmed_config[value_name] = raw_config.getboolean(value_name)

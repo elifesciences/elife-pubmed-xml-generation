@@ -13,6 +13,7 @@ class TestGenerate(unittest.TestCase):
         self.passes = []
         self.default_pub_date = time.strptime("2017-07-17 07:17:07", "%Y-%m-%d %H:%M:%S")
         self.passes.append(('elife-15743-v1.xml', 'elife-2016-05-13-143615-PubMed.xml', 'elife', self.default_pub_date))
+        self.passes.append(('elife_poa_e12717.xml', 'elife-2016-06-16-021504-PubMed.xml', 'elife', self.default_pub_date))
 
     def read_file_content(self, file_name):
         fp = open(file_name, 'rb')

@@ -9,6 +9,7 @@ import datetime
 import time
 import re
 import os
+import utils
 from conf import config, parse_raw_config
 
 TMP_DIR = 'tmp'
@@ -167,7 +168,8 @@ class PubMedXML(object):
         if tag_converted_title.startswith('<b>') and tag_converted_title.endswith('</b>'):
             tag_converted_title = tag_converted_title.lstrip('<b>')
             tag_converted_title = tag_converted_title.rstrip('</b>')
-        tag_converted_title = etoolsutils.escape_unmatched_angle_brackets(tag_converted_title)
+        tag_converted_title = etoolsutils.escape_unmatched_angle_brackets(
+            tag_converted_title, utils.allowed_tags())
         tagged_string = '<' + tag_name + '>' + tag_converted_title + '</' + tag_name + '>'
         reparsed = minidom.parseString(etoolsutils.escape_ampersand(tagged_string).encode('utf-8'))
 
@@ -376,7 +378,8 @@ class PubMedXML(object):
             not_allowed_tags = ['<sc>', '</sc>']
             for tagname in not_allowed_tags:
                 tag_converted_abstract = tag_converted_abstract.replace(tagname, '')
-            tag_converted_abstract = etoolsutils.escape_unmatched_angle_brackets(tag_converted_abstract)
+            tag_converted_abstract = etoolsutils.escape_unmatched_angle_brackets(
+                tag_converted_abstract, utils.allowed_tags())
             tagged_string = '<' + tag_name + '>' + tag_converted_abstract + '</' + tag_name + '>'
             reparsed = minidom.parseString(tagged_string.encode('utf-8'))
 

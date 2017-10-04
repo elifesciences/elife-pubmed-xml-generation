@@ -9,7 +9,7 @@ import time
 import re
 import os
 import utils
-from utils import ElifeDocumentType
+from elifetools.xmlio import ElifeDocumentType
 from conf import config, parse_raw_config
 
 # todo - refactor this value into settings

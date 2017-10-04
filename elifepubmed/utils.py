@@ -64,24 +64,6 @@ def append_minidom_xml_to_elementtree_xml(parent, xml, recursive=False, attribut
 
     return parent
 
-class ElifeDocumentType(minidom.DocumentType):
-    """
-    Override minidom.DocumentType in order to get
-    double quotes in the DOCTYPE rather than single quotes
-    """
-    def writexml(self, writer, indent="", addindent="", newl=""):
-        writer.write("<!DOCTYPE ")
-        writer.write(self.name)
-        if self.publicId:
-            writer.write('%s  PUBLIC "%s"%s  "%s"'
-                         % (newl, self.publicId, newl, self.systemId))
-        elif self.systemId:
-            writer.write('%s  SYSTEM "%s"' % (newl, self.systemId))
-        if self.internalSubset is not None:
-            writer.write(" [")
-            writer.write(self.internalSubset)
-            writer.write("]")
-        writer.write(">"+newl)
 
 def calculate_journal_volume(pub_date, year):
     """

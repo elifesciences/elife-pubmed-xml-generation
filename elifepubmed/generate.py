@@ -457,9 +457,6 @@ class PubMedXML(object):
         self.param.text = param
         return self.object
 
-    def printXML(self):
-        print self.root
-
     def output_XML(self, pretty=False, indent=""):
         publicId = '-//NLM//DTD PubMed 2.6//EN'
         systemId = 'https://www.ncbi.nlm.nih.gov/entrez/query/static/PubMed.dtd'

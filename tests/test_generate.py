@@ -2,6 +2,7 @@ import unittest
 import time
 import os
 from elifepubmed import generate
+from elifepubmed.conf import config, parse_raw_config
 
 TEST_BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep
 TEST_DATA_PATH = TEST_BASE_PATH + "test_data" + os.sep
@@ -39,6 +40,22 @@ class TestGenerate(unittest.TestCase):
 
             self.assertEqual(pubmed_xml, model_pubmed_xml)
 
+    def test_parse_do_no_pass_pub_date(self):
+        """
+        For test coverage build a PubMedXML object without passing in a pub_date
+        and also test pretty output too for coverage
+        """
+        article_xml_file = 'elife-15743-v1.xml'
+        file_path = TEST_DATA_PATH + article_xml_file
+        articles = generate.build_articles_for_pubmed([file_path])
+        raw_config = config['elife']
+        pubmed_config = parse_raw_config(raw_config)
+        pubmed_object = generate.PubMedXML(articles, pubmed_config, None, True)
+        self.assertIsNotNone(pubmed_object.pub_date)
+        self.assertIsNotNone(pubmed_object.generated)
+        self.assertIsNotNone(pubmed_object.last_commit)
+        self.assertIsNotNone(pubmed_object.comment)
+        self.assertIsNotNone(pubmed_object.output_XML(pretty=True, indent='\t'))
 
 if __name__ == '__main__':
     unittest.main()

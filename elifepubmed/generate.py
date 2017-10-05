@@ -148,7 +148,8 @@ class PubMedXML(object):
 
         # Add the pub date now
         pub_type = self.get_pub_type(poa_article)
-        self.set_pub_date(self.journal, pub_date, pub_type)
+        if pub_type:
+            self.set_pub_date(self.journal, pub_date, pub_type)
 
     def set_replaces(self, parent, poa_article):
         """

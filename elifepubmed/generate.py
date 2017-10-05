@@ -315,15 +315,15 @@ class PubMedXML(object):
             parent.remove(self.groups)
 
     def set_publication_type(self, parent, poa_article):
-        if poa_article.articleType:
+        if poa_article.article_type:
             self.publication_type = SubElement(parent, "PublicationType")
-            if poa_article.articleType == "editorial":
+            if poa_article.article_type == "editorial":
                 self.publication_type.text = "EDITORIAL"
-            elif poa_article.articleType == "correction":
+            elif poa_article.article_type == "correction":
                 self.publication_type.text = "PUBLISHED ERRATUM"
-            elif (poa_article.articleType == "research-article"
-               or poa_article.articleType == "discussion"
-               or poa_article.articleType == "article-commentary"):
+            elif (poa_article.article_type == "research-article"
+               or poa_article.article_type == "discussion"
+               or poa_article.article_type == "article-commentary"):
                 self.publication_type.text = "JOURNAL ARTICLE"
 
     def set_article_id_list(self, parent, poa_article):
@@ -402,7 +402,7 @@ class PubMedXML(object):
         self.object_list = SubElement(parent, "ObjectList")
 
         # Add related article data for correction articles
-        if poa_article.articleType == "correction":
+        if poa_article.article_type == "correction":
             for related_article in poa_article.related_articles:
                 if related_article.related_article_type == "corrected-article":
                     object = self.set_object(self.object_list, "Erratum",

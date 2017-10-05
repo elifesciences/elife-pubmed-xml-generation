@@ -101,6 +101,24 @@ class PubMedXML(object):
             pub_type = "aheadofprint"
         return pub_type
 
+    def get_pub_date(self, poa_article):
+        """
+        For using in XML generation, use the article pub date
+        or by default use the run time pub date
+        """
+        pub_date = None
+
+        for date_type in self.pubmed_config.get('pub_date_types'):
+            pub_date_obj = poa_article.get_date(date_type)
+            if pub_date_obj:
+                break
+
+        if pub_date_obj:
+            pub_date = pub_date_obj.date
+        else:
+            # Default use the run time date
+            pub_date = self.pub_date
+        return pub_date
 
     def set_journal(self, parent, poa_article):
         self.journal = SubElement(parent, "Journal")
@@ -114,34 +132,23 @@ class PubMedXML(object):
         self.issn = SubElement(self.journal, 'Issn')
         self.issn.text = self.elife_epub_issn
 
-        #self.journal_pubdate = SubElement(self.journal, "PubDate")
-        a_date = None
-        pub_type = self.get_pub_type(poa_article)
-        if pub_type == "epublish":
-            a_date = poa_article.get_date("pub").date
-        else:
-            # POA type, use the pub date if it is set, for when processing
-            # version 2, version 3, etc.
-            try:
-                a_date = poa_article.get_date("pub").date
-            except:
-                # Default use the run time date
-                a_date = self.pub_date
+        pub_date = self.get_pub_date(poa_article)
 
         self.volume = SubElement(self.journal, "Volume")
         # Use volume from the article unless not present then use the default
         if poa_article.volume:
             self.volume.text = poa_article.volume
         else:
-            if a_date and self.pubmed_config.get("year_of_first_volume"):
+            if pub_date and self.pubmed_config.get("year_of_first_volume"):
                 self.volume.text = eautils.calculate_journal_volume(
-                    a_date, self.pubmed_config.get("year_of_first_volume"))
+                    pub_date, self.pubmed_config.get("year_of_first_volume"))
 
         self.issue = SubElement(self.journal, "Issue")
         self.issue.text = self.elife_journal_issue
 
         # Add the pub date now
-        self.set_pub_date(self.journal, a_date, pub_type)
+        pub_type = self.get_pub_type(poa_article)
+        self.set_pub_date(self.journal, pub_date, pub_type)
 
     def set_replaces(self, parent, poa_article):
         """

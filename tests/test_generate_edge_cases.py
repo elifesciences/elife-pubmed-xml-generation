@@ -54,5 +54,27 @@ class TestGenerateArticleContributors(unittest.TestCase):
         self.assertTrue('<AuthorList>' not in pubmed_xml_string)
         self.assertTrue('<GroupList>' not in pubmed_xml_string)
 
+
+    def test_generate_contributor_surname_no_given_name(self):
+        "build an article object, set the contributors, generate PubMed XML"
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        expected_fragment = '<AuthorList><Author><CollectiveName>Group name</CollectiveName></Author></AuthorList><GroupList><Group><GroupName>Group name</GroupName><IndividualName><FirstName EmptyYN="Y"/><LastName>eLife</LastName></IndividualName></Group></GroupList>'
+        article = Article(doi, title)
+        contributor1 = Contributor(contrib_type="author", surname=None, given_name=None, collab="Group name")
+        contributor1.group_author_key = 'group1'
+        article.add_contributor(contributor1)
+        contributor2 = Contributor(contrib_type="author non-byline", surname="eLife", given_name=None)
+        contributor2.group_author_key = 'group1'
+        article.add_contributor(contributor2)
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # A quick test just look for the expected string in the output
+        self.assertTrue(expected_fragment in pubmed_xml_string)
+
+
+
 if __name__ == '__main__':
     unittest.main()

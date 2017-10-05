@@ -366,11 +366,10 @@ class PubMedXML(object):
 
         # If the article is VoR and is was ever PoA, then set the aheadofprint history date
         if poa_article.is_poa is False and poa_article.was_ever_poa is True:
-            date_value_type = "epub"
             date_type = "aheadofprint"
-            date = poa_article.get_date(date_value_type)
+            date = self.get_pub_date(poa_article)
             if date:
-                self.set_date(self.history, date.date, date_type)
+                self.set_date(self.history, date, date_type)
 
     def set_abstract(self, parent, poa_article):
 

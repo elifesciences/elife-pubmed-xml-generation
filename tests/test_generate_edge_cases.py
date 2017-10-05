@@ -1,6 +1,7 @@
 import unittest
+import time
 from elifepubmed import generate
-from elifearticle.article import Article, Contributor
+from elifearticle.article import Article, Contributor, ArticleDate
 
 class TestGenerateArticleTitle(unittest.TestCase):
 
@@ -74,6 +75,25 @@ class TestGenerateArticleContributors(unittest.TestCase):
         # A quick test just look for the expected string in the output
         self.assertTrue(expected_fragment in pubmed_xml_string)
 
+
+class TestGenerateArticlePOAStatus(unittest.TestCase):
+
+    def test_generate_vor_was_ever_poa(self):
+        "build an article object, set the poa status values, generate PubMed XML"
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        article.is_poa = False
+        article.was_ever_poa = True
+        default_pub_date = time.strptime("2017-07-17 07:17:07", "%Y-%m-%d %H:%M:%S")
+        date_instance = ArticleDate('pub', default_pub_date)
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # A quick test just look for the expected string in the output
+        self.assertTrue('<Replaces IdType="doi">' in pubmed_xml_string)
+        self.assertTrue('<History><PubDate PubStatus="aheadofprint">' in pubmed_xml_string)
 
 
 if __name__ == '__main__':

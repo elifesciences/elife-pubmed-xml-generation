@@ -41,8 +41,12 @@ class PubMedXML(object):
             self.pub_date = pub_date
 
         # Generate batch id
-        self.elife_doi_batch_id = ("elife-" + time.strftime("%Y-%m-%d-%H%M%S", self.pub_date)
-                                   + "-PubMed")
+        batch_doi = ''
+        if len(poa_articles) == 1:
+            # If only one article is supplied, then add the doi to the batch file name
+            batch_doi = str(poa_articles[0].manuscript) + '-'
+        self.batch_id = (str(self.pubmed_config.get('batch_file_prefix')) + batch_doi +
+                                   time.strftime("%Y%m%d%H%M%S", self.pub_date))
 
         # set comment
         if add_comment:

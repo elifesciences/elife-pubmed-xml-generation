@@ -34,8 +34,6 @@ class PubMedXML(object):
         self.group_contrib_types = ["author non-byline"]
         self.date_types = ["received", "accepted"]
 
-        self.elife_journal_issue = ""
-
         # Publication date
         if pub_date is None:
             self.pub_date = time.gmtime()
@@ -138,8 +136,9 @@ class PubMedXML(object):
                 self.volume.text = eautils.calculate_journal_volume(
                     pub_date, self.pubmed_config.get("year_of_first_volume"))
 
-        self.issue = SubElement(self.journal, "Issue")
-        self.issue.text = self.elife_journal_issue
+        if poa_article.issue:
+            self.issue = SubElement(self.journal, "Issue")
+            self.issue.text = poa_article.issue
 
         # Add the pub date now
         pub_type = self.get_pub_type(poa_article)

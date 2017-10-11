@@ -494,6 +494,16 @@ def pubmed_xml(poa_articles, config_section="elife", pub_date=None, add_comment=
     return pXML.output_XML()
 
 
+def pubmed_xml_to_disk(poa_articles, config_section="elife", pub_date=None, add_comment=True):
+    "build pubmed xml and write the output to disk"
+    pXML = build_pubmed_xml(poa_articles, config_section, pub_date, add_comment)
+    xml_string = pXML.output_XML()
+    # Write to file
+    filename = TMP_DIR + os.sep + pXML.batch_id + '.xml'
+    with open(filename, "wb") as fp:
+        fp.write(xml_string)
+
+
 def build_articles_for_pubmed(article_xmls, detail='full', build_parts=[]):
     "specify some detail and build_parts specific to generating pubmed output"
     build_parts = [

@@ -96,5 +96,25 @@ class TestGenerateArticlePOAStatus(unittest.TestCase):
         self.assertTrue('<History><PubDate PubStatus="aheadofprint">' in pubmed_xml_string)
 
 
+class TestGenerateArticleIssue(unittest.TestCase):
+
+    def test_generate_issue(self):
+        """
+        until there is a test example that has an article issue in the XML,
+        build an article object, set the issue value, generate PubMed XML
+        for test coverage
+        """
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        article.issue = "1"
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # A quick test just look for the expected string in the output
+        self.assertTrue('<Issue>1</Issue>' in pubmed_xml_string)
+
+
 if __name__ == '__main__':
     unittest.main()

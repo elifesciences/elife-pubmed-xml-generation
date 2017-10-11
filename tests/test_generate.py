@@ -73,5 +73,23 @@ class TestGenerate(unittest.TestCase):
         self.assertIsNotNone(pubmed_object.comment)
         self.assertIsNotNone(pubmed_object.output_XML(pretty=True, indent='\t'))
 
+    def test_pubmed_xml_to_disk(self):
+        "test writing to disk for test coverage"
+        article_xml_file = 'elife_poa_e00003.xml'
+        pubmed_xml_file = 'elife-pubmed-00003-20170717071707.xml'
+        config_section = 'elife'
+        pub_date = self.default_pub_date
+        file_path = TEST_DATA_PATH + article_xml_file
+        # build the article object
+        articles = generate.build_articles_for_pubmed([file_path])
+        # generate and write to disk
+        generate.pubmed_xml_to_disk(articles, config_section, pub_date, False)
+        # check the output matches
+        with open(TEST_DATA_PATH + pubmed_xml_file, 'rb') as fp:
+            expected_output = fp.read()
+        with open(generate.TMP_DIR + pubmed_xml_file, 'rb') as fp:
+            generated_output = fp.read()
+        self.assertEqual(generated_output, expected_output)
+
 if __name__ == '__main__':
     unittest.main()

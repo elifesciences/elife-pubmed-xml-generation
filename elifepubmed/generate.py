@@ -88,14 +88,13 @@ class PubMedXML(object):
         Given an article object, determine whether the pub_type is for
         PoA article or VoR article
         """
-
         pub_type = None
-        if poa_article.is_poa is False:
-            # VoR
-            pub_type = "epublish"
-        elif poa_article.is_poa is True:
+        if poa_article.is_poa is True:
             # PoA
             pub_type = "aheadofprint"
+        else:
+            # VoR
+            pub_type = "epublish"
         return pub_type
 
     def get_pub_date(self, poa_article):

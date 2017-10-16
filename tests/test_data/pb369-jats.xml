@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.0 20120330//EN" "http://jats.nlm.nih.gov/publishing/1.0/JATS-journalpublishing1.dtd">
+<!--<?xml-stylesheet type="text/xsl" href="article.xsl"?>-->
+<article article-type="research-article" dtd-version="1.0" xml:lang="en" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<front>
+<journal-meta>
+<journal-id journal-id-type="issn">2054-670X</journal-id>
+<journal-title-group>
+<journal-title>Psychologica Belgica</journal-title>
+</journal-title-group>
+<issn pub-type="epub">2054-670X</issn>
+<publisher>
+<publisher-name>Ubiquity Press</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="doi">10.5334/pb.369</article-id>
+<article-categories>
+<subj-group>
+<subject>Research article</subject>
+</subj-group>
+</article-categories>
+<title-group>
+<article-title>Factor Structure of the Affective Style Questionnaire in Flemish Adolescents</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-3097-4784</contrib-id>
+<name>
+<surname>Erreygers</surname>
+<given-names>Sara</given-names>
+</name>
+<email>sara.erreygers@uantwerpen.be</email>
+<xref ref-type="aff" rid="aff-1"/>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Spooren</surname>
+<given-names>Pieter</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+</contrib>
+</contrib-group>
+<aff id="aff-1">University of Antwerp, BE</aff>
+<pub-date publication-format="electronic" date-type="pub" iso-8601-date="2017-07-03">
+<day>03</day>
+<month>07</month>
+<year>2017</year>
+</pub-date>
+<volume>57</volume>
+<issue>2</issue>
+<fpage>112</fpage>
+<lpage>122</lpage>
+<history>
+<date date-type="received" iso-8601-date="2016-10-07">
+<day>07</day>
+<month>10</month>
+<year>2016</year>
+</date>
+<date date-type="accepted" iso-8601-date="2016-10-15">
+<day>15</day>
+<month>10</month>
+<year>2016</year>
+</date>
+</history>
+<permissions>
+<copyright-statement>Copyright: &#x00A9; 2017 The Author(s)</copyright-statement>
+<copyright-year>2017</copyright-year>
+<license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+<license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution 4.0 International License (CC-BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited. See <uri xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</uri>.</license-p>
+</license>
+</permissions>
+<self-uri xlink:href="http://www.psychologicabelgica.com/articles/10.5334/pb.369/"/>
+<abstract>
+<p>Emotion regulation plays an important role in both healthy and problematic adolescent psychological functioning. Emotion regulation tendencies can be assessed with the Affective Style Questionnaire (ASQ; <xref ref-type="bibr" rid="B9">Hofmann &amp; Kashdan, 2010</xref>), but its validity in Dutch speaking adolescents has not been investigated so far. Two methods, namely traditional confirmatory factor analysis (CFA) and the recently developed exploratory structural equations modeling (ESEM), were compared to examine the dimensional structure of the ASQ in a Flemish adolescent sample (<italic>N</italic> = 1,601). Although, as expected, the ESEM-model fit the data better than the CFA-model, the fit indices indicated that both models did not have an acceptable fit. With a shortened version of the ASQ, model fit improved substantially, but only the ESEM solution provided a good fit. The ESEM results support the use of the adapted ASQ to effectively assess the affective styles of concealing, adjusting and tolerating in Dutch-speaking adolescents.</p>
+</abstract>
+<kwd-group>
+<kwd>emotion regulation</kwd>
+<kwd>affective style</kwd>
+<kwd>concealing</kwd>
+<kwd>adjusting</kwd>
+<kwd>tolerating</kwd>
+<kwd>exploratory structural equations modeling</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<p>Adolescence is a developmental phase characterized by challenges across multiple life domains, associated with biological, psychological, intellectual and social changes (e.g., puberty, increasing importance of peers over parents, changing nature of relationships). These challenges expose adolescents to stress and evoke multiple emotions (<xref ref-type="bibr" rid="B19">Rosenblum &amp; Lewis, 2003</xref>). Adolescents not only experience more intense emotions than adults, they also experience negative emotions more frequently than younger and older age groups (<xref ref-type="bibr" rid="B14">Larson, Csikszentmihalyi, &amp; Graef, 1980</xref>; <xref ref-type="bibr" rid="B19">Rosenblum &amp; Lewis, 2003</xref>). How adolescents cope with their emotions, <italic>emotion regulation</italic>, is an important predictor and indication of psychosocial functioning (<xref ref-type="bibr" rid="B23">Zeman, Cassano, Perry-Parrish, &amp; Stegall, 2006</xref>). Emotion regulation has been defined as &#8220;the extrinsic and intrinsic processes responsible for monitoring, evaluating, and modifying emotional reactions, especially their intensive and temporal features, to accomplish one&#8217;s goals&#8221; (<xref ref-type="bibr" rid="B21">Thompson, 1994, pp. 2&#8211;3</xref>). Research has shown that successful emotion regulation is associated with positive outcomes (e.g., <xref ref-type="bibr" rid="B13">John &amp; Gross, 2004</xref>) whereas difficulties with emotion regulation are related to reduced social competence and psychological functioning (e.g., <xref ref-type="bibr" rid="B10">Hofmann, Sawyer, Fang, &amp; Asnaani, 2012</xref>; <xref ref-type="bibr" rid="B23">Zeman et al., 2006</xref>).</p>
+<p>Because emotion regulation plays such an important role in adaptive psychosocial functioning in adolescence, measures that assess individual differences in emotion regulation can provide crucial information about adolescent emotional development. Individual differences in the tendencies to react to and regulate emotions have been referred to as differences in affective styles (<xref ref-type="bibr" rid="B5">Davidson, 1998</xref>; <xref ref-type="bibr" rid="B10">Hofmann et al., 2012</xref>). Three different affective styles are commonly distinguished, based on research on Gross&#8217;s (<xref ref-type="bibr" rid="B8">1998</xref>) process model of emotion regulation: concealing, adjusting, and tolerating (<xref ref-type="bibr" rid="B10">Hofmann et al., 2012</xref>). Concealing involves response-focused strategies such as suppression, which are intended to hide and avoid emotions after they arise. Adjusting encompasses the modulation of emotions as needed in a particular context by balancing and readjusting emotional experience and expression. Tolerating refers to an accepting and non-defensive reaction towards strong and arousing emotions.</p>
+<p>Hofmann and Kashdan (<xref ref-type="bibr" rid="B9">2010</xref>) have developed the Affective Style Questionnaire (ASQ) to assess individual differences in the aforementioned affective styles. In two studies with US undergraduate university students, their instrument demonstrated excellent convergent and discriminant validity and reliability. The instrument has also successfully been used with adolescents (<xref ref-type="bibr" rid="B15">Lougheed &amp; Hollenstein, 2012</xref>). Recently, the ASQ has been evaluated in German and Japanese (adult) student samples. In the German study, the original factor structure was replicated and the scale showed good psychometric properties (<xref ref-type="bibr" rid="B6">Graser et al., 2012</xref>). In the Japanese study, four instead of three factors were found in a factor analysis: the three original factors (adjusting, concealing and tolerating) plus an extra factor which the authors labelled <italic>holding</italic> (<xref ref-type="bibr" rid="B12">Ito &amp; Hofmann, 2014</xref>). This fourth factor reflected the ability to keep emotions under control via self-restraint. The subscales had acceptable convergent and discriminant validity, but the reliability of the tolerating subscale was poor (Cronbach&#8217;s alpha below .50).</p>
+<p>Importantly, the German and Japanese study used different methods to evaluate the factor structure of the instrument. The Japanese study employed exploratory (EFA) and confirmatory factor analyses (CFA), methods which are commonly used to examine and replicate the factor structure of a scale. The CFA measurement model is restrictive: It specifies a simple structure in which each indicator is influenced by only one factor, which means that no cross-loadings are allowed (i.e., non-target loadings are fixed to zero). In contrast, the German study used a more recent approach to evaluate the ASQ factor structure: exploratory structural equation modeling (ESEM). This approach combines CFA and EFA measurement model parts and is less restrictive than CFA (that is, it allows small cross-loadings that are well motivated by the theory), generally resulting in better-fitting models (<xref ref-type="bibr" rid="B1">Asparouhov, Muth&#233;n, &amp; Muthen, 2009</xref>; <xref ref-type="bibr" rid="B17">Marsh et al., 2009</xref>). In CFA, the small model misspecifications created by fixing all cross-loadings to zero can have a large influence on the rest of the model (e.g., biased parameter estimates) (<xref ref-type="bibr" rid="B1">Asparouhov et al., 2009</xref>). Small cross-loadings are not deleted in ESEM, resulting in models that fit better and conform better with theory.</p>
+<p>To the best of our knowledge, so far there is no scale available to assess affective styles in Dutch. However, there is a Dutch instrument available to measure emotion regulation styles in children and adolescents, the FEEL-KJ (<xref ref-type="bibr" rid="B2">Braet, Cracco, &amp; Theuwis, 2013</xref>). This instrument focuses on the specific regulation of anger, sadness, and fear, and distinguishes between 15 adaptive, maladaptive, and external regulation strategies. Which strategies are categorized as adaptive and maladaptive was based on factor analysis rather than on theoretical grounds (<xref ref-type="bibr" rid="B7">Grob &amp; Smolenski, 2005</xref>). In contrast, the ASQ distinguishes three more general adaptive styles, based on theory and factor analysis. These affective styles are not emotion-specific, but are seen as habitual tendencies to regulate negative emotions across situations. Moreover, the ASQ has the advantage of being a short instrument (only 20 items), compared to the FEEL-KJ (90 items), which makes it easier to use in multi-instrument studies. As the ASQ seems a promising instrument to assess affective styles, we aimed to examine its factor structure in a Dutch-speaking adolescent sample. We used both CFA and ESEM to compare their outcomes on the dimensional structure of the ASQ.</p>
+<sec sec-type="methods">
+<title>Method</title>
+<sec>
+<title>Participants</title>
+<p>In total 1,601 Dutch-speaking adolescents participated. Participants were in the first year of Belgian secondary education and had a mean age of 13.2 years (<italic>SD</italic> = .4, range: 10&#8211;15). Forty-six percent of the students were boys and 54.0% girls. 90.6% of the students were in the general education track (1A), 9.4% in vocational education (1B). A large majority (94.5%) of them spoke Dutch with one or both of their parents at home; 24.7% of the participants (also) speak another language at home.</p>
+</sec>
+<sec>
+<title>Procedure</title>
+<p>The data were collected in the context of a broader longitudinal study. Data collection took place during the first wave of this study in March to May 2015. Participants were recruited through their schools. Schools were randomly selected from one province in Flanders (the Dutch-speaking part of Belgium). Of the 29 schools that were contacted, 13 agreed to participate. Prior to administration, informed consent was obtained from the students, their parents and the school principal; all except 13 students agreed to participate.</p>
+<p>The data were collected through pen-and-paper and electronic surveys, which were administered to the students in classrooms during school hours. In most schools, the author was present during the administration of the survey to answer questions. A few schools preferred to administer the questionnaire by their own personnel during spare hours. The study received approval by the Ethics Committee for the Social Sciences and Humanities of the University of Antwerp (reference number SHW_14_39_02).</p>
+</sec>
+<sec>
+<title>Measures</title>
+<p>Affective styles were assessed by the ASQ (<xref ref-type="bibr" rid="B9">Hofmann &amp; Kashdan, 2010</xref>; see Table <xref ref-type="table" rid="T1">1</xref> for scale items). Participants answered 20 statements about their tendency to react to emotions on a 5-point Likert-type scale that ranges from 1 (<italic>not true of me at all</italic>) to 5 (<italic>extremely true of me</italic>). Factor analyses of the original scale revealed three factors: Adjusting, Concealing, and Tolerating.</p>
+<table-wrap id="T1">
+<label>Table 1</label>
+<caption>
+<p>ESEM and CFA Factor Solutions of 20-Item ASQ.</p>
+</caption>
+<table>
+<tr>
+<th align="left"></th>
+<th align="center" colspan="3">Factor loadings</th>
+</tr>
+<tr>
+<th align="left"></th>
+<th colspan="3"><hr/></th>
+</tr>
+<tr>
+<th align="left">Items</th>
+<th align="center">Concealing</th>
+<th align="center">Adjusting</th>
+<th align="center">Tolerating</th>
+</tr>
+<tr>
+<td colspan="4"><hr/></td>
+</tr>
+<tr>
+<td valign="top" align="left">Concealing</td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C1 People usually can&#8217;t tell how I am feeling inside.</td>
+<td valign="top" align="right">0.439/0.188</td>
+<td valign="top" align="right">&#8211;0.301</td>
+<td valign="top" align="right">0.040</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C2 I often suppress my emotional reactions to things.</td>
+<td valign="top" align="right">0.352/0.395</td>
+<td valign="top" align="right">&#8211;0.092</td>
+<td valign="top" align="right">0.266</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C3 I am good at hiding my feelings.</td>
+<td valign="top" align="right">0.732/0.677</td>
+<td valign="top" align="right">0.066</td>
+<td valign="top" align="right">&#8211;0.023</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C4 People usually can&#8217;t tell when I am upset.</td>
+<td valign="top" align="right">0.605/0.541</td>
+<td valign="top" align="right">&#8211;0.036</td>
+<td valign="top" align="right">0.042</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C5 People usually can&#8217;t tell when I am sad.</td>
+<td valign="top" align="right">0.616/0.572</td>
+<td valign="top" align="right">0.032</td>
+<td valign="top" align="right">&#8211;0.010</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C6 I can act in a way that people don&#8217;t see me being upset.</td>
+<td valign="top" align="right">0.635/0.708</td>
+<td valign="top" align="right">0.115</td>
+<td valign="top" align="right">0.069</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C7 I could easily fake emotions.</td>
+<td valign="top" align="right">0.403/0.552</td>
+<td valign="top" align="right">0.189</td>
+<td valign="top" align="right">0.057</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C8 I can hide my anger well if I have to.</td>
+<td valign="top" align="right">0.347/0.680</td>
+<td valign="top" align="right">0.433</td>
+<td valign="top" align="right">0.001</td>
+</tr>
+<tr>
+<td valign="top" align="left">Adjusting</td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A1 I have my emotions well under control.</td>
+<td valign="top" align="right">0.280</td>
+<td valign="top" align="right">0.332/0.639</td>
+<td valign="top" align="right">0.257</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A2 I can avoid getting upset by taking a different perspective on things.</td>
+<td valign="top" align="right">0.308</td>
+<td valign="top" align="right">0.115/0.544</td>
+<td valign="top" align="right">0.375</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A3 I am able to let go of my feelings.</td>
+<td valign="top" align="right">&#8211;0.181</td>
+<td valign="top" align="right">0.175/0.363</td>
+<td valign="top" align="right">0.501</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A4 I can calm down very quickly.</td>
+<td valign="top" align="right">0.150</td>
+<td valign="top" align="right">0.574/0.693</td>
+<td valign="top" align="right">0.149</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A6 I know exactly what to do to get myself into a better mood.</td>
+<td valign="top" align="right">0.000</td>
+<td valign="top" align="right">0.723/0.719</td>
+<td valign="top" align="right">0.083</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A7 I can get into a better mood quite easily.</td>
+<td valign="top" align="right">&#8211;0.082</td>
+<td valign="top" align="right">0.883/0.782</td>
+<td valign="top" align="right">0.057</td>
+</tr>
+<tr>
+<td valign="top" align="left">Tolerating</td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T1 I can tolerate having strong emotions.</td>
+<td valign="top" align="right">0.343</td>
+<td valign="top" align="right">0.353</td>
+<td valign="top" align="right">0.227/0.694</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T2 It&#8217;s ok if people see me being upset.</td>
+<td valign="top" align="right">&#8211;0.149</td>
+<td valign="top" align="right">&#8211;0.026</td>
+<td valign="top" align="right">0.525/0.237</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T3 It&#8217;s ok to feel negative emotions at times.</td>
+<td valign="top" align="right">0.044</td>
+<td valign="top" align="right">&#8211;0.109</td>
+<td valign="top" align="right">0.645/0.372</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T4 I can tolerate being upset.</td>
+<td valign="top" align="right">0.191</td>
+<td valign="top" align="right">0.384</td>
+<td valign="top" align="right">0.339/0.692</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T5 There is nothing wrong with feeling very emotional.</td>
+<td valign="top" align="right">&#8211;0.131</td>
+<td valign="top" align="right">0.008</td>
+<td valign="top" align="right">0.622/0.339</td>
+</tr>
+</table>
+<table-wrap-foot>
+<fn>
+<p><italic>Note.</italic> Factor loadings of the ESEM solution appear before the slash and factor loadings of the ICM-CFA solution after the slash. All parameters are completely standardized. The ICM-CFA model has an independent cluster structure in which each of the ASQ items is allowed to load on only one single latent factor and all non-target loadings are constrained to be zero. For clarity, these ICM-CFA non-target zero loadings are not displayed.</p>
+</fn>
+</table-wrap-foot>
+</table-wrap>
+<p>A Dutch version of the questionnaire was created through the back-translation method (<xref ref-type="bibr" rid="B3">Brislin, 1970</xref>). First, the first author, who is fluent in English, translated the ASQ into Dutch. Then, a professional translator translated the Dutch version back into English. The author compared this version with the original ASQ and adjusted some of the wording of the Dutch items to better align with the original version. Finally, a bilingual colleague translated the modified Dutch version to English and suggested some additional minor adjustments to the Dutch wording.</p>
+</sec>
+<sec>
+<title>Data Analysis</title>
+<p>We compared two factor analytical approaches: CFA and ESEM. In an independent clusters model-CFA (ICM-CFA), each item is allowed to load on one factor, in this case the respective subscale, and all other factor loadings are constrained to be zero. This procedure was used in the Japanese study (<xref ref-type="bibr" rid="B12">Ito &amp; Hofmann, 2014</xref>). However, Asparouhov, Muth&#233;n, and Muth&#233;n (<xref ref-type="bibr" rid="B1">2009</xref>) and Marsh and colleagues (<xref ref-type="bibr" rid="B17">2009</xref>) have argued that because of its use of a strict measurement model, CFA has a number of disadvantages. For instance, CFA specifies zero cross-loadings, whereas measurement instruments often have small cross-loadings that are theoretically meaningful. By constraining all cross-loadings to zero, the measurement model often becomes too parsimonious for the data. This may lead to an ill-fitting model, which, in many cases, requires a number of model modifications to arrive at a good fit. Additionally, misspecification of the zero cross-loadings often leads to distorted factors, resulting in inflated factor correlations. With regards to the ASQ, there are theoretical reasons to expect cross-loadings of a few items. For instance, the item &#8220;I can hide my anger well if I have to&#8221; is a concealing strategy, but it could also be seen as an instance of adjusting to the situation, as in particular situations, it is not appropriate or constructive to show one&#8217;s anger. Additionally, &#8220;I am able to let go of my feelings&#8221;, which is supposed to load on <italic>adjusting</italic>, might also load on <italic>tolerating</italic>, as it reflects the ability to first acknowledge and accept emotions, and then to move on.</p>
+<p>The recent ESEM approach provides a good alternative to the traditional CFA. ESEM integrates EFA and CFA by using EFA factor loadings matrix rotations in combination with SEM parameters and tests of model fit. This approach was used in the German study (<xref ref-type="bibr" rid="B6">Graser et al., 2012</xref>) and, contrary to the Japanese CFA model, the ESEM model succeeded to replicate the original ASQ factor structure.</p>
+<p>The data were analyzed in Mplus 6.11 (<xref ref-type="bibr" rid="B18">Muth&#233;n &amp; Muth&#233;n, 2015</xref>). Because the ASQ variables are ordinal and not normally distributed, we used the weighted least squares means and variances adjusted (WLSMV) estimator (<xref ref-type="bibr" rid="B20">Sass, Schmitt, &amp; Marsh, 2014</xref>). In the ESEM models we used an oblique Geomin rotation with an epsilon value of 0.5 (cf. <xref ref-type="bibr" rid="B17">Marsh et al., 2009</xref>; <xref ref-type="bibr" rid="B22">Vazsonyi, Ksinan, Miku&#353;ka, &amp; Jiskrova, 2015</xref>). To determine how well the models fit the data, several goodness-of-fit indices were examined, including the root mean square error of approximation (RMSEA, acceptable threshold &lt; 0.07), the Comparative Fit Index (CFI, acceptable threshold &gt; 0.95), and the Tucker-Lewis Index (TLI, acceptable threshold &gt; 0.95) (<xref ref-type="bibr" rid="B11">Hooper, Coughlan, &amp; Mullen, 2008</xref>). All factor loadings were fully standardized.</p>
+</sec>
+</sec>
+<sec>
+<title>Results</title>
+<p>First, we performed an ICM-CFA of the translated version of the ASQ, following the factor structure of the original study (<xref ref-type="bibr" rid="B9">Hofmann &amp; Kashdan, 2010</xref>). Examining the goodness-of-fit statistics (Table <xref ref-type="table" rid="T2">2</xref>), this model did not fit the data well: &#967;<sup>2</sup>(167) = 3992.361, <italic>p</italic> &lt; 0.001; CFI = 0.761; TLI = 0.728; RMSEA = 0.120 [0.116, 0.123]. All the factor loadings were significant and most were quite high (Table <xref ref-type="table" rid="T1">1</xref>); non-target loadings were constrained to be zero. The factor correlations were high and significant (Table <xref ref-type="table" rid="T3">3</xref>), ranging from 0.57 between Adjusting and Concealing to 0.93 between Tolerating and Adjusting. We also performed an ICM-CFA of the Japanese four-factor model (<xref ref-type="bibr" rid="B12">Ito &amp; Hofmann, 2014</xref>), which resulted in slightly better fit statistics than the three-factor model, but the overall model fit was still poor: &#967;<sup>2</sup>(98) = 1626.025, <italic>p</italic> &lt; 0.001; CFI = 0.849; TLI = 0.815; RMSEA = 0.099 [0.094, 0.103]. When CFA-models fit the data this poorly, it is common practice to examine the modification indices and to relax the restrictive CFA-constraints by allowing for cross-loadings and item correlations. However, in this case a large number of modifications would have had to be made to arrive at an acceptable fit, with considerable deviations from the original measurement model. Moreover, the issue of the inflated correlations would probably still remain present (<xref ref-type="bibr" rid="B17">Marsh et al., 2009</xref>).</p>
+<table-wrap id="T2">
+<label>Table 2</label>
+<caption>
+<p>Summary of Goodness-of-Fit Statistics for the Models Tested.</p>
+</caption>
+<table>
+<tr>
+<th align="left">Scale</th>
+<th align="left">Model</th>
+<th align="center">&#967;<sup>2</sup></th>
+<th align="center"><italic>df</italic></th>
+<th align="center">&#967;<sup>2</sup>/<italic>df</italic></th>
+<th align="center"><italic>p</italic>(&#967;<sup>2</sup>)</th>
+<th align="center">CFI</th>
+<th align="center">TLI</th>
+<th align="center">RMSEA</th>
+<th align="center">90% CI RMSEA</th>
+</tr>
+<tr>
+<td colspan="10"><hr/></td>
+</tr>
+<tr>
+<td align="left">20-Item ASQ</td>
+<td align="left">ICM-CFA</td>
+<td align="right">3992.361</td>
+<td align="right">167</td>
+<td align="right">23.906</td>
+<td align="right">0.000</td>
+<td align="right">0.761</td>
+<td align="right">0.728</td>
+<td align="right">0.120</td>
+<td align="right">[0.116, 0.123]</td>
+</tr>
+<tr>
+<td align="left">20-Item ASQ</td>
+<td align="left">ESEM</td>
+<td align="right">1930.925</td>
+<td align="right">133</td>
+<td align="right">14.518</td>
+<td align="right">0.000</td>
+<td align="right">0.888</td>
+<td align="right">0.840</td>
+<td align="right">0.092</td>
+<td align="right">[0.088, 0.096]</td>
+</tr>
+<tr>
+<td align="left">16-Item ASQ</td>
+<td align="left">ICM-CFA</td>
+<td align="right">1724.249</td>
+<td align="right">101</td>
+<td align="right">17.072</td>
+<td align="right">0.000</td>
+<td align="right">0.860</td>
+<td align="right">0.834</td>
+<td align="right">0.100</td>
+<td align="right">[0.096, 0.104]</td>
+</tr>
+<tr>
+<td align="left">16-Item ASQ</td>
+<td align="left">ESEM</td>
+<td align="right">555.691</td>
+<td align="right">75</td>
+<td align="right">7.409</td>
+<td align="right">0.000</td>
+<td align="right">0.959</td>
+<td align="right">0.934</td>
+<td align="right">0.063</td>
+<td align="right">[0.058, 0.068]</td>
+</tr>
+<tr>
+<td align="left">16-Item ASQ</td>
+<td align="left">ESEM MI</td>
+<td align="right">767.954</td>
+<td align="right">240</td>
+<td align="right">3.200</td>
+<td align="right">0.000</td>
+<td align="right">0.954</td>
+<td align="right">0.954</td>
+<td align="right">0.053</td>
+<td align="right">[0.048, 0.057]</td>
+</tr>
+</table>
+<table-wrap-foot>
+<fn>
+<p><italic>Note.</italic> ICM-CFA = independent clusters model &#8211; confirmatory factor analysis; ESEM = exploratory structural equations modeling; MI = measurement invariance across genders; CFI = comparative fit index; TLI = Tucker-Lewis Index; RMSEA = root mean square error of approximation; 90% CI RMSEA = 90 percent confidence interval RMSEA.</p>
+</fn>
+</table-wrap-foot>
+</table-wrap>
+<table-wrap id="T3">
+<label>Table 3</label>
+<caption>
+<p>ESEM (and ICM-CFA) Factor Correlations for the 20-Item and 16-Item ASQ.</p>
+</caption>
+<table>
+<tr>
+<th align="left"></th>
+<th align="center" colspan="3">Factor correlations</th>
+</tr>
+<tr>
+<th align="left"></th>
+<th colspan="3"><hr/></th>
+</tr>
+<tr>
+<th align="left"></th>
+<th align="center" colspan="3">20-Item ASQ</th>
+</tr>
+<tr>
+<th align="left"></th>
+<th colspan="3"><hr/></th>
+</tr>
+<tr>
+<th align="left">Factor</th>
+<th align="center">Concealing</th>
+<th align="center">Adjusting</th>
+<th align="center">Tolerating</th>
+</tr>
+<tr>
+<td colspan="4"><hr/></td>
+</tr>
+<tr>
+<td align="left">Concealing</td>
+<td align="right">1.00/1.00</td>
+<td align="right">0.57/0.54</td>
+<td align="right">0.60/0.20</td>
+</tr>
+<tr>
+<td align="left">Adjusting</td>
+<td align="right">0.25/0.22</td>
+<td align="right">1.00/1.00</td>
+<td align="right">0.93/0.39</td>
+</tr>
+<tr>
+<td align="left">Tolerating</td>
+<td align="right">0.18/0.14</td>
+<td align="right">0.33/0.26</td>
+<td align="right">1.00/1.00</td>
+</tr>
+</table>
+<table-wrap-foot>
+<fn>
+<p><italic>Note.</italic> ICM-CFA factor correlations appear above the diagonal, ESEM factor correlations below the diagonal. Numbers before the slash indicate factor correlations of the 20-item ASQ, numbers after the slash of the 16-item ASQ.</p>
+</fn>
+</table-wrap-foot>
+</table-wrap>
+<p>Compared to the ICM-CFA model, the three-factor ESEM model fit the data better, although model fit was still not acceptable (Table <xref ref-type="table" rid="T2">2</xref>): &#967;<sup>2</sup>(133) = 1930.925, <italic>p</italic> &lt; 0.001; CFI = 0.888; TLI = 0.840; RMSEA = 0.092 [0.088, 0.096]. Furthermore, the correlations between the factors were substantially lower in the ESEM model than the CFA model, ranging from 0.18 to 0.33. Most of the factor loadings were moderate to high, although a few items had a low loading on their designated factor but a high loading on another factor (Table <xref ref-type="table" rid="T1">1</xref>).</p>
+<p>Taken together, these results suggested that the ESEM model fit the data better than the ICM-CFA model. Nonetheless, both models did not have an acceptable fit of the data. Thus, the original factor structure of the ASQ could not be adequately replicated in our Flemish adolescent sample. Because affective styles are such an important concept related to adolescent functioning and there are no other validated Dutch instruments available to measure them, we decided to adapt the scale with the aim of achieving an acceptable model fit. First, during the administration of the survey in schools, the author had noted that some items were hard to understand for the students, as students repeatedly asked questions about their meaning. For example, the wording of items T1 and T4 was difficult to grasp for many students (they did not understand the meaning of &#8216;<italic>verdragen</italic>&#8217;, the translation of <italic>tolerating</italic>). In addition, the adolescents had trouble understanding what was meant by items A2 and A3. This might explain why these items had low factor loadings on their own factor and high cross-loadings. These items were deleted from analysis.</p>
+<p>With this shortened, 16-item version of the ASQ, we performed another ICM-CFA and ESEM analysis. The 16 items and their factor loadings for both models are displayed in Table <xref ref-type="table" rid="T4">4</xref>. Inspection of the ESEM factor loadings (Table <xref ref-type="table" rid="T4">4</xref>) reveals that all items loaded on their own factor (&gt;minimum loading of 0.32, cf. <xref ref-type="bibr" rid="B4">Costello &amp; Osborne, 2005</xref>) and had only small factor loadings on the other factors, approximating a simple structure. Only one item (item C8: &#8220;I can hide my anger well if I have to&#8221;) cross-loaded on another factor. This item originally belonged to the Concealing subscale, but also loaded on the Adjusting subscale. However, this can be explained when considering the meaning of the item. Hiding anger if you have to can not only be seen as a tendency to conceal anger, but it can also be an adaptive response to situations where it is not appropriate to express angriness. Thus, the cross-loading on Adjusting is theoretically relevant and meaningful.</p>
+<table-wrap id="T4">
+<label>Table 4</label>
+<caption>
+<p>ESEM and CFA Factor Solutions of 16-Item ASQ.</p>
+</caption>
+<table>
+<tr>
+<th align="left"></th>
+<th align="center" colspan="3">Factor loadings</th>
+</tr>
+<tr>
+<th align="left"></th>
+<th colspan="3"><hr/></th>
+</tr>
+<tr>
+<th align="left">Items</th>
+<th align="center">Concealing</th>
+<th align="center">Adjusting</th>
+<th align="center">Tolerating</th>
+</tr>
+<tr>
+<td colspan="4"><hr/></td>
+</tr>
+<tr>
+<td valign="top" align="left">Concealing</td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C1 People usually can&#8217;t tell how I am feeling inside.</td>
+<td valign="top" align="right">0.444/0.224</td>
+<td valign="top" align="right">&#8211;0.295</td>
+<td valign="top" align="right">0.084</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C2 I often suppress my emotional reactions to things.</td>
+<td valign="top" align="right">0.327/0.353</td>
+<td valign="top" align="right">&#8211;0.039</td>
+<td valign="top" align="right">0.216</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C3 I am good at hiding my feelings.</td>
+<td valign="top" align="right">0.713/0.678</td>
+<td valign="top" align="right">0.090</td>
+<td valign="top" align="right">&#8211;0.027</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C4 People usually can&#8217;t tell when I am upset.</td>
+<td valign="top" align="right">0.622/0.561</td>
+<td valign="top" align="right">&#8211;0.024</td>
+<td valign="top" align="right">0.056</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C5 People usually can&#8217;t tell when I am sad.</td>
+<td valign="top" align="right">0.626/0.590</td>
+<td valign="top" align="right">0.033</td>
+<td valign="top" align="right">0.015</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C6 I can act in a way that people don&#8217;t see me being upset.</td>
+<td valign="top" align="right">0.647/0.715</td>
+<td valign="top" align="right">0.127</td>
+<td valign="top" align="right">0.102</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C7 I could easily fake emotions.</td>
+<td valign="top" align="right">0.418/0.543</td>
+<td valign="top" align="right">0.205</td>
+<td valign="top" align="right">0.039</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;C8 I can hide my anger well if I have to.</td>
+<td valign="top" align="right">0.354/0.665</td>
+<td valign="top" align="right">0.431</td>
+<td valign="top" align="right">0.037</td>
+</tr>
+<tr>
+<td valign="top" align="left">Adjusting</td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A1 I have my emotions well under control.</td>
+<td valign="top" align="right">0.213</td>
+<td valign="top" align="right">0.341/0.522</td>
+<td valign="top" align="right">0.146</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A4 I can calm down very quickly.</td>
+<td valign="top" align="right">0.157</td>
+<td valign="top" align="right">0.576/0.677</td>
+<td valign="top" align="right">0.093</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A5 I can get out of a bad mood very quickly.</td>
+<td valign="top" align="right">0.093</td>
+<td valign="top" align="right">0.611/0.713</td>
+<td valign="top" align="right">0.159</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A6 I know exactly what to do to get myself into a better mood.</td>
+<td valign="top" align="right">0.022</td>
+<td valign="top" align="right">0.722/0.761</td>
+<td valign="top" align="right">0.108</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;A7 I can get into a better mood quite easily.</td>
+<td valign="top" align="right">&#8211;0.060</td>
+<td valign="top" align="right">0.886/0.838</td>
+<td valign="top" align="right">0.092</td>
+</tr>
+<tr>
+<td valign="top" align="left">Tolerating</td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+<td valign="top" align="right"></td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T2 It&#8217;s ok if people see me being upset.</td>
+<td valign="top" align="right">&#8211;0.137</td>
+<td valign="top" align="right">0.029</td>
+<td valign="top" align="right">0.441/0.385</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T3 It&#8217;s ok to feel negative emotions at times.</td>
+<td valign="top" align="right">0.085</td>
+<td valign="top" align="right">&#8211;0.052</td>
+<td valign="top" align="right">0.594/0.644</td>
+</tr>
+<tr>
+<td valign="top" align="left">&#160;&#160;&#160;&#160;T5 There is nothing wrong with feeling very emotional.</td>
+<td valign="top" align="right">&#8211;0.199</td>
+<td valign="top" align="right">0.015</td>
+<td valign="top" align="right">0.748/0.693</td>
+</tr>
+</table>
+<table-wrap-foot>
+<fn>
+<p><italic>Note.</italic> Factor loadings of the ESEM solution appear before the slash and factor loadings of the ICM-CFA solution after the slash. All parameters are completely standardized. The ICM-CFA model has an independent cluster structure in which each of the ASQ items is allowed to load on only one single latent factor and all non-target loadings are constrained to be zero. For clarity, these ICM-CFA non-target zero loadings are not displayed.</p>
+</fn>
+</table-wrap-foot>
+</table-wrap>
+<p>Both analytical approaches resulted in a much better fit with the 16-item ASQ than with the 20-item ASQ (Table <xref ref-type="table" rid="T2">2</xref>). Furthermore, comparing the ICM-CFA and ESEM model, the ESEM model again fit the data better than the ICM-CFA model. The model fit indices (Table <xref ref-type="table" rid="T2">2</xref>) suggested that the ESEM model of the 16-item ASQ had an acceptable fit (CFI &gt; 0.95, RMSEA &lt; 0.07) whereas the ICM-CFA model had not (CFI &lt; 0.95, RMSEA &gt; 0.07). Furthermore, the correlations between the factors were reduced for the 16-item ASQ compared to the 20-item ASQ (Table <xref ref-type="table" rid="T3">3</xref>), although the factor correlations were still higher in the ICM-CFA (range: 0.20&#8211;0.54) than in the ESEM solution (range: 0.14&#8211;0.26).</p>
+<p>To examine whether the 16-item ASQ demonstrated measurement equivalence across gender groups, a measurement invariance ESEM model with equality of the factor variances and covariances, in addition to measurement invariance of the intercepts and factor loading matrices was tested. The fit of this model with constraints across gender groups was good (CFA &gt; 0.95, RMSEA &lt; 0.07; see Table <xref ref-type="table" rid="T2">2</xref>), suggesting that boys and girls interpret the ASQ items in a similar manner. Nevertheless, there were significant differences between boys and girls on the mean scores of each subscale: Boys scored higher on Concealing (<italic>M</italic><sub>boys</sub> = 2.81, <italic>M</italic><sub>girls</sub> = 2.69, <italic>t</italic>(1511,23) = 3.09, <italic>p</italic> = .002) and Adjusting (<italic>M</italic><sub>boys</sub> = 3.30, <italic>M</italic><sub>girls</sub> = 3.08, <italic>t</italic>(1511,28) = 4.76, <italic>p</italic> = .000), and lower on Tolerating (<italic>M</italic><sub>boys</sub> = 2.76, <italic>M</italic><sub>girls</sub> = 2.85, <italic>t</italic>(1571) = 2.16, <italic>p</italic> = .035) than girls. These differences replicate the gender differences reported in the German study (<xref ref-type="bibr" rid="B6">Graser et al., 2012</xref>).</p>
+<p>Finally, we examined the internal consistency of the subscales by calculating Cronbach&#8217;s alpha for each of the subscales, first with the original ASQ items and then with the shortened version. For both versions, internal consistency was acceptable for the Concealing, <italic>&#945;</italic> = 0.74, and Adjusting, <italic>&#945;</italic> = 0.77 &#8211; 0.79, subscales, but poor for the Tolerating subscale, <italic>&#945;</italic> = 0.56 &#8211; 0.59.</p>
+</sec>
+<sec>
+<title>Discussion and Conclusion</title>
+<p>Emotion regulation tendencies (or affective styles) have an important influence on adaptive psychological functioning in adolescence (e.g., <xref ref-type="bibr" rid="B23">Zeman et al., 2006</xref>). However, to date there was no validated Dutch instrument available to measure affective styles in adolescents. Our study suggests that an adapted version of the ASQ (<xref ref-type="bibr" rid="B9">Hofmann &amp; Kashdan, 2010</xref>) can effectively be used to assess the affective styles of concealing, adjusting and tolerating in Dutch-speaking adolescents using the ESEM approach.</p>
+<p>Our results showed that the ESEM approach resulted in a better model fit than ICM-CFA. However, model fit for the original, 20-item ASQ was not acceptable, even when using ESEM. Therefore, we omitted four items that were poorly understood by the adolescents in our sample and re-validated the factor structure of this shortened version of the ASQ. The ESEM and ICM-CFA model had a substantially better fit for the 16-item ASQ, but only the ESEM approach resulted in an acceptable fit. Moreover, ESEM factor correlations were lower than ICM-CFA factor correlations. The restrictive CFA measurement model constrains all cross-loadings to be zero, which usually leads to inflated factor correlations (<xref ref-type="bibr" rid="B1">Asparouhov et al., 2009</xref>). Our study is in line with other studies that show how ESEM leads to lower factor correlations and more appropriate parameter estimates (<xref ref-type="bibr" rid="B16">Marsh, Liem, Martin, Morin, &amp; Nagengast, 2011</xref>).</p>
+<p>Using the 16-item adapted ASQ, we were able to replicate the factor structure of the original instrument. However, in the original study (<xref ref-type="bibr" rid="B9">Hofmann &amp; Kashdan, 2010</xref>), all the items of the scale loaded on one factor only, whereas in our study one item (C8: &#8220;I can hide my anger well if I have to&#8221;) of the adapted scale loaded on two factors, Concealing and Adjusting. Considering the meaning of this item, this cross-loading is theoretically relevant, as this emotion regulation strategy can aim to conceal the emotion as well as to adjust oneself to contextual demands (when it is not socially acceptable to show anger). This again illustrates the added value of ESEM compared to ICM-CFA, where cross-loadings are constrained to be zero and such meaningful double loadings are not allowed.</p>
+<p>The results of this study should be interpreted in light of some limitations. First, the internal consistency of the Tolerating subscale was poor. Practitioners who use this subscale should interpret the results with caution. Second, we did not examine the convergent and divergent validity of the ASQ in our sample. Although the dimensional structure of the adapted ASQ appears to be good, we did not explore how the subscales relate to other instruments measuring similar constructs and how the subscales differentially relate to other constructs. This study was part of a larger project assessing several diverse constructs, and due to time and space constraints, unfortunately we were not able to include extra instruments measuring emotion regulation to evaluate the external validity of the ASQ. However, the analysis of the measurement invariance does support the validity of the instrument across gender groups. Third, the factorial validity of the adapted ASQ should be tested in other samples (e.g., older participants, people from the Netherlands) to generalize the results. Fourth, we did not take into account the multilevel structure of our data (students nested in classrooms and schools). However, to date it is only possible to perform multilevel CFA analyses (and not multilevel ESEM), which impedes straightforward comparisons between the two approaches.</p>
+<p>Despite these limitations, this study demonstrates the factorial validity of the Dutch 16-item version of the ASQ using the recently developed ESEM approach. This scale can effectively be used to assess emotion regulation tendencies in Dutch-speaking adolescents, and can thereby provide valuable insights into their abilities to adaptively cope with their emotions during a life phase in which emotions are especially intensive and variable.</p>
+</sec>
+<sec sec-type="supplementary-material">
+<title>Additional File</title>
+<p>The additional file for this article can be found as follows:</p>
+<supplementary-material id="S1" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://doi.org/10.5334/pb.369.s1">
+<label>Appendix</label>
+<caption>
+<p>16-item Affective Style Questionnaire, Dutch translation. DOI: <uri>https://doi.org/10.5334/pb.369.s1</uri></p>
+</caption>
+</supplementary-material>
+</sec>
+</body>
+<back>
+<sec>
+<title>Competing Interests</title>
+<p>The authors have no competing interests to declare.</p>
+</sec>
+<sec>
+<title>Author Information</title>
+<p>This research was funded by a grant from the Research Foundation Flanders, grant number FWO G.0335.14 N.</p>
+</sec>
+<ref-list>
+<ref id="B1">
+<label>1</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Asparouhov</surname>
+<given-names>T.</given-names>
+</name>
+<name>
+<surname>Muth&#233;n</surname>
+<given-names>B.</given-names>
+</name>
+<name>
+<surname>Muthen</surname>
+<given-names>B.</given-names>
+</name>
+</person-group>
+<article-title>Exploratory structural equation modeling</article-title>
+<source>Structural Equation Modeling: A Multidisciplinary Journal</source>
+<year iso-8601-date="2009">2009</year>
+<volume>16</volume>
+<issue>3</issue>
+<fpage>397</fpage>
+<lpage>438</lpage>
+<pub-id pub-id-type="doi">10.1080/10705510903008204</pub-id>
+</element-citation>
+</ref>
+<ref id="B2">
+<label>2</label>
+<element-citation publication-type="book">
+<person-group person-group-type="author">
+<name>
+<surname>Braet</surname>
+<given-names>C.</given-names>
+</name>
+<name>
+<surname>Cracco</surname>
+<given-names>E.</given-names>
+</name>
+<name>
+<surname>Theuwis</surname>
+<given-names>L.</given-names>
+</name>
+</person-group>
+<source>FEEL-KJ: vragenlijst voor emotieregulatie bij kinderen en jongeren</source>
+<year iso-8601-date="2013">2013</year>
+<publisher-loc>Amsterdam, The Netherlands</publisher-loc>
+<publisher-name>Hogrefe</publisher-name>
+</element-citation>
+</ref>
+<ref id="B3">
+<label>3</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Brislin</surname>
+<given-names>R. W.</given-names>
+</name>
+</person-group>
+<article-title>Back translation for cross-cultural research</article-title>
+<source>Journal of Cross-Cultural Psychology</source>
+<year iso-8601-date="1970">1970</year>
+<volume>1</volume>
+<issue>3</issue>
+<fpage>185</fpage>
+<lpage>216</lpage>
+<pub-id pub-id-type="doi">10.1177/135910457000100301</pub-id>
+</element-citation>
+</ref>
+<ref id="B4">
+<label>4</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Costello</surname>
+<given-names>A. B.</given-names>
+</name>
+<name>
+<surname>Osborne</surname>
+<given-names>J. W.</given-names>
+</name>
+</person-group>
+<article-title>Best practices in exploratory factor analysis: Four recommendations for getting the most from your analysis</article-title>
+<source>Practical Assessment, Research &amp; Evaluation</source>
+<year iso-8601-date="2005">2005</year>
+<volume>10</volume>
+<issue>7</issue>
+<fpage>1</fpage>
+<lpage>9</lpage>
+</element-citation>
+</ref>
+<ref id="B5">
+<label>5</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Davidson</surname>
+<given-names>R. J.</given-names>
+</name>
+</person-group>
+<article-title>Affective style and affective disorders: Perspectives from affective neuroscience</article-title>
+<source>Cognition &amp; Emotion</source>
+<year iso-8601-date="1998">1998</year>
+<volume>12</volume>
+<issue>3</issue>
+<fpage>307</fpage>
+<lpage>330</lpage>
+<pub-id pub-id-type="doi">10.1080/026999398379628</pub-id>
+</element-citation>
+</ref>
+<ref id="B6">
+<label>6</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Graser</surname>
+<given-names>J.</given-names>
+</name>
+<name>
+<surname>Bohn</surname>
+<given-names>C.</given-names>
+</name>
+<name>
+<surname>Kelava</surname>
+<given-names>A.</given-names>
+</name>
+<name>
+<surname>Schreiber</surname>
+<given-names>F.</given-names>
+</name>
+<name>
+<surname>Hofmann</surname>
+<given-names>S. G.</given-names>
+</name>
+<name>
+<surname>Stangier</surname>
+<given-names>U.</given-names>
+</name>
+</person-group>
+<article-title>Der &#8220;Affective Style Questionnaire (ASQ)&#8221;: Deutsche adaption und validit&#228;ten</article-title>
+<source>Diagnostica</source>
+<year iso-8601-date="2012">2012</year>
+<volume>58</volume>
+<issue>2</issue>
+<fpage>100</fpage>
+<lpage>111</lpage>
+<pub-id pub-id-type="doi">10.1026/0012-1924/a000056</pub-id>
+</element-citation>
+</ref>
+<ref id="B7">
+<label>7</label>
+<element-citation publication-type="book">
+<person-group person-group-type="author">
+<name>
+<surname>Grob</surname>
+<given-names>A.</given-names>
+</name>
+<name>
+<surname>Smolenski</surname>
+<given-names>C.</given-names>
+</name>
+</person-group>
+<source>Fragebogen zur Erhebung der Emotionsregulation bei Kindern und Jugendlichen (FEEL-KJ)</source>
+<year iso-8601-date="2005">2005</year>
+<publisher-loc>Bern</publisher-loc>
+<publisher-name>Huber Verlag</publisher-name>
+</element-citation>
+</ref>
+<ref id="B8">
+<label>8</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Gross</surname>
+<given-names>J. J.</given-names>
+</name>
+</person-group>
+<article-title>Antecedent- and response-focused emotion regulation: Divergent consequences for experience, expression, and physiology</article-title>
+<source>Journal of Personality and Social Psychology</source>
+<year iso-8601-date="1998">1998</year>
+<volume>74</volume>
+<issue>1</issue>
+<fpage>224</fpage>
+<lpage>237</lpage>
+<pub-id pub-id-type="doi">10.1037/0022-3514.74.1.224</pub-id>
+</element-citation>
+</ref>
+<ref id="B9">
+<label>9</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Hofmann</surname>
+<given-names>S. G.</given-names>
+</name>
+<name>
+<surname>Kashdan</surname>
+<given-names>T. B.</given-names>
+</name>
+</person-group>
+<article-title>The Affective Style Questionnaire: Development and psychometric properties</article-title>
+<source>Journal of Psychopathology and Behavioral Assessment</source>
+<year iso-8601-date="2010">2010</year>
+<volume>32</volume>
+<issue>2</issue>
+<fpage>255</fpage>
+<lpage>263</lpage>
+<pub-id pub-id-type="doi">10.1007/s10862-009-9142-4</pub-id>
+</element-citation>
+</ref>
+<ref id="B10">
+<label>10</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Hofmann</surname>
+<given-names>S. G.</given-names>
+</name>
+<name>
+<surname>Sawyer</surname>
+<given-names>A. T.</given-names>
+</name>
+<name>
+<surname>Fang</surname>
+<given-names>A.</given-names>
+</name>
+<name>
+<surname>Asnaani</surname>
+<given-names>A.</given-names>
+</name>
+</person-group>
+<article-title>Emotion dysregulation model of mood and anxiety disorders</article-title>
+<source>Depression and Anxiety</source>
+<year iso-8601-date="2012">2012</year>
+<volume>29</volume>
+<issue>5</issue>
+<fpage>409</fpage>
+<lpage>416</lpage>
+<pub-id pub-id-type="doi">10.1002/da.21888</pub-id>
+</element-citation>
+</ref>
+<ref id="B11">
+<label>11</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Hooper</surname>
+<given-names>D.</given-names>
+</name>
+<name>
+<surname>Coughlan</surname>
+<given-names>J.</given-names>
+</name>
+<name>
+<surname>Mullen</surname>
+<given-names>M. R.</given-names>
+</name>
+</person-group>
+<article-title>Structural equation modeling: Guidelines for determining model fit</article-title>
+<source>The Electronic Journal of Business Research Methods</source>
+<year iso-8601-date="2008">2008</year>
+<volume>6</volume>
+<issue>1</issue>
+<fpage>53</fpage>
+<lpage>60</lpage>
+</element-citation>
+</ref>
+<ref id="B12">
+<label>12</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Ito</surname>
+<given-names>M.</given-names>
+</name>
+<name>
+<surname>Hofmann</surname>
+<given-names>S. G.</given-names>
+</name>
+</person-group>
+<article-title>Culture and affect: The factor structure of the Affective Style Questionnaire and its relation with depression and anxiety among Japanese</article-title>
+<source>BMC Research Notes</source>
+<year iso-8601-date="2014">2014</year>
+<volume>7</volume>
+<issue>1</issue>
+<fpage>590</fpage>
+<pub-id pub-id-type="doi">10.1186/1756-0500-7-590</pub-id>
+</element-citation>
+</ref>
+<ref id="B13">
+<label>13</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>John</surname>
+<given-names>O. P.</given-names>
+</name>
+<name>
+<surname>Gross</surname>
+<given-names>J. J.</given-names>
+</name>
+</person-group>
+<article-title>Healthy and unhealthy emotion regulation: Personality processes, individual differences, and life span development</article-title>
+<source>Journal of Personality</source>
+<year iso-8601-date="2004">2004</year>
+<volume>72</volume>
+<issue>6</issue>
+<fpage>1301</fpage>
+<lpage>1333</lpage>
+<pub-id pub-id-type="doi">10.1111/j.1467-6494.2004.00298.x</pub-id>
+</element-citation>
+</ref>
+<ref id="B14">
+<label>14</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Larson</surname>
+<given-names>R.</given-names>
+</name>
+<name>
+<surname>Csikszentmihalyi</surname>
+<given-names>M.</given-names>
+</name>
+<name>
+<surname>Graef</surname>
+<given-names>R.</given-names>
+</name>
+</person-group>
+<article-title>Mood variability and the psychosocial adjustment of adolescents</article-title>
+<source>Journal of Youth and Adolescence</source>
+<year iso-8601-date="1980">1980</year>
+<volume>9</volume>
+<issue>6</issue>
+<fpage>469</fpage>
+<lpage>490</lpage>
+<pub-id pub-id-type="doi">10.1007/BF02089885</pub-id>
+</element-citation>
+</ref>
+<ref id="B15">
+<label>15</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Lougheed</surname>
+<given-names>J. P.</given-names>
+</name>
+<name>
+<surname>Hollenstein</surname>
+<given-names>T.</given-names>
+</name>
+</person-group>
+<article-title>A limited repertoire of emotion regulation strategies is associated with internalizing problems in adolescence</article-title>
+<source>Social Development</source>
+<year iso-8601-date="2012">2012</year>
+<volume>21</volume>
+<issue>4</issue>
+<fpage>704</fpage>
+<lpage>721</lpage>
+<pub-id pub-id-type="doi">10.1111/j.1467-9507.2012.00663.x</pub-id>
+</element-citation>
+</ref>
+<ref id="B16">
+<label>16</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Marsh</surname>
+<given-names>H. W.</given-names>
+</name>
+<name>
+<surname>Liem</surname>
+<given-names>G. A. D.</given-names>
+</name>
+<name>
+<surname>Martin</surname>
+<given-names>A. J.</given-names>
+</name>
+<name>
+<surname>Morin</surname>
+<given-names>A. J. S.</given-names>
+</name>
+<name>
+<surname>Nagengast</surname>
+<given-names>B.</given-names>
+</name>
+</person-group>
+<article-title>Methodological measurement fruitfulness of exploratory structural equation modeling (ESEM): New approaches to key substantive issues in motivation and engagement</article-title>
+<source>Journal of Psychoeducational Assessment</source>
+<year iso-8601-date="2011">2011</year>
+<volume>29</volume>
+<issue>4</issue>
+<fpage>322</fpage>
+<lpage>346</lpage>
+<pub-id pub-id-type="doi">10.1177/0734282911406657</pub-id>
+</element-citation>
+</ref>
+<ref id="B17">
+<label>17</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Marsh</surname>
+<given-names>H. W.</given-names>
+</name>
+<name>
+<surname>Muth&#233;n</surname>
+<given-names>B.</given-names>
+</name>
+<name>
+<surname>Asparouhov</surname>
+<given-names>T.</given-names>
+</name>
+<name>
+<surname>L&#252;dtke</surname>
+<given-names>O.</given-names>
+</name>
+<name>
+<surname>Robitzsch</surname>
+<given-names>A.</given-names>
+</name>
+<name>
+<surname>Morin</surname>
+<given-names>A. J. S.</given-names>
+</name>
+<name>
+<surname>Trautwein</surname>
+<given-names>U.</given-names>
+</name>
+</person-group>
+<article-title>Exploratory structural equation modeling, integrating CFA and EFA: Application to students&#8217; evaluations of university teaching</article-title>
+<source>Structural Equation Modeling: A Multidisciplinary Journal</source>
+<year iso-8601-date="2009">2009</year>
+<volume>16</volume>
+<pub-id pub-id-type="doi">10.1080/10705510903008220</pub-id>
+</element-citation>
+</ref>
+<ref id="B18">
+<label>18</label>
+<element-citation publication-type="book">
+<person-group person-group-type="author">
+<name>
+<surname>Muth&#233;n</surname>
+<given-names>L. K.</given-names>
+</name>
+<name>
+<surname>Muth&#233;n</surname>
+<given-names>B. O.</given-names>
+</name>
+</person-group>
+<source>Mplus user&#8217; s guide</source>
+<year iso-8601-date="2015">2015</year>
+<edition>Seventh edition</edition>
+<publisher-loc>Los Angeles, CA</publisher-loc>
+<publisher-name>Muth&#233;n &amp; Muth&#233;n</publisher-name>
+</element-citation>
+</ref>
+<ref id="B19">
+<label>19</label>
+<element-citation publication-type="book">
+<person-group person-group-type="author">
+<name>
+<surname>Rosenblum</surname>
+<given-names>G. D.</given-names>
+</name>
+<name>
+<surname>Lewis</surname>
+<given-names>M.</given-names>
+</name>
+</person-group>
+<person-group person-group-type="editor">
+<name>
+<surname>Adams</surname>
+<given-names>G. R.</given-names>
+</name>
+<name>
+<surname>Berzonsky</surname>
+<given-names>M. D.</given-names>
+</name>
+</person-group>
+<chapter-title>Emotional development in adolescence</chapter-title>
+<source>Blackwell handbook of adolescence: Blackwell handbooks of developmental psychology</source>
+<year iso-8601-date="2003">2003</year>
+<publisher-loc>Malden, MA</publisher-loc>
+<publisher-name>Blackwell Publishing</publisher-name>
+<fpage>269</fpage>
+<lpage>289</lpage>
+</element-citation>
+</ref>
+<ref id="B20">
+<label>20</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Sass</surname>
+<given-names>D. A.</given-names>
+</name>
+<name>
+<surname>Schmitt</surname>
+<given-names>T. A.</given-names>
+</name>
+<name>
+<surname>Marsh</surname>
+<given-names>H. W.</given-names>
+</name>
+</person-group>
+<article-title>Evaluating model fit with ordered categorical data within a measurement invariance framework: A comparison of estimators</article-title>
+<source>Structural Equation Modeling: A Multidisciplinary Journal</source>
+<year iso-8601-date="2014">2014</year>
+<volume>21</volume>
+<issue>2</issue>
+<fpage>167</fpage>
+<lpage>180</lpage>
+<pub-id pub-id-type="doi">10.1080/10705511.2014.882658</pub-id>
+</element-citation>
+</ref>
+<ref id="B21">
+<label>21</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Thompson</surname>
+<given-names>R. A.</given-names>
+</name>
+</person-group>
+<article-title>Emotion regulation: a theme in search of definition. The Development of Emotion Regulation: Biological and Behavioral Considerations</article-title>
+<source>Monographs of the Society for Research in Child Development</source>
+<year iso-8601-date="1994">1994</year>
+<volume>59</volume>
+<issue>2/3</issue>
+<fpage>25</fpage>
+<lpage>52</lpage>
+<pub-id pub-id-type="doi">10.1111/j.1540-5834.1994.tb01276.x</pub-id>
+</element-citation>
+</ref>
+<ref id="B22">
+<label>22</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Vazsonyi</surname>
+<given-names>A. T.</given-names>
+</name>
+<name>
+<surname>Ksinan</surname>
+<given-names>A.</given-names>
+</name>
+<name>
+<surname>Miku&#353;ka</surname>
+<given-names>J.</given-names>
+</name>
+<name>
+<surname>Jiskrova</surname>
+<given-names>G.</given-names>
+</name>
+</person-group>
+<article-title>The Big Five and adolescent adjustment: An empirical test across six cultures</article-title>
+<source>Personality and Individual Differences</source>
+<year iso-8601-date="2015">2015</year>
+<volume>83</volume>
+<fpage>234</fpage>
+<lpage>244</lpage>
+<pub-id pub-id-type="doi">10.1016/j.paid.2015.03.049</pub-id>
+</element-citation>
+</ref>
+<ref id="B23">
+<label>23</label>
+<element-citation publication-type="journal">
+<person-group person-group-type="author">
+<name>
+<surname>Zeman</surname>
+<given-names>J.</given-names>
+</name>
+<name>
+<surname>Cassano</surname>
+<given-names>M.</given-names>
+</name>
+<name>
+<surname>Perry-Parrish</surname>
+<given-names>C.</given-names>
+</name>
+<name>
+<surname>Stegall</surname>
+<given-names>S.</given-names>
+</name>
+</person-group>
+<article-title>Emotion regulation in children and adolescents</article-title>
+<source>Journal of Developmental and Behavioral Pediatrics</source>
+<year iso-8601-date="2006">2006</year>
+<volume>27</volume>
+<issue>2</issue>
+<fpage>155</fpage>
+<lpage>168</lpage>
+<pub-id pub-id-type="doi">10.1097/00004703-200604000-00014</pub-id>
+</element-citation>
+</ref>
+</ref-list>
+</back>
+</article>

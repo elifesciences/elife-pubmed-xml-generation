@@ -504,14 +504,14 @@ def pubmed_xml_to_disk(poa_articles, config_section="elife", pub_date=None, add_
         fp.write(xml_string)
 
 
-def build_articles_for_pubmed(article_xmls, detail='full', build_parts=[]):
+def build_articles_for_pubmed(article_xmls, detail="full",
+                              config_section="elife"):
     "specify some detail and build_parts specific to generating pubmed output"
-    build_parts = [
-        'abstract', 'basic', 'components', 'contributors', 'funding', 'datasets',
-        'license', 'pub_dates', 'references', 'volume', 'is_poa', 'history',
-        'related_articles', 'categories', 'keywords', 'research_organisms']
+    raw_config = config[config_section]
+    pubmed_config = parse_raw_config(raw_config)
+    build_parts = pubmed_config.get('build_parts')
     return build_articles(article_xmls, detail, build_parts)
 
 
-def build_articles(article_xmls, detail='full', build_parts=[]):
+def build_articles(article_xmls, detail="full", build_parts=None):
     return parse.build_articles_from_article_xmls(article_xmls, detail, build_parts)

@@ -13,11 +13,27 @@ class TestGenerate(unittest.TestCase):
     def setUp(self):
         self.passes = []
         self.default_pub_date = time.strptime("2017-07-17 07:17:07", "%Y-%m-%d %H:%M:%S")
-        self.passes.append(('elife-15743-v1.xml', 'elife-pubmed-15743-20170717071707.xml', 'elife', self.default_pub_date))
-        self.passes.append(('elife_poa_e12717.xml', 'elife-pubmed-12717-20170717071707.xml', 'elife', self.default_pub_date))
-        self.passes.append(('elife_poa_e00003.xml', 'elife-pubmed-00003-20170717071707.xml', 'elife', self.default_pub_date))
-        self.passes.append(('elife-02935-v2.xml', 'elife-pubmed-02935-20170717071707.xml', 'elife', self.default_pub_date))
-        self.passes.append(('elife-00666.xml', 'elife-pubmed-00666-20170717071707.xml', 'elife', self.default_pub_date))
+        self.passes.append(
+            ('elife-15743-v1.xml', 'elife-pubmed-15743-20170717071707.xml',
+             'elife', self.default_pub_date))
+        self.passes.append(
+            ('elife_poa_e12717.xml', 'elife-pubmed-12717-20170717071707.xml',
+             'elife', self.default_pub_date))
+        self.passes.append(
+            ('elife_poa_e00003.xml', 'elife-pubmed-00003-20170717071707.xml',
+             'elife', self.default_pub_date))
+        self.passes.append(
+            ('elife-02935-v2.xml', 'elife-pubmed-02935-20170717071707.xml',
+             'elife', self.default_pub_date))
+        self.passes.append(
+            ('elife-00666.xml', 'elife-pubmed-00666-20170717071707.xml',
+             'elife', self.default_pub_date))
+        self.passes.append(
+            ('bmjopen-4-e003269.xml', 'pubmed-bmjopen-2013-003269-20170717071707.xml',
+             'bmjopen', self.default_pub_date))
+        self.passes.append(
+            ('pb369-jats.xml', 'pb-pubmed-369-20170717071707.xml',
+             'pb', self.default_pub_date))
 
     def read_file_content(self, file_name):
         fp = open(file_name, 'rb')

@@ -29,7 +29,7 @@ class TestGenerate(unittest.TestCase):
         for (article_xml_file, pubmed_xml_file, config_section, pub_date) in self.passes:
             file_path = TEST_DATA_PATH + article_xml_file
             articles = generate.build_articles_for_pubmed(
-                article_xmls=[file_path], detail='full', config_section=config_section)
+                article_xmls=[file_path], config_section=config_section)
             pXML = generate.build_pubmed_xml(articles, config_section, pub_date, False)
             pubmed_xml = pXML.output_XML()
             model_pubmed_xml = self.read_file_content(TEST_DATA_PATH + pubmed_xml_file)
@@ -53,7 +53,7 @@ class TestGenerate(unittest.TestCase):
         article_xml_file, pubmed_xml_file, config_section, pub_date = self.passes[0]
         file_path = TEST_DATA_PATH + article_xml_file
         articles = generate.build_articles_for_pubmed(
-            article_xmls=[file_path], detail='full', config_section=config_section)
+            article_xmls=[file_path], config_section=config_section)
         pubmed_xml = generate.pubmed_xml(articles, config_section, pub_date, False)
         self.assertIsNotNone(pubmed_xml)
 
@@ -67,7 +67,7 @@ class TestGenerate(unittest.TestCase):
         file_path = TEST_DATA_PATH + article_xml_file
         config_section = 'elife'
         articles = generate.build_articles_for_pubmed(
-            article_xmls=[file_path], detail='full', config_section=config_section)
+            article_xmls=[file_path], config_section=config_section)
         raw_config = config[config_section]
         pubmed_config = parse_raw_config(raw_config)
         pubmed_object = generate.PubMedXML(articles, pubmed_config, None, True)
@@ -86,7 +86,7 @@ class TestGenerate(unittest.TestCase):
         file_path = TEST_DATA_PATH + article_xml_file
         # build the article object
         articles = generate.build_articles_for_pubmed(
-            article_xmls=[file_path], detail='full', config_section=config_section)
+            article_xmls=[file_path], config_section=config_section)
         # generate and write to disk
         generate.pubmed_xml_to_disk(articles, config_section, pub_date, False)
         # check the output matches

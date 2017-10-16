@@ -96,5 +96,19 @@ class TestGenerate(unittest.TestCase):
             generated_output = fp.read()
         self.assertEqual(generated_output, expected_output)
 
+    def test_set_is_poa(self):
+        "test a method to make a non-eLife article aheadofprint by setting is_poa"
+        article_xml_file = 'pb369-jats.xml'
+        file_path = TEST_DATA_PATH + article_xml_file
+        config_section = 'pb'
+        articles = generate.build_articles_for_pubmed(
+            article_xmls=[file_path], config_section=config_section)
+        # set the is_poa value
+        articles[0].is_poa = True
+        pubmed_xml = generate.pubmed_xml(articles, config_section)
+        self.assertTrue('<PubDate PubStatus="aheadofprint">' in pubmed_xml,
+                        'aheadofprint date not found in PubMed XML after setting is_poa')
+
+
 if __name__ == '__main__':
     unittest.main()

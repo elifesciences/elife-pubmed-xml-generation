@@ -16,7 +16,7 @@ TMP_DIR = 'tmp'
 
 class PubMedXML(object):
     """
-    Generate PubMed XML for the PoA article, which is pubstatus = "aheadofprint"
+    Generate PubMed XML for the article
     """
     def __init__(self, poa_articles, pubmed_config, pub_date=None, add_comment=True):
         """
@@ -28,11 +28,6 @@ class PubMedXML(object):
         self.pubmed_config = pubmed_config
         # Create the root XML node
         self.root = Element('ArticleSet')
-
-        # set the boiler plate values
-        self.contrib_types = ["author"]
-        self.group_contrib_types = ["author non-byline"]
-        self.date_types = ["received", "accepted"]
 
         # Publication date
         if pub_date is None:
@@ -73,9 +68,9 @@ class PubMedXML(object):
             self.set_article_title(self.article, poa_article)
             self.set_e_location_id(self.article, poa_article)
             self.set_language(self.article, poa_article)
-            for contrib_type in self.contrib_types:
+            for contrib_type in self.pubmed_config.get('author_contrib_types'):
                 self.set_author_list(self.article, poa_article, contrib_type)
-            for contrib_type in self.group_contrib_types:
+            for contrib_type in self.pubmed_config.get('group_author_contrib_types'):
                 self.set_group_list(self.article, poa_article, contrib_type)
             self.set_publication_type(self.article, poa_article)
             self.set_article_id_list(self.article, poa_article)
@@ -356,7 +351,7 @@ class PubMedXML(object):
     def set_history(self, parent, poa_article):
         self.history = SubElement(parent, "History")
 
-        for date_type in self.date_types:
+        for date_type in self.pubmed_config.get('history_date_types'):
             date = poa_article.get_date(date_type)
             if date:
                 self.set_date(self.history, date.date, date_type)

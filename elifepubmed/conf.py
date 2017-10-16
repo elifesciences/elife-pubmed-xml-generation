@@ -13,6 +13,9 @@ def parse_raw_config(raw_config):
 
     int_values.append("year_of_first_volume")
     list_values.append("pub_date_types")
+    list_values.append("author_contrib_types")
+    list_values.append("group_author_contrib_types")
+    list_values.append("history_date_types")
 
     for value_name in raw_config:
         if value_name in boolean_values:

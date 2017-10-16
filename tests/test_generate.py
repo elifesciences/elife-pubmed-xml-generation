@@ -36,9 +36,9 @@ class TestGenerate(unittest.TestCase):
              'pb', self.default_pub_date))
 
     def read_file_content(self, file_name):
-        fp = open(file_name, 'rb')
-        content = fp.read()
-        fp.close()
+        file_p = open(file_name, 'rb')
+        content = file_p.read()
+        file_p.close()
         return content
 
     def test_parse(self):
@@ -46,22 +46,12 @@ class TestGenerate(unittest.TestCase):
             file_path = TEST_DATA_PATH + article_xml_file
             articles = generate.build_articles_for_pubmed(
                 article_xmls=[file_path], config_section=config_section)
-            pXML = generate.build_pubmed_xml(articles, config_section, pub_date, False)
-            pubmed_xml = pXML.output_XML()
+            p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
+            pubmed_xml = p_xml.output_XML()
             model_pubmed_xml = self.read_file_content(TEST_DATA_PATH + pubmed_xml_file)
-
-            # debug to get some test artifacts
-            """
-            print "pubmed_xml"
-            print pubmed_xml
-            print " "
-            print "model_pubmed_xml"
-            print model_pubmed_xml
-            """
-
             self.assertEqual(pubmed_xml, model_pubmed_xml)
             # check the batch_id will be similar to the XML filename
-            self.assertEqual(pXML.batch_id + '.xml', pubmed_xml_file)
+            self.assertEqual(p_xml.batch_id + '.xml', pubmed_xml_file)
 
 
     def test_pubmed_xml(self):
@@ -106,10 +96,10 @@ class TestGenerate(unittest.TestCase):
         # generate and write to disk
         generate.pubmed_xml_to_disk(articles, config_section, pub_date, False)
         # check the output matches
-        with open(TEST_DATA_PATH + pubmed_xml_file, 'rb') as fp:
-            expected_output = fp.read()
-        with open(generate.TMP_DIR + pubmed_xml_file, 'rb') as fp:
-            generated_output = fp.read()
+        with open(TEST_DATA_PATH + pubmed_xml_file, 'rb') as file_p:
+            expected_output = file_p.read()
+        with open(generate.TMP_DIR + pubmed_xml_file, 'rb') as file_p:
+            generated_output = file_p.read()
         self.assertEqual(generated_output, expected_output)
 
     def test_set_is_poa(self):

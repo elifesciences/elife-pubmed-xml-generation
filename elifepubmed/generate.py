@@ -210,6 +210,9 @@ class PubMedXML(object):
 
             self.person_name = SubElement(self.contributors, "Author")
 
+            if contributor.equal_contrib is True:
+                self.person_name.set("EqualContrib", "Y")
+
             if contributor.given_name:
                 self.given_name = SubElement(self.person_name, "FirstName")
                 self.given_name.text = contributor.given_name

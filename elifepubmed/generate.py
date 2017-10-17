@@ -455,14 +455,14 @@ class PubMedXML(object):
         return self.object
 
     def output_XML(self, pretty=False, indent=""):
-        publicId = '-//NLM//DTD PubMed 2.6//EN'
-        systemId = 'https://www.ncbi.nlm.nih.gov/entrez/query/static/PubMed.dtd'
         encoding = 'utf-8'
         namespaceURI = None
         qualifiedName = "ArticleSet"
 
         doctype = xmlio.ElifeDocumentType(qualifiedName)
-        doctype._identified_mixin_init(publicId, systemId)
+        doctype._identified_mixin_init(
+            publicId=self.pubmed_config.get('pubmed_xml_public_id'),
+            systemId=self.pubmed_config.get('pubmed_xml_system_id'))
 
         rough_string = ElementTree.tostring(self.root, encoding)
         reparsed = minidom.parseString(rough_string)

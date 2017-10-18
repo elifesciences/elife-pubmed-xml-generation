@@ -229,6 +229,10 @@ class PubMedXML(object):
                 self.collective_name = SubElement(self.person_name, "CollectiveName")
                 self.collective_name.text = contributor.collab
 
+            if contributor.suffix:
+                suffix = SubElement(self.person_name, "Suffix")
+                suffix.text = contributor.suffix
+
             # Add each affiliation for multiple affiliation support
             non_blank_aff_count = len(filter(lambda aff: aff.text != "", contributor.affiliations))
             for aff in contributor.affiliations:

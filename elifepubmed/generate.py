@@ -76,6 +76,7 @@ class PubMedXML(object):
             self.set_article_id_list(self.article, poa_article)
             self.set_history(self.article, poa_article)
             self.set_abstract(self.article, poa_article)
+            self.set_copyright_information(self.article, poa_article)
             self.set_object_list(self.article, poa_article)
 
     def get_pub_type(self, poa_article):
@@ -395,6 +396,11 @@ class PubMedXML(object):
         else:
             # Empty abstract
             self.abstract = SubElement(parent, tag_name)
+
+    def set_copyright_information(self, parent, poa_article):
+        if poa_article.license and poa_article.license.copyright_statement:
+            copyright_tag = SubElement(parent, "CopyrightInformation")
+            copyright_tag.text = poa_article.license.copyright_statement
 
     def set_object_list(self, parent, poa_article):
         # Keywords and others go in Object tags

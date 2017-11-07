@@ -278,6 +278,9 @@ class PubMedXML(object):
                         and collab_contrib.group_author_key == contributor.group_author_key):
                         # Set the individual GroupName to the collab name
                         self.group_name_text = collab_contrib.collab
+            elif contributor.collab:
+                # If a collab value and no group_author_key then use the collab value
+                self.group_name_text = contributor.collab
 
             # Find existing group with the same name or create it if not exists
             self.group = None
@@ -298,22 +301,28 @@ class PubMedXML(object):
 
             # Add the individual to the group
             individual = SubElement(self.group, "IndividualName")
-
-            if contributor.given_name:
-                self.given_name = SubElement(individual, "FirstName")
-                self.given_name.text = contributor.given_name
-            elif contributor.surname:
-                # Empty given_name but has a surname
+            if contributor.collab:
+                # for on-behalf-of group author values
                 self.given_name = SubElement(individual, "FirstName")
                 self.given_name.set("EmptyYN", "Y")
-
-            if contributor.surname:
                 self.surname = SubElement(individual, "LastName")
-                self.surname.text = contributor.surname
+                self.surname.text = contributor.collab
+            else:
+                if contributor.given_name:
+                    self.given_name = SubElement(individual, "FirstName")
+                    self.given_name.text = contributor.given_name
+                elif contributor.surname:
+                    # Empty given_name but has a surname
+                    self.given_name = SubElement(individual, "FirstName")
+                    self.given_name.set("EmptyYN", "Y")
+                if contributor.surname:
+                    self.surname = SubElement(individual, "LastName")
+                    self.surname.text = contributor.surname
 
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:
             parent.remove(self.groups)
+            self.groups = None
 
     def set_publication_type(self, parent, poa_article):
         if poa_article.article_type:

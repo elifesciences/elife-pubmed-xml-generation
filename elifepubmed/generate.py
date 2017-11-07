@@ -300,18 +300,23 @@ class PubMedXML(object):
 
             # Add the individual to the group
             individual = SubElement(self.group, "IndividualName")
-
-            if contributor.given_name:
-                self.given_name = SubElement(individual, "FirstName")
-                self.given_name.text = contributor.given_name
-            elif contributor.surname:
-                # Empty given_name but has a surname
+            if contributor.collab:
+                # for on-behalf-of group author values
                 self.given_name = SubElement(individual, "FirstName")
                 self.given_name.set("EmptyYN", "Y")
-
-            if contributor.surname:
                 self.surname = SubElement(individual, "LastName")
-                self.surname.text = contributor.surname
+                self.surname.text = contributor.collab
+            else:
+                if contributor.given_name:
+                    self.given_name = SubElement(individual, "FirstName")
+                    self.given_name.text = contributor.given_name
+                elif contributor.surname:
+                    # Empty given_name but has a surname
+                    self.given_name = SubElement(individual, "FirstName")
+                    self.given_name.set("EmptyYN", "Y")
+                if contributor.surname:
+                    self.surname = SubElement(individual, "LastName")
+                    self.surname.text = contributor.surname
 
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:

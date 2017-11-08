@@ -9,5 +9,5 @@ elife-pubmed-xml-generation
    :target: https://coveralls.io/github/elifesciences/elife-pubmed-xml-generation?branch=master
 
 
-PubMed deposit of journal articles
+PubMed deposit of journal articles.
 

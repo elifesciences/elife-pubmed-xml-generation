@@ -77,6 +77,7 @@ class PubMedXML(object):
             self.set_history(self.article, poa_article)
             self.set_abstract(self.article, poa_article)
             self.set_copyright_information(self.article, poa_article)
+            self.set_coi_statement(self.article, poa_article)
             self.set_object_list(self.article, poa_article)
 
     def get_pub_type(self, poa_article):
@@ -410,6 +411,35 @@ class PubMedXML(object):
         if poa_article.license and poa_article.license.copyright_statement:
             copyright_tag = SubElement(parent, "CopyrightInformation")
             copyright_tag.text = poa_article.license.copyright_statement
+
+    def set_coi_statement(self, parent, poa_article):
+        "add a CoiStatement as all the conflict values from article contributors"
+        coi_list =[]
+        contributor_list = []
+        # look for contributors with conflicts first
+        for contributor in poa_article.contributors:
+            if (contributor.contrib_type in self.pubmed_config.get('author_contrib_types') and
+               contributor.conflict):
+                contributor_list.append(contributor)
+        # process each in the contributor_list
+        for contributor in contributor_list:
+            for conflict in contributor.conflict:
+                add_conflict = True
+                # first check it does not contain any of the exclusion values
+                for conflict_match in self.pubmed_config.get('coi_statement_exclude'):
+                    if conflict_match.lower() in conflict.lower():
+                        add_conflict = False
+                if add_conflict is True:
+                    # format the conflict of interest
+                    initials = utils.contributor_initials(contributor.surname, contributor.given_name)
+                    if initials != '':
+                        conflict = ' '.join([initials, conflict])
+                    # add to the list of values we will concatenate later
+                    coi_list.append(conflict)
+        # add the tag and concatenate one string from all the values
+        if coi_list:
+            coi_statement_tag = SubElement(parent, "CoiStatement")
+            coi_statement_tag.text = ', '.join(coi_list)
 
     def set_object_list(self, parent, poa_article):
         # Keywords and others go in Object tags

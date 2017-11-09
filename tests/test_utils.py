@@ -25,5 +25,73 @@ class TestUtils(unittest.TestCase):
                 "\n<inline-formula>\n\n<mml:math>m</mml:math>\n</inline-formula>\n"),
                 "\n[Formula: see text]\n")
 
+    def test_compare_values(self):
+        "various comparisons of values"
+        self.assertIsNone(utils.compare_values(None, None, None))
+        self.assertIsNone(utils.compare_values(None, None, True))
+        self.assertTrue(utils.compare_values('A', 'A', True))
+        self.assertTrue(utils.compare_values('a', 'A', False))
+        self.assertFalse(utils.compare_values('A', 'a', True))
+        self.assertFalse(utils.compare_values('a', 'b', False))
+
+    def test_pubmed_publication_type(self):
+        "example of publication type matching normally loaded from the yaml file"
+        # test 1, no values, return the default
+        article_type = None
+        display_channel = None
+        types_map = None
+        self.assertEqual(utils.pubmed_publication_type(
+            article_type, display_channel, types_map), 'Journal Article')
+        # test 2, article_type and no publciation_type
+        article_type = 'research-article'
+        display_channel = None
+        types_map = [{
+            'article_type': 'research-article'
+        }]
+        self.assertEqual(utils.pubmed_publication_type(
+            article_type, display_channel, types_map), 'Journal Article')
+        # test 3, article_type match only
+        article_type = 'correction'
+        display_channel = None
+        types_map = [{
+            'article_type': 'correction',
+            'publication_type': 'Published Erratum'
+        }]
+        self.assertEqual(utils.pubmed_publication_type(
+            article_type, display_channel, types_map), 'Published Erratum')
+        # test 4, article_type and display_channel match
+        article_type = 'correction'
+        display_channel = 'Insight'
+        types_map = [{
+            'article_type': 'correction',
+            'display_channel': 'insight',
+            'publication_type': 'Editorial'
+        }]
+        self.assertEqual(utils.pubmed_publication_type(
+            article_type, display_channel, types_map), 'Editorial')
+        # test 5, article_type and display_channel match case sensitive
+        article_type = 'correction'
+        display_channel = 'Insight'
+        types_map = [{
+            'article_type': 'correction',
+            'display_channel': 'Insight',
+            'case_sensitive': True,
+            'publication_type': 'Editorial'
+        }]
+        self.assertEqual(utils.pubmed_publication_type(
+            article_type, display_channel, types_map), 'Editorial')
+        # test 6, case sensitive with no matches returns the default
+        article_type = 'correction'
+        display_channel = 'insight'
+        types_map = [{
+            'article_type': 'correction',
+            'display_channel': 'Insight',
+            'case_sensitive': True,
+            'publication_type': 'Editorial'
+        }]
+        self.assertEqual(utils.pubmed_publication_type(
+            article_type, display_channel, types_map), 'Journal Article')
+
+
 if __name__ == '__main__':
     unittest.main()

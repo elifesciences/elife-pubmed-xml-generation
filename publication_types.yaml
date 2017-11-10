@@ -19,6 +19,21 @@
   case_sensitive: false
   publication_type: Editorial
 -
+  article_type: article-commentary
+  display_channel: feature article
+  case_sensitive: false
+  publication_type: Journal Article
+-
+  article_type: book-review
+  display_channel: feature article
+  case_sensitive: false
+  publication_type: Journal Article
+-
+  article_type: discussion
+  display_channel: feature article
+  case_sensitive: false
+  publication_type: Journal Article
+-
 # default
   article_type: research-article
   case_sensitive: false

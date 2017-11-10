@@ -326,16 +326,14 @@ class PubMedXML(object):
             self.groups = None
 
     def set_publication_type(self, parent, poa_article):
-        if poa_article.article_type:
+        "PubMed will set PublicationType as Journal Article as the default, also the default here"
+        types_map = self.pubmed_config.get('publication_types')
+        publication_type = utils.pubmed_publication_type(
+            poa_article.article_type, poa_article.display_channel, types_map
+        )
+        if publication_type:
             self.publication_type = SubElement(parent, "PublicationType")
-            if poa_article.article_type == "editorial":
-                self.publication_type.text = "EDITORIAL"
-            elif poa_article.article_type == "correction":
-                self.publication_type.text = "PUBLISHED ERRATUM"
-            elif (poa_article.article_type == "research-article"
-               or poa_article.article_type == "discussion"
-               or poa_article.article_type == "article-commentary"):
-                self.publication_type.text = "JOURNAL ARTICLE"
+            self.publication_type.text = publication_type
 
     def set_article_id_list(self, parent, poa_article):
         self.article_id_list = SubElement(parent, "ArticleIdList")
@@ -387,6 +385,7 @@ class PubMedXML(object):
         # Pubmed allows <i> tags, not <italic> tags
         if poa_article.abstract:
             tag_converted_abstract = poa_article.abstract
+            tag_converted_abstract = utils.replace_mathml_tags(tag_converted_abstract)
             tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'italic', 'i')
             tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'bold', 'b')
             tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'underline', 'u')
@@ -558,9 +557,10 @@ def build_articles_for_pubmed(article_xmls, config_section="elife"):
     raw_config = config[config_section]
     pubmed_config = parse_raw_config(raw_config)
     build_parts = pubmed_config.get('build_parts')
-    return build_articles(article_xmls, build_parts)
+    remove_tags = pubmed_config.get('remove_tags')
+    return build_articles(article_xmls, build_parts, remove_tags)
 
 
-def build_articles(article_xmls, build_parts=None):
+def build_articles(article_xmls, build_parts=None, remove_tags=None):
     return parse.build_articles_from_article_xmls(
-        article_xmls, detail="full", build_parts=build_parts)
+        article_xmls, detail="full", build_parts=build_parts, remove_tags=remove_tags)

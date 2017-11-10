@@ -25,7 +25,7 @@ class TestGenerateArticleType(unittest.TestCase):
         "build an article object, set the article_type, generate PubMed XML"
         doi = "10.7554/eLife.00666"
         title = "Test article"
-        expected_fragment = "<PublicationType>EDITORIAL</PublicationType>"
+        expected_fragment = "<PublicationType>Editorial</PublicationType>"
         article = Article(doi, title)
         article.article_type = "editorial"
         # generate the PubMed XML

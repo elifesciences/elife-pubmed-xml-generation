@@ -150,9 +150,13 @@ class PubMedXML(object):
         """
         Set the Replaces tag, if applicable
         """
-
+        # ways a Replaces tag will be added to the PubMed deposit
+        # - is not a poa but was a poa in the past (indicates a version > 1)
+        # - article has a version attribute  > 1
+        # - article has a replaces attribute set to True
         if ((poa_article.is_poa is False and poa_article.was_ever_poa is True)
-            or (poa_article.version and poa_article.version > 1)):
+            or (poa_article.version and poa_article.version > 1)
+            or (hasattr(poa_article, 'replaces') and poa_article.replaces is True)):
             self.replaces = SubElement(parent, 'Replaces')
             self.replaces.set("IdType", "doi")
             self.replaces.text = poa_article.doi

@@ -143,5 +143,32 @@ class TestSetCoiStatement(unittest.TestCase):
         self.assertTrue('<CoiStatement>AA, CC No competing interests declared, BB Holds the position of Queen Bee</CoiStatement>' in pubmed_xml_string)
 
 
+class TestReplaces(unittest.TestCase):
+
+    def test_set_replaces(self):
+        """
+        test et_replaces when an article replaces attribute it set
+        """
+        # first test a version 1 with no replaces tag
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        article.version = 1
+        expected = '<Replaces IdType="doi">10.7554/eLife.00666</Replaces>'
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # expect to not find expected fragment
+        self.assertTrue(expected not in pubmed_xml_string)
+        # second test setting the replaces value on the article object
+        article.replaces = True
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # expect to find expected fragment
+        self.assertTrue(expected in pubmed_xml_string)
+
+
 if __name__ == '__main__':
     unittest.main()

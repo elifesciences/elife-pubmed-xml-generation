@@ -20,7 +20,6 @@ def parse_raw_config(raw_config):
     list_values.append("group_author_contrib_types")
     list_values.append("history_date_types")
     list_values.append("remove_tags")
-    list_values.append("coi_statement_exclude")
     yaml_values.append('publication_types')
 
     for value_name in raw_config:

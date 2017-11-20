@@ -10,6 +10,7 @@ import time
 import re
 import os
 import utils
+from collections import OrderedDict
 from conf import config, parse_raw_config
 
 TMP_DIR = 'tmp'
@@ -414,28 +415,37 @@ class PubMedXML(object):
     def set_coi_statement(self, parent, poa_article):
         "add a CoiStatement as all the conflict values from article contributors"
         coi_list =[]
+        coi_map = OrderedDict()
+
+        # step 1 look for contributors with conflicts first
         contributor_list = []
         # look for contributors with conflicts first
         for contributor in poa_article.contributors:
             if (contributor.contrib_type in self.pubmed_config.get('author_contrib_types') and
                contributor.conflict):
                 contributor_list.append(contributor)
-        # process each in the contributor_list
+
+        # step 2 compile a map of coi statements and their associated contributors
         for contributor in contributor_list:
             for conflict in contributor.conflict:
-                add_conflict = True
-                # first check it does not contain any of the exclusion values
-                for conflict_match in self.pubmed_config.get('coi_statement_exclude'):
-                    if conflict_match.lower() in conflict.lower():
-                        add_conflict = False
-                if add_conflict is True:
-                    # format the conflict of interest
-                    initials = utils.contributor_initials(contributor.surname, contributor.given_name)
-                    if initials != '':
-                        conflict = ' '.join([initials, conflict])
-                    # add to the list of values we will concatenate later
-                    coi_list.append(conflict)
-        # add the tag and concatenate one string from all the values
+                # start a list of contributors if the statement is not seen yet
+                if conflict not in coi_map:
+                    coi_map[conflict] = []
+                # add the contributor for processing later
+                coi_map[conflict].append(contributor)
+
+        # step 3 concatenate a string for each coi statement with a list of author initials
+        for coi, contributors in coi_map.items():
+            initials_list = []
+            for contributor in contributors:
+                initials = utils.contributor_initials(contributor.surname, contributor.given_name)
+                if initials != '':
+                    initials_list.append(initials)
+            all_initials = ', '.join(initials_list)
+            # format the final string and add to the list
+            coi_list.append(all_initials + ' ' + coi)
+
+        # concatenate the single conflict of interest statement and add the tag
         if coi_list:
             coi_statement_tag = SubElement(parent, "CoiStatement")
             coi_statement_tag.text = ', '.join(coi_list)

@@ -93,5 +93,12 @@ class TestUtils(unittest.TestCase):
             article_type, display_channel, types_map), 'Journal Article')
 
 
+    def test_contributor_initials(self):
+        "various contributor initial values to test"
+        self.assertEqual(utils.contributor_initials(None, None), '')
+        self.assertEqual(utils.contributor_initials('Ju', 'Young Seok'), 'YJ')
+        self.assertEqual(utils.contributor_initials('Ju', None), 'J')
+
+
 if __name__ == '__main__':
     unittest.main()

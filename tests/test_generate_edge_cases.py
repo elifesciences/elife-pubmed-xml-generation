@@ -116,5 +116,32 @@ class TestGenerateArticleIssue(unittest.TestCase):
         self.assertTrue('<Issue>1</Issue>' in pubmed_xml_string)
 
 
+class TestSetCoiStatement(unittest.TestCase):
+
+    def test_set_coi_statement(self):
+        """
+        test the output of set_coi_statement with generated object data
+        """
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        # add contributors
+        contributor1 = Contributor(contrib_type="author", surname="Ant", given_name="Adam")
+        contributor1.conflict = ['No competing interests declared']
+        article.add_contributor(contributor1)
+        contributor2 = Contributor(contrib_type="author", surname="Bee", given_name="Billie")
+        contributor2.conflict = ['Holds the position of Queen Bee']
+        article.add_contributor(contributor2)
+        contributor3 = Contributor(contrib_type="author", surname="Caterpillar", given_name="Cecil")
+        contributor3.conflict = ['No competing interests declared']
+        article.add_contributor(contributor3)
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # A quick test just look for the expected string in the output
+        self.assertTrue('<CoiStatement>AA, CC No competing interests declared, BB Holds the position of Queen Bee</CoiStatement>' in pubmed_xml_string)
+
+
 if __name__ == '__main__':
     unittest.main()

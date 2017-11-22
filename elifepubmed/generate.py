@@ -342,9 +342,14 @@ class PubMedXML(object):
 
     def set_article_id_list(self, parent, poa_article):
         self.article_id_list = SubElement(parent, "ArticleIdList")
-        self.article_id = SubElement(self.article_id_list, "ArticleId")
-        self.article_id.set("IdType", "doi")
-        self.article_id.text = poa_article.doi
+        if poa_article.doi:
+            self.article_id = SubElement(self.article_id_list, "ArticleId")
+            self.article_id.set("IdType", "doi")
+            self.article_id.text = poa_article.doi
+        if poa_article.pii:
+            self.article_id = SubElement(self.article_id_list, "ArticleId")
+            self.article_id.set("IdType", "pii")
+            self.article_id.text = poa_article.pii
 
     def set_pub_date(self, parent, pub_date, pub_type):
         if pub_date:

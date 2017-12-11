@@ -503,6 +503,17 @@ class PubMedXML(object):
             params = {"value": keyword}
             self.set_object(self.object_list, "keyword", params)
 
+        # Add grant / funding
+        for award in poa_article.funding_awards:
+            if (not award.institution_id or
+                (not award.institution_name or award.institution_name == '')):
+                continue
+            for award_id in award.award_ids:
+                params = {}
+                params["id"] = award_id
+                params["grantor"] = award.institution_name
+                self.set_object(self.object_list, "grant", params)
+
         # Finally, do not leave an empty ObjectList tag, if present
         if len(self.object_list) <= 0:
             parent.remove(self.object_list)

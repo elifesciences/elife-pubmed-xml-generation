@@ -50,7 +50,7 @@ class TestGenerate(unittest.TestCase):
             p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
             pubmed_xml = p_xml.output_XML()
             model_pubmed_xml = self.read_file_content(TEST_DATA_PATH + pubmed_xml_file)
-            self.assertEqual(pubmed_xml, model_pubmed_xml)
+            self.assertEqual(unicode_value(pubmed_xml), unicode_value(model_pubmed_xml))
             # check the batch_id will be similar to the XML filename
             self.assertEqual(p_xml.batch_id + '.xml', pubmed_xml_file)
 

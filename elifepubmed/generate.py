@@ -467,18 +467,18 @@ class PubMedXML(object):
         if poa_article.article_type == "correction":
             for related_article in poa_article.related_articles:
                 if related_article.related_article_type == "corrected-article":
-                    object = self.set_object(self.object_list, "Erratum",
-                                             "type", str(related_article.ext_link_type))
-                    doi_param = SubElement(object, "Param")
-                    doi_param.set("Name", "id")
-                    doi_param.text = str(related_article.xlink_href)
+                    params = {}
+                    params["type"] = str(related_article.ext_link_type)
+                    params["id"] = str(related_article.xlink_href)
+                    object = self.set_object(self.object_list, "Erratum", params)
 
         # Add research organisms
         for research_organism in poa_article.research_organisms:
             if research_organism.lower() != 'other':
                 # Convert the research organism
                 research_organism_converted = self.convert_research_organism(research_organism)
-                self.set_object(self.object_list, "keyword", "value", research_organism_converted)
+                params = {"value": research_organism_converted}
+                self.set_object(self.object_list, "keyword", params)
 
         # Add article categories
         for article_category in poa_article.article_categories:
@@ -495,11 +495,22 @@ class PubMedXML(object):
 
             for category in categories:
                 category = category.strip().lower()
-                self.set_object(self.object_list, "keyword", "value", category)
+                params = {"value": category}
+                self.set_object(self.object_list, "keyword", params)
 
         # Add keywords
         for keyword in poa_article.author_keywords:
-            self.set_object(self.object_list, "keyword", "value", keyword)
+            params = {"value": keyword}
+            self.set_object(self.object_list, "keyword", params)
+
+        # Add grant / funding
+        for award in poa_article.funding_awards:
+            for award_id in award.award_ids:
+                if award.institution_name is not None and award.institution_name != '':
+                    params = OrderedDict()
+                    params["id"] = award_id
+                    params["grantor"] = award.institution_name
+                    self.set_object(self.object_list, "grant", params)
 
         # Finally, do not leave an empty ObjectList tag, if present
         if len(self.object_list) <= 0:
@@ -515,13 +526,14 @@ class PubMedXML(object):
                 research_organism_converted[1:])
         return research_organism_converted
 
-    def set_object(self, parent, object_type, param_name, param):
+    def set_object(self, parent, object_type, params):
         # e.g.  <Object Type="keyword"><Param Name="value">human</Param></Object>
         self.object = SubElement(parent, "Object")
         self.object.set("Type", object_type)
-        self.param = SubElement(self.object, "Param")
-        self.param.set("Name", param_name)
-        self.param.text = param
+        for param_name, param in params.items():
+            self.param = SubElement(self.object, "Param")
+            self.param.set("Name", param_name)
+            self.param.text = param
         return self.object
 
     def output_XML(self, pretty=False, indent=""):

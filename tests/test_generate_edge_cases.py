@@ -1,7 +1,7 @@
 import unittest
 import time
 from elifepubmed import generate
-from elifearticle.article import Article, Contributor, ArticleDate
+from elifearticle.article import Article, Contributor, ArticleDate, FundingAward
 
 class TestGenerateArticleTitle(unittest.TestCase):
 
@@ -168,6 +168,26 @@ class TestReplaces(unittest.TestCase):
         self.assertIsNotNone(pubmed_xml_string)
         # expect to find expected fragment
         self.assertTrue(expected in pubmed_xml_string)
+
+
+class TestGenerateArticleFunding(unittest.TestCase):
+
+    def test_generate_funding(self):
+        """
+        Test incomplete funding data for test coverage
+        """
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        # add some blank funding with no institution_name
+        funding = FundingAward()
+        article.add_funding_award(funding)
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # A quick test just look in a string of the output
+        self.assertTrue('<grant>' not in pubmed_xml_string)
 
 
 if __name__ == '__main__':

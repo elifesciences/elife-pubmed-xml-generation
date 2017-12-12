@@ -50,7 +50,12 @@ class TestGenerate(unittest.TestCase):
             p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
             pubmed_xml = p_xml.output_XML()
             model_pubmed_xml = self.read_file_content(TEST_DATA_PATH + pubmed_xml_file)
-            self.assertEqual(unicode_value(pubmed_xml), unicode_value(model_pubmed_xml))
+            try:
+                # python 3
+                self.assertEqual(unicode_value(pubmed_xml), unicode_value(model_pubmed_xml))
+            except UnicodeDecodeError:
+                # python 2
+                self.assertEqual(pubmed_xml, model_pubmed_xml)
             # check the batch_id will be similar to the XML filename
             self.assertEqual(p_xml.batch_id + '.xml', pubmed_xml_file)
 
@@ -112,8 +117,14 @@ class TestGenerate(unittest.TestCase):
             article_xmls=[file_path], config_section=config_section)
         # set the is_poa value
         articles[0].is_poa = True
-        pubmed_xml = generate.pubmed_xml(articles, config_section)
-        self.assertTrue('<PubDate PubStatus="aheadofprint">' in unicode_value(pubmed_xml),
+        pubmed_xml = None
+        try:
+            # python 3
+            pubmed_xml = unicode_value(generate.pubmed_xml(articles, config_section))
+        except UnicodeDecodeError:
+            # python 2
+            pubmed_xml = generate.pubmed_xml(articles, config_section)
+        self.assertTrue('<PubDate PubStatus="aheadofprint">' in pubmed_xml,
                         'aheadofprint date not found in PubMed XML after setting is_poa')
 
 

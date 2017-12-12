@@ -9,9 +9,9 @@ import datetime
 import time
 import re
 import os
-import utils
 from collections import OrderedDict
-from conf import config, parse_raw_config
+from elifepubmed.conf import config, parse_raw_config
+from elifepubmed import utils
 
 TMP_DIR = 'tmp'
 
@@ -241,7 +241,7 @@ class PubMedXML(object):
                 suffix.text = contributor.suffix
 
             # Add each affiliation for multiple affiliation support
-            non_blank_aff_count = len(filter(lambda aff: aff.text != "", contributor.affiliations))
+            non_blank_aff_count = len([aff for aff in contributor.affiliations if aff.text != ""])
             for aff in contributor.affiliations:
                 if aff.text != "":
                     if non_blank_aff_count == 1:
@@ -467,7 +467,7 @@ class PubMedXML(object):
         if poa_article.article_type == "correction":
             for related_article in poa_article.related_articles:
                 if related_article.related_article_type == "corrected-article":
-                    params = {}
+                    params = OrderedDict()
                     params["type"] = str(related_article.ext_link_type)
                     params["id"] = str(related_article.xlink_href)
                     object = self.set_object(self.object_list, "Erratum", params)

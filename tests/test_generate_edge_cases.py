@@ -142,7 +142,7 @@ class TestSetCoiStatement(unittest.TestCase):
         pubmed_xml_string = pXML.output_XML()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue('<CoiStatement>AA, CC No competing interests declared, BB Holds the position of Queen Bee</CoiStatement>' in pubmed_xml_string)
+        self.assertTrue('<CoiStatement>AA, CC No competing interests declared, BB Holds the position of Queen Bee</CoiStatement>' in unicode_value(pubmed_xml_string))
 
 
 class TestReplaces(unittest.TestCase):

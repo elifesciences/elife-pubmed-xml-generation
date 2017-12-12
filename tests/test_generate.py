@@ -3,6 +3,7 @@ import time
 import os
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
+from elifearticle.utils import unicode_value
 
 TEST_BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep
 TEST_DATA_PATH = TEST_BASE_PATH + "test_data" + os.sep
@@ -112,7 +113,7 @@ class TestGenerate(unittest.TestCase):
         # set the is_poa value
         articles[0].is_poa = True
         pubmed_xml = generate.pubmed_xml(articles, config_section)
-        self.assertTrue('<PubDate PubStatus="aheadofprint">' in pubmed_xml,
+        self.assertTrue('<PubDate PubStatus="aheadofprint">' in unicode_value(pubmed_xml),
                         'aheadofprint date not found in PubMed XML after setting is_poa')
 
 

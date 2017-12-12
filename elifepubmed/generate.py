@@ -241,7 +241,7 @@ class PubMedXML(object):
                 suffix.text = contributor.suffix
 
             # Add each affiliation for multiple affiliation support
-            non_blank_aff_count = len(filter(lambda aff: aff.text != "", contributor.affiliations))
+            non_blank_aff_count = len([aff for aff in contributor.affiliations if aff.text != ""])
             for aff in contributor.affiliations:
                 if aff.text != "":
                     if non_blank_aff_count == 1:

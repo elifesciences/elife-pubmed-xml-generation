@@ -467,7 +467,7 @@ class PubMedXML(object):
         if poa_article.article_type == "correction":
             for related_article in poa_article.related_articles:
                 if related_article.related_article_type == "corrected-article":
-                    params = {}
+                    params = OrderedDict()
                     params["type"] = str(related_article.ext_link_type)
                     params["id"] = str(related_article.xlink_href)
                     object = self.set_object(self.object_list, "Erratum", params)

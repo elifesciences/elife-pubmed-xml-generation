@@ -9,9 +9,9 @@ import datetime
 import time
 import re
 import os
-import utils
 from collections import OrderedDict
-from conf import config, parse_raw_config
+from elifepubmed.conf import config, parse_raw_config
+from elifepubmed import utils
 
 TMP_DIR = 'tmp'
 

@@ -100,5 +100,11 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.contributor_initials('Ju', None), 'J')
 
 
+    def test_join_phrases(self):
+        "test joining some phrases with punctuation"
+        self.assertEqual(utils.join_phrases([None, None]), '')
+        self.assertEqual(utils.join_phrases(['A', 'B', 'C']), 'A, B, C')
+        self.assertEqual(utils.join_phrases(['A', 'B.', 'C']), 'A, B. C')
+
 if __name__ == '__main__':
     unittest.main()

@@ -69,3 +69,21 @@ def pubmed_publication_type(article_type, display_channel, types_map):
 def contributor_initials(surname, given_name):
     "a simple author initials format"
     return ''.join([value[0] for value in [given_name, surname] if value is not None])
+
+
+def join_phrases(phrase_list, glue_one=', ', glue_two=' '):
+    "join a list of phrases together with commas unless there is already punctuation"
+    phrase_text = ''
+    for phrase in phrase_list:
+        if not phrase:
+            continue
+        # add a comma if the text does not end in punctuation already
+        if phrase_text != '' and phrase_text.endswith('.'):
+            # join with a space as glue
+            phrase_text = ''.join([phrase_text, glue_two, phrase])
+        elif phrase_text != '':
+            # join with a comma space as glue
+            phrase_text = ''.join([phrase_text, glue_one, phrase])
+        elif phrase_text == '':
+            phrase_text = phrase
+    return phrase_text

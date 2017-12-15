@@ -457,7 +457,7 @@ class PubMedXML(object):
         # concatenate the single conflict of interest statement and add the tag
         if coi_list:
             coi_statement_tag = SubElement(parent, "CoiStatement")
-            coi_statement_tag.text = ', '.join(coi_list)
+            coi_statement_tag.text = utils.join_phrases(coi_list)
 
     def set_object_list(self, parent, poa_article):
         # Keywords and others go in Object tags

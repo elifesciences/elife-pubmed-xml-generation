@@ -1,4 +1,4 @@
-git+https://github.com/elifesciences/elife-tools.git@6a83ccdeae75f4575769375636cd4b240850369e#egg=elifetools
+git+https://github.com/elifesciences/elife-tools.git@ba83a144656dd546c4990c3845eb9e65a2cb64c7#egg=elifetools
 git+https://github.com/elifesciences/elife-article.git@e83828ab496a66bacd713879f5ee9c35eceeeb7c#egg=elifearticle
 GitPython==2.1.7
 configparser==3.5.0

@@ -132,7 +132,7 @@ class TestSetCoiStatement(unittest.TestCase):
         contributor1.conflict = ['No competing interests declared']
         article.add_contributor(contributor1)
         contributor2 = Contributor(contrib_type="author", surname="Bee", given_name="Billie")
-        contributor2.conflict = ['Holds the position of Queen Bee']
+        contributor2.conflict = ['Holds the position of <italic>Queen Bee</italic>']
         article.add_contributor(contributor2)
         contributor3 = Contributor(contrib_type="author", surname="Caterpillar", given_name="Cecil")
         contributor3.conflict = ['No competing interests declared']

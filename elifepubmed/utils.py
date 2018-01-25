@@ -11,10 +11,13 @@ def allowed_tags():
         '<sub>', '</sub>',
         '<u>', '</u>',
         '<underline>', '</underline>',
-        '<b>', '</b>',
-        '<bold>', '</bold>',
         '<p>', '</p>'
     )
+
+def allowed_tag_names():
+    "only tag names of allow_tags sorted with no duplicates"
+    return list(set([tag.replace('<', '').replace('>', '').replace('/', '')
+                   for tag in allowed_tags()]))
 
 def replace_mathml_tags(string, replacement="[Formula: see text]"):
     if not string:

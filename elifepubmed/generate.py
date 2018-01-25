@@ -437,6 +437,10 @@ class PubMedXML(object):
         # step 2 compile a map of coi statements and their associated contributors
         for contributor in contributor_list:
             for conflict in contributor.conflict:
+                # remove inline tags
+                if '<' in conflict:
+                    for tag_name in utils.allowed_tag_names():
+                        conflict = eautils.remove_tag(tag_name, conflict)
                 # start a list of contributors if the statement is not seen yet
                 if conflict not in coi_map:
                     coi_map[conflict] = []

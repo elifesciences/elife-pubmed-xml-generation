@@ -6,6 +6,10 @@ class TestUtils(unittest.TestCase):
     def test_allowed_tags(self):
         self.assertIsNotNone(utils.allowed_tags(), 'allowed_tags not returned')
 
+    def test_allowed_tag_names(self):
+        self.assertEqual(utils.allowed_tag_names(),
+                         ['b', 'bold', 'i', 'italic', 'p', 'sub', 'sup', 'u', 'underline'])
+
     def test_replace_mathml_tags(self):
         self.assertEqual(
             utils.replace_mathml_tags(None), None)

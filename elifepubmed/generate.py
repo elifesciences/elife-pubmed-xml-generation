@@ -468,13 +468,18 @@ class PubMedXML(object):
         self.object_list = SubElement(parent, "ObjectList")
 
         # Add related article data for correction articles
-        if poa_article.article_type == "correction":
+        if poa_article.article_type in ["correction", "retraction"]:
             for related_article in poa_article.related_articles:
+                object_type = None
                 if related_article.related_article_type == "corrected-article":
+                    object_type = "Erratum"
+                elif related_article.related_article_type == "retracted-article":
+                    object_type = "Retraction"
+                if object_type:
                     params = OrderedDict()
                     params["type"] = str(related_article.ext_link_type)
                     params["id"] = str(related_article.xlink_href)
-                    object = self.set_object(self.object_list, "Erratum", params)
+                    object_object = self.set_object(self.object_list, object_type, params)
 
         # Add research organisms
         for research_organism in poa_article.research_organisms:

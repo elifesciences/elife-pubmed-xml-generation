@@ -13,8 +13,6 @@ if __name__ == '__main__':
     xml_files.append(['tests/test_data/bmjopen-4-e003269.xml', 'bmjopen', default_pub_date, False])
     xml_files.append(['tests/test_data/pb369-jats.xml', 'pb', default_pub_date, False])
 
-    xml_files.append(['elife-29176-v2.xml', 'elife', None, False])
-    
     for xml_file, config_section, pub_date, add_comment in xml_files:
         generate.TMP_DIR = 'tests/test_data'
         articles = generate.build_articles_for_pubmed(

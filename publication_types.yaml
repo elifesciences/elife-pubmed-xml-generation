@@ -10,6 +10,10 @@
   case_sensitive: false
   publication_type: Published Erratum
 -
+  article_type: retraction
+  case_sensitive: false
+  publication_type: Retraction of Publication
+-
   article_type: editorial
   case_sensitive: false
   publication_type: Editorial

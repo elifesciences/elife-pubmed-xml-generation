@@ -1,7 +1,7 @@
 import unittest
 import time
 from elifepubmed import generate
-from elifearticle.article import Article, Contributor, ArticleDate, FundingAward
+from elifearticle.article import Article, Contributor, ArticleDate, FundingAward, RelatedArticle
 from elifearticle.utils import unicode_value
 
 class TestGenerateArticleTitle(unittest.TestCase):
@@ -35,6 +35,62 @@ class TestGenerateArticleType(unittest.TestCase):
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
         self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string))
+
+    def test_generate_article_type_correction(self):
+        "build an article object, set the article_type and related_articles, generate PubMed XML"
+        # create the related article
+        related_article = RelatedArticle();
+        related_article.xlink_href = "10.7554/eLife.99999";
+        related_article.ext_link_type = "doi"
+        related_article.related_article_type = "corrected-article"
+        # build the main article
+        article_type = "correction"
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        article.article_type = article_type
+        article.related_articles = [related_article]
+        # set some expectations
+        expected_fragments = [
+            '<PublicationType>Published Erratum</PublicationType>',
+            '<Object Type="Erratum"><Param Name="type">doi</Param><Param Name="id">10.7554/eLife.99999</Param>'
+            ]
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # A quick test just look for the expected string in the output
+        for expected_fragment in expected_fragments:
+            self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string),
+                        '{fragment} not found'.format(fragment=expected_fragment))
+
+    def test_generate_article_type_retraction(self):
+        "build an article object, set the article_type and related_articles, generate PubMed XML"
+        # create the related article
+        related_article = RelatedArticle();
+        related_article.xlink_href = "10.7554/eLife.99999";
+        related_article.ext_link_type = "doi"
+        related_article.related_article_type = "retracted-article"
+        # build the main article
+        article_type = "retraction"
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        article.article_type = article_type
+        article.related_articles = [related_article]
+        # set some expectations
+        expected_fragments = [
+            '<PublicationType>Retraction of Publication</PublicationType>',
+            '<Object Type="Retraction"><Param Name="type">doi</Param><Param Name="id">10.7554/eLife.99999</Param>'
+            ]
+        # generate the PubMed XML
+        pXML = generate.build_pubmed_xml([article])
+        pubmed_xml_string = pXML.output_XML()
+        self.assertIsNotNone(pubmed_xml_string)
+        # A quick test just look for the expected string in the output
+        for expected_fragment in expected_fragments:
+            self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string),
+                        '{fragment} not found'.format(fragment=expected_fragment))
 
 
 class TestGenerateArticleContributors(unittest.TestCase):

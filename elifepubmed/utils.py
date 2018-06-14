@@ -1,4 +1,5 @@
 import re
+from collections import OrderedDict
 
 def allowed_tags():
     "tuple of whitelisted tags"
@@ -90,3 +91,16 @@ def join_phrases(phrase_list, glue_one=', ', glue_two=' '):
         elif phrase_text == '':
             phrase_text = phrase
     return phrase_text
+
+
+def abstract_sections(abstract):
+    "break apart an abstract into sections with optional labels"
+    sections = []
+    for a_section in abstract.split('<p>'):
+        section = OrderedDict()
+        text = a_section.replace('</p>', '')
+        label = ''
+        section['text'] = text
+        section['label'] = label
+        sections.append(section)
+    return sections

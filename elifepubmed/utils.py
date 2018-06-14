@@ -96,11 +96,14 @@ def join_phrases(phrase_list, glue_one=', ', glue_two=' '):
 def abstract_sections(abstract):
     "break apart an abstract into sections with optional labels"
     sections = []
+    if not abstract:
+        return sections
     for a_section in abstract.split('<p>'):
         section = OrderedDict()
         text = a_section.replace('</p>', '')
         label = ''
-        section['text'] = text
-        section['label'] = label
-        sections.append(section)
+        if text != '':
+            section['text'] = text
+            section['label'] = label
+            sections.append(section)
     return sections

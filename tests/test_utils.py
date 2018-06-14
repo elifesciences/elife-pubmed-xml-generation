@@ -1,5 +1,6 @@
 import unittest
 from elifepubmed import utils
+from collections import OrderedDict
 
 class TestUtils(unittest.TestCase):
 
@@ -109,6 +110,25 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.join_phrases([None, None]), '')
         self.assertEqual(utils.join_phrases(['A', 'B', 'C']), 'A, B, C')
         self.assertEqual(utils.join_phrases(['A', 'B.', 'C']), 'A, B. C')
+
+
+    def test_abstract_sections(self):
+        "test splitting abstract content into sections"
+        self.assertEqual(utils.abstract_sections(None), [])
+        self.assertEqual(utils.abstract_sections(
+            '<p>First.</p><p>Second.</p>'),
+            [
+                OrderedDict([
+                    ('text', 'First.'),
+                    ('label', '')
+                    ]),
+                OrderedDict([
+                    ('text', 'Second.'),
+                    ('label', '')
+                    ]),
+                ]
+            )
+
 
 if __name__ == '__main__':
     unittest.main()

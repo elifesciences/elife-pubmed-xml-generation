@@ -112,10 +112,10 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.join_phrases(['A', 'B.', 'C']), 'A, B. C')
 
 
-    def test_abstract_sections(self):
+    def test_abstract_parts(self):
         "test splitting abstract content into sections"
-        self.assertEqual(utils.abstract_sections(None), [])
-        self.assertEqual(utils.abstract_sections(
+        self.assertEqual(utils.abstract_parts(None), [])
+        self.assertEqual(utils.abstract_parts(
             '<p>First.</p><p>Second.</p>'),
             [
                 OrderedDict([
@@ -125,6 +125,19 @@ class TestUtils(unittest.TestCase):
                 OrderedDict([
                     ('text', 'Second.'),
                     ('label', '')
+                    ]),
+                ]
+            )
+        self.assertEqual(utils.abstract_parts(
+            '<p>One.</p><p><bold>Editorial note: </bold>A note.</p>'),
+            [
+                OrderedDict([
+                    ('text', 'One.'),
+                    ('label', '')
+                    ]),
+                OrderedDict([
+                    ('text', 'A note.'),
+                    ('label', 'Editorial note')
                     ]),
                 ]
             )

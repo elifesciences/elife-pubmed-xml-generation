@@ -394,7 +394,7 @@ class PubMedXML(object):
         abstract_tag = SubElement(parent, 'Abstract')
         tag_name = 'AbstractText'
         if poa_article.abstract:
-            sections = utils.abstract_sections(poa_article.abstract)
+            sections = utils.abstract_parts(poa_article.abstract)
             for section in sections:
                 if section.get('text'):
                     self.set_abstract_text(abstract_tag, section.get('text'),

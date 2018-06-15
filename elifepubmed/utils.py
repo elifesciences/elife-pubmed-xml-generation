@@ -92,18 +92,32 @@ def join_phrases(phrase_list, glue_one=', ', glue_two=' '):
             phrase_text = phrase
     return phrase_text
 
+def abstract_part_label(string):
+    "look for a label for part of an abstract and return the string without the label"
+    label = ''
+    if string.startswith('<bold>'):
+        for tag_match in re.finditer("^<bold>(.*?)</bold>(.*?)$", string):
+            label = tag_match.group(1).rstrip(': ')
+            string = tag_match.group(2)
+    return label, string
 
-def abstract_sections(abstract):
+def abstract_paragraph(string):
+    "parse an abstract paragraph into section data"
+    part = OrderedDict()
+    label, string = abstract_part_label(string)
+    text = string.replace('</p>', '')
+    if text != '':
+        part['text'] = text
+        part['label'] = label
+    return part
+
+def abstract_parts(abstract):
     "break apart an abstract into sections with optional labels"
-    sections = []
+    parts = []
     if not abstract:
-        return sections
+        return parts
     for a_section in abstract.split('<p>'):
-        section = OrderedDict()
-        text = a_section.replace('</p>', '')
-        label = ''
-        if text != '':
-            section['text'] = text
-            section['label'] = label
-            sections.append(section)
-    return sections
+        part = abstract_paragraph(a_section)
+        if part:
+            parts.append(part)
+    return parts

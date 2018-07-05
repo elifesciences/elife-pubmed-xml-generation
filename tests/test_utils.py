@@ -114,9 +114,10 @@ class TestUtils(unittest.TestCase):
 
     def test_abstract_parts(self):
         "test splitting abstract content into sections"
-        self.assertEqual(utils.abstract_parts(None), [])
+        label_types = ['Editorial note:']
+        self.assertEqual(utils.abstract_parts(None, []), [])
         self.assertEqual(utils.abstract_parts(
-            '<p>First.</p><p>Second.</p>'),
+            '<p>First.</p><p>Second.</p>', label_types),
             [
                 OrderedDict([
                     ('text', 'First.'),
@@ -129,7 +130,7 @@ class TestUtils(unittest.TestCase):
                 ]
             )
         self.assertEqual(utils.abstract_parts(
-            '<p>One.</p><p><bold>Editorial note: </bold>A note.</p>'),
+            '<p>One.</p><p><bold>Editorial note: </bold>A note.</p>', label_types),
             [
                 OrderedDict([
                     ('text', 'One.'),
@@ -137,6 +138,34 @@ class TestUtils(unittest.TestCase):
                     ]),
                 OrderedDict([
                     ('text', 'A note.'),
+                    ('label', 'Editorial note')
+                    ]),
+                ]
+            )
+        # test without a label type match
+        self.assertEqual(utils.abstract_parts(
+            '<p>One.</p><p><bold>Editorial note: </bold>A note.</p>', []),
+            [
+                OrderedDict([
+                    ('text', 'One.'),
+                    ('label', '')
+                    ]),
+                OrderedDict([
+                    ('text', '<bold>Editorial note: </bold>A note.'),
+                    ('label', '')
+                    ]),
+                ]
+            )
+        self.assertEqual(utils.abstract_parts(
+            '''<p>One.</p><p><bold>Editorial note: </bold>A note
+            across multiple lines.</p>''', label_types),
+            [
+                OrderedDict([
+                    ('text', 'One.'),
+                    ('label', '')
+                    ]),
+                OrderedDict([
+                    ('text', 'A note\n            across multiple lines.'),
                     ('label', 'Editorial note')
                     ]),
                 ]

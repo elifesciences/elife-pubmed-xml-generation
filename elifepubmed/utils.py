@@ -92,32 +92,36 @@ def join_phrases(phrase_list, glue_one=', ', glue_two=' '):
             phrase_text = phrase
     return phrase_text
 
-def abstract_part_label(string):
+def abstract_part_label(string, label_types):
     "look for a label for part of an abstract and return the string without the label"
     label = ''
-    if string.startswith('<bold>'):
-        for tag_match in re.finditer("^<bold>(.*?)</bold>(.*?)$", string):
-            label = tag_match.group(1).rstrip(': ')
-            string = tag_match.group(2)
+    if string.lstrip().startswith('<bold>'):
+        for tag_match in re.finditer(r"^<bold>(.*?)</bold>.*$", string.lstrip(), re.MULTILINE):
+            matched = tag_match.group(1)
+            if matched.rstrip() in label_types:
+                first_section = '<bold>{matched}</bold>'.format(matched=matched)
+                label = tag_match.group(1).rstrip(': ')
+                # to support multiple lines, just strip the first_section from the original string
+                string = string.split(first_section)[-1]
     return label, string
 
-def abstract_paragraph(string):
+def abstract_paragraph(string, label_types):
     "parse an abstract paragraph into section data"
     part = OrderedDict()
-    label, string = abstract_part_label(string)
+    label, string = abstract_part_label(string, label_types)
     text = string.replace('</p>', '')
     if text != '':
         part['text'] = text
         part['label'] = label
     return part
 
-def abstract_parts(abstract):
+def abstract_parts(abstract, label_types):
     "break apart an abstract into sections with optional labels"
     parts = []
     if not abstract:
         return parts
     for a_section in abstract.split('<p>'):
-        part = abstract_paragraph(a_section)
+        part = abstract_paragraph(a_section, label_types)
         if part:
             parts.append(part)
     return parts

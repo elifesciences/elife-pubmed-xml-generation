@@ -517,6 +517,10 @@ NOTE: research advance MUST contain <related-article related-article-type="artic
                     article. I have added an unmatched > bracket as this has been an issue for PubMed deposits in the past.</p>
                 <p>If this was a clinical trial the clinical trial details would be listed at the end of the abstract:</p>
                 <p>Clinical trial Registration: EudraCT2004-000446-20.</p>
+                <p><bold>Editorial note: </bold>This article has been through an editorial process 
+                 in which the authors decide how to respond to peer review. The Editor's assessment 
+                is that the author responses are thorough and rigorous (see <ext-link ext-link-type="uri"
+                xlink:href="https://doi.org/10.7554/eLife.00666#decision-letter">decision letter</ext-link>).</p>
             </abstract>
             <!-- UPDATE: Abstract: The following is no longer required for the XML file. However, it must be displayed in the PDF and the display must include prefix  https://doi.org/ 
 <bold>DOI:</bold>

@@ -3,14 +3,15 @@ from setuptools import setup
 import elifepubmed
 
 with open('README.rst') as fp:
-    readme = fp.read()
+    README = fp.read()
 
-setup(name='elifepubmed',
+setup(
+    name='elifepubmed',
     version=elifepubmed.__version__,
     description='eLife PubMed deposit of journal articles.',
-    long_description=readme,
+    long_description=README,
     packages=['elifepubmed'],
-    license = 'MIT',
+    license='MIT',
     install_requires=[
         "elifetools",
         "elifearticle",

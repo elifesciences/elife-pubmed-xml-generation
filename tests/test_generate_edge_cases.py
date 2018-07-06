@@ -114,7 +114,6 @@ class TestGenerateArticleContributors(unittest.TestCase):
         self.assertTrue('<AuthorList>' not in unicode_value(pubmed_xml_string))
         self.assertTrue('<GroupList>' not in unicode_value(pubmed_xml_string))
 
-
     def test_generate_contributor_surname_no_given_name(self):
         "build an article object, set the contributors, generate PubMed XML"
         doi = "10.7554/eLife.00666"

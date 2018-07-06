@@ -99,20 +99,17 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.pubmed_publication_type(
             article_type, display_channel, types_map), 'Journal Article')
 
-
     def test_contributor_initials(self):
         "various contributor initial values to test"
         self.assertEqual(utils.contributor_initials(None, None), '')
         self.assertEqual(utils.contributor_initials('Ju', 'Young Seok'), 'YJ')
         self.assertEqual(utils.contributor_initials('Ju', None), 'J')
 
-
     def test_join_phrases(self):
         "test joining some phrases with punctuation"
         self.assertEqual(utils.join_phrases([None, None]), '')
         self.assertEqual(utils.join_phrases(['A', 'B', 'C']), 'A, B, C')
         self.assertEqual(utils.join_phrases(['A', 'B.', 'C']), 'A, B. C')
-
 
     def test_abstract_parts(self):
         "test splitting abstract content into sections"

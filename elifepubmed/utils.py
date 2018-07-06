@@ -19,8 +19,7 @@ def allowed_tags():
 
 def allowed_tag_names():
     "only tag names of allow_tags sorted with no duplicates"
-    return list(sorted(set([tag.replace('<', '').replace('>', '').replace('/', '')
-                            for tag in allowed_tags()])))
+    return list(sorted(set([re.sub('[<>/]', '', tag) for tag in allowed_tags()])))
 
 
 def replace_mathml_tags(string, replacement="[Formula: see text]"):

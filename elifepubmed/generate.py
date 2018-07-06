@@ -70,37 +70,22 @@ class PubMedXML(object):
             set_replaces(article_tag, poa_article)
             set_article_title(article_tag, poa_article)
             set_e_location_id(article_tag, poa_article)
-            self.set_language(article_tag, poa_article)
+            set_language(article_tag, self.pubmed_config.get('language'))
             for contrib_type in self.pubmed_config.get('author_contrib_types'):
                 self.set_author_list(article_tag, poa_article, contrib_type)
             for contrib_type in self.pubmed_config.get('group_author_contrib_types'):
                 self.set_group_list(article_tag, poa_article, contrib_type)
-            self.set_publication_type(article_tag, poa_article)
+            set_publication_type(article_tag, poa_article,
+                                 self.pubmed_config.get('publication_types'))
             set_article_id_list(article_tag, poa_article)
             self.set_history(article_tag, poa_article)
-            self.set_abstract(article_tag, poa_article)
+            set_abstract(article_tag, poa_article,
+                         self.pubmed_config.get('abstract_label_types'))
             set_copyright_information(article_tag, poa_article)
-            self.set_coi_statement(article_tag, poa_article)
-            self.set_object_list(article_tag, poa_article)
-
-    def get_pub_date(self, poa_article):
-        """
-        For using in XML generation, use the article pub date
-        or by default use the run time pub date
-        """
-        pub_date = None
-
-        for date_type in self.pubmed_config.get('pub_date_types'):
-            pub_date_obj = poa_article.get_date(date_type)
-            if pub_date_obj:
-                break
-
-        if pub_date_obj:
-            pub_date = pub_date_obj.date
-        else:
-            # Default use the run time date
-            pub_date = self.pub_date
-        return pub_date
+            set_coi_statement(article_tag, poa_article,
+                              self.pubmed_config.get('author_contrib_types'))
+            set_object_list(article_tag, poa_article,
+                            self.pubmed_config.get('split_article_categories'))
 
     def set_journal(self, parent, poa_article):
         journal_tag = SubElement(parent, "Journal")
@@ -114,7 +99,8 @@ class PubMedXML(object):
         issn = SubElement(journal_tag, 'Issn')
         issn.text = poa_article.journal_issn
 
-        pub_date = self.get_pub_date(poa_article)
+        pub_date = get_pub_date(poa_article, self.pubmed_config.get('pub_date_types'),
+                                self.pub_date)
 
         volume = SubElement(journal_tag, "Volume")
         # Use volume from the article unless not present then use the default
@@ -133,10 +119,6 @@ class PubMedXML(object):
         pub_type = get_pub_type(poa_article)
         if pub_type:
             set_pub_date(journal_tag, pub_date, pub_type)
-
-    def set_language(self, parent, poa_article):
-        language = SubElement(parent, "Language")
-        language.text = self.pubmed_config.get('language')
 
     def set_author_list(self, parent, poa_article, contrib_type=None):
         # If contrib_type is None, all contributors will be added regardless of their type
@@ -271,16 +253,6 @@ class PubMedXML(object):
             parent.remove(self.groups)
             self.groups = None
 
-    def set_publication_type(self, parent, poa_article):
-        "PubMed will set PublicationType as Journal Article as the default, also the default here"
-        types_map = self.pubmed_config.get('publication_types')
-        publication_type = utils.pubmed_publication_type(
-            poa_article.article_type, poa_article.display_channel, types_map
-        )
-        if publication_type:
-            publication_type_tag = SubElement(parent, "PublicationType")
-            publication_type_tag.text = publication_type
-
     def set_history(self, parent, poa_article):
         history = SubElement(parent, "History")
 
@@ -292,128 +264,10 @@ class PubMedXML(object):
         # If the article is VoR and is was ever PoA, then set the aheadofprint history date
         if poa_article.is_poa is False and poa_article.was_ever_poa is True:
             date_type = "aheadofprint"
-            date = self.get_pub_date(poa_article)
+            date = get_pub_date(poa_article, self.pubmed_config.get('pub_date_types'),
+                                self.pub_date)
             if date:
                 set_date(history, date, date_type)
-
-    def set_abstract(self, parent, poa_article):
-        "set the Abstract"
-        abstract_tag = SubElement(parent, 'Abstract')
-        tag_name = 'AbstractText'
-        if poa_article.abstract:
-            sections = utils.abstract_parts(poa_article.abstract,
-                                            self.pubmed_config.get('abstract_label_types'))
-            for section in sections:
-                if section.get('text'):
-                    set_abstract_text(abstract_tag, section.get('text'),
-                                      section.get('label'))
-        else:
-            # Add an empty abstract
-            set_abstract_text(abstract_tag, '', '')
-
-    def set_coi_statement(self, parent, poa_article):
-        "add a CoiStatement as all the conflict values from article contributors"
-        coi_list = []
-        coi_map = OrderedDict()
-
-        # step 1 look for contributors with conflicts first
-        contributor_list = []
-        # look for contributors with conflicts first
-        for contributor in poa_article.contributors:
-            if (contributor.contrib_type in self.pubmed_config.get('author_contrib_types') and
-                    contributor.conflict):
-                contributor_list.append(contributor)
-
-        # step 2 compile a map of coi statements and their associated contributors
-        for contributor in contributor_list:
-            for conflict in contributor.conflict:
-                # remove inline tags
-                if '<' in conflict:
-                    for tag_name in utils.allowed_tag_names():
-                        conflict = eautils.remove_tag(tag_name, conflict)
-                # start a list of contributors if the statement is not seen yet
-                if conflict not in coi_map:
-                    coi_map[conflict] = []
-                # add the contributor for processing later
-                coi_map[conflict].append(contributor)
-
-        # step 3 concatenate a string for each coi statement with a list of author initials
-        for coi, contributors in coi_map.items():
-            initials_list = []
-            for contributor in contributors:
-                initials = utils.contributor_initials(contributor.surname, contributor.given_name)
-                if initials != '':
-                    initials_list.append(initials)
-            all_initials = ', '.join(initials_list)
-            # format the final string and add to the list
-            coi_list.append(all_initials + ' ' + coi)
-
-        # concatenate the single conflict of interest statement and add the tag
-        if coi_list:
-            coi_statement_tag = SubElement(parent, "CoiStatement")
-            coi_statement_tag.text = utils.join_phrases(coi_list)
-
-    def set_object_list(self, parent, poa_article):
-        # Keywords and others go in Object tags
-        object_list = SubElement(parent, "ObjectList")
-
-        # Add related article data for correction articles
-        if poa_article.article_type in ["correction", "retraction"]:
-            for related_article in poa_article.related_articles:
-                object_type = None
-                if related_article.related_article_type == "corrected-article":
-                    object_type = "Erratum"
-                elif related_article.related_article_type == "retracted-article":
-                    object_type = "Retraction"
-                if object_type:
-                    params = OrderedDict()
-                    params["type"] = str(related_article.ext_link_type)
-                    params["id"] = str(related_article.xlink_href)
-                    object_object = set_object(object_list, object_type, params)
-
-        # Add research organisms
-        for research_organism in poa_article.research_organisms:
-            if research_organism.lower() != 'other':
-                # Convert the research organism
-                research_organism_converted = convert_research_organism(research_organism)
-                params = {"value": research_organism_converted}
-                set_object(object_list, "keyword", params)
-
-        # Add article categories
-        for article_category in poa_article.article_categories:
-
-            if self.pubmed_config.get('split_article_categories') is True:
-                if article_category.lower().strip() == 'computational and systems biology':
-                    # Edge case category needs special treatment
-                    categories = ['Computational biology', 'Systems biology']
-                else:
-                    # Break on "and" and capitalise the first letter
-                    categories = article_category.split('and')
-            else:
-                categories = [article_category]
-
-            for category in categories:
-                category = category.strip().lower()
-                params = {"value": category}
-                set_object(object_list, "keyword", params)
-
-        # Add keywords
-        for keyword in poa_article.author_keywords:
-            params = {"value": keyword}
-            set_object(object_list, "keyword", params)
-
-        # Add grant / funding
-        for award in poa_article.funding_awards:
-            for award_id in award.award_ids:
-                if award.institution_name is not None and award.institution_name != '':
-                    params = OrderedDict()
-                    params["id"] = award_id
-                    params["grantor"] = award.institution_name
-                    set_object(object_list, "grant", params)
-
-        # Finally, do not leave an empty ObjectList tag, if present
-        if len(object_list) <= 0:
-            parent.remove(object_list)
 
     def output_xml(self, pretty=False, indent=""):
         encoding = 'utf-8'
@@ -431,8 +285,99 @@ class PubMedXML(object):
 
         if pretty is True:
             return reparsed.toprettyxml(indent, encoding=encoding)
-        else:
-            return reparsed.toxml(encoding=encoding)
+        return reparsed.toxml(encoding=encoding)
+
+
+def set_publication_type(parent, poa_article, types_map):
+    "PubMed will set PublicationType as Journal Article as the default, also the default here"
+    publication_type = utils.pubmed_publication_type(
+        poa_article.article_type, poa_article.display_channel, types_map
+    )
+    if publication_type:
+        publication_type_tag = SubElement(parent, "PublicationType")
+        publication_type_tag.text = publication_type
+
+
+def get_pub_date(poa_article, pub_date_types, default_pub_date):
+    """
+    For using in XML generation, use the article pub date
+    or by default use the run time pub date
+    """
+    pub_date = None
+
+    for date_type in pub_date_types:
+        pub_date_obj = poa_article.get_date(date_type)
+        if pub_date_obj:
+            break
+
+    if pub_date_obj:
+        pub_date = pub_date_obj.date
+    else:
+        # Default use the run time date
+        pub_date = default_pub_date
+    return pub_date
+
+
+def set_language(parent, language):
+    language_tag = SubElement(parent, "Language")
+    language_tag.text = language
+
+
+def set_abstract(parent, poa_article, abstract_label_types):
+    "set the Abstract"
+    abstract_tag = SubElement(parent, 'Abstract')
+    if poa_article.abstract:
+        sections = utils.abstract_parts(poa_article.abstract, abstract_label_types)
+        for section in sections:
+            if section.get('text'):
+                set_abstract_text(abstract_tag, section.get('text'),
+                                  section.get('label'))
+    else:
+        # Add an empty abstract
+        set_abstract_text(abstract_tag, '', '')
+
+
+def set_coi_statement(parent, poa_article, author_contrib_types):
+    "add a CoiStatement as all the conflict values from article contributors"
+    coi_list = []
+    coi_map = OrderedDict()
+
+    # step 1 look for contributors with conflicts first
+    contributor_list = []
+    # look for contributors with conflicts first
+    for contributor in poa_article.contributors:
+        if (contributor.contrib_type in author_contrib_types and
+                contributor.conflict):
+            contributor_list.append(contributor)
+
+    # step 2 compile a map of coi statements and their associated contributors
+    for contributor in contributor_list:
+        for conflict in contributor.conflict:
+            # remove inline tags
+            if '<' in conflict:
+                for tag_name in utils.allowed_tag_names():
+                    conflict = eautils.remove_tag(tag_name, conflict)
+            # start a list of contributors if the statement is not seen yet
+            if conflict not in coi_map:
+                coi_map[conflict] = []
+            # add the contributor for processing later
+            coi_map[conflict].append(contributor)
+
+    # step 3 concatenate a string for each coi statement with a list of author initials
+    for coi, contributors in coi_map.items():
+        initials_list = []
+        for contributor in contributors:
+            initials = utils.contributor_initials(contributor.surname, contributor.given_name)
+            if initials != '':
+                initials_list.append(initials)
+        all_initials = ', '.join(initials_list)
+        # format the final string and add to the list
+        coi_list.append(all_initials + ' ' + coi)
+
+    # concatenate the single conflict of interest statement and add the tag
+    if coi_list:
+        coi_statement_tag = SubElement(parent, "CoiStatement")
+        coi_statement_tag.text = utils.join_phrases(coi_list)
 
 
 def set_replaces(parent, poa_article):
@@ -546,7 +491,7 @@ def set_abstract_text(parent, abstract, label=None):
         parent, reparsed
     )
     # add the Label value to the last tag
-    if label != None:
+    if label is not None:
         parent[-1].set('Label', label)
 
 
@@ -576,6 +521,69 @@ def set_object(parent, object_type, params):
         param_tag.set("Name", param_name)
         param_tag.text = param
     return object_tag
+
+
+def set_object_list(parent, poa_article, split_article_categories):
+    # Keywords and others go in Object tags
+    object_list = SubElement(parent, "ObjectList")
+
+    # Add related article data for correction articles
+    if poa_article.article_type in ["correction", "retraction"]:
+        for related_article in poa_article.related_articles:
+            object_type = None
+            if related_article.related_article_type == "corrected-article":
+                object_type = "Erratum"
+            elif related_article.related_article_type == "retracted-article":
+                object_type = "Retraction"
+            if object_type:
+                params = OrderedDict()
+                params["type"] = str(related_article.ext_link_type)
+                params["id"] = str(related_article.xlink_href)
+                set_object(object_list, object_type, params)
+
+    # Add research organisms
+    for research_organism in poa_article.research_organisms:
+        if research_organism.lower() != 'other':
+            # Convert the research organism
+            research_organism_converted = convert_research_organism(research_organism)
+            params = {"value": research_organism_converted}
+            set_object(object_list, "keyword", params)
+
+    # Add article categories
+    for article_category in poa_article.article_categories:
+
+        if split_article_categories is True:
+            if article_category.lower().strip() == 'computational and systems biology':
+                # Edge case category needs special treatment
+                categories = ['Computational biology', 'Systems biology']
+            else:
+                # Break on "and" and capitalise the first letter
+                categories = article_category.split('and')
+        else:
+            categories = [article_category]
+
+        for category in categories:
+            category = category.strip().lower()
+            params = {"value": category}
+            set_object(object_list, "keyword", params)
+
+    # Add keywords
+    for keyword in poa_article.author_keywords:
+        params = {"value": keyword}
+        set_object(object_list, "keyword", params)
+
+    # Add grant / funding
+    for award in poa_article.funding_awards:
+        for award_id in award.award_ids:
+            if award.institution_name is not None and award.institution_name != '':
+                params = OrderedDict()
+                params["id"] = award_id
+                params["grantor"] = award.institution_name
+                set_object(object_list, "grant", params)
+
+    # Finally, do not leave an empty ObjectList tag, if present
+    if len(object_list) <= 0:
+        parent.remove(object_list)
 
 
 def get_pub_type(poa_article):

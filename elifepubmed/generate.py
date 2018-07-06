@@ -1,15 +1,14 @@
-from elifearticle import parse
-from elifearticle import utils as eautils
-from elifetools import utils as etoolsutils
-from elifetools import xmlio
-from xml.etree.ElementTree import Element, SubElement, Comment
-from xml.etree import ElementTree
-from xml.dom import minidom
-import datetime
 import time
 import re
 import os
 from collections import OrderedDict
+from xml.etree.ElementTree import Element, SubElement, Comment
+from xml.etree import ElementTree
+from xml.dom import minidom
+from elifearticle import parse
+from elifearticle import utils as eautils
+from elifetools import utils as etoolsutils
+from elifetools import xmlio
 from elifepubmed.conf import config, parse_raw_config
 from elifepubmed import utils
 

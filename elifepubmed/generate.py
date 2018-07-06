@@ -545,11 +545,8 @@ def set_object(parent, object_type, params):
     return object_tag
 
 
-def set_object_list(parent, poa_article, split_article_categories):
-    # Keywords and others go in Object tags
-    object_list = SubElement(parent, "ObjectList")
-
-    # Add related article data for correction articles
+def set_article_type(parent, poa_article):
+    "set the object tag holding the article type"
     if poa_article.article_type in ["correction", "retraction"]:
         for related_article in poa_article.related_articles:
             object_type = None
@@ -561,19 +558,22 @@ def set_object_list(parent, poa_article, split_article_categories):
                 params = OrderedDict()
                 params["type"] = str(related_article.ext_link_type)
                 params["id"] = str(related_article.xlink_href)
-                set_object(object_list, object_type, params)
+                set_object(parent, object_type, params)
 
-    # Add research organisms
+
+def set_research_organism(parent, poa_article):
+    "research organism object tags"
     for research_organism in poa_article.research_organisms:
         if research_organism.lower() != 'other':
             # Convert the research organism
             research_organism_converted = convert_research_organism(research_organism)
             params = {"value": research_organism_converted}
-            set_object(object_list, "keyword", params)
+            set_object(parent, "keyword", params)
 
-    # Add article categories
+
+def set_categories(parent, poa_article, split_article_categories):
+    "set object tags for the categories"
     for article_category in poa_article.article_categories:
-
         if split_article_categories is True:
             if article_category.lower().strip() == 'computational and systems biology':
                 # Edge case category needs special treatment
@@ -587,7 +587,32 @@ def set_object_list(parent, poa_article, split_article_categories):
         for category in categories:
             category = category.strip().lower()
             params = {"value": category}
-            set_object(object_list, "keyword", params)
+            set_object(parent, "keyword", params)
+
+
+def set_grants(parent, poa_article):
+    "object tags for funding grants"
+    for award in poa_article.funding_awards:
+        for award_id in award.award_ids:
+            if award.institution_name:
+                params = OrderedDict()
+                params["id"] = award_id
+                params["grantor"] = award.institution_name
+                set_object(parent, "grant", params)
+
+
+def set_object_list(parent, poa_article, split_article_categories):
+    # Keywords and others go in Object tags
+    object_list = SubElement(parent, "ObjectList")
+
+    # Add related article data for correction articles
+    set_article_type(object_list, poa_article)
+
+    # Add research organisms
+    set_research_organism(object_list, poa_article)
+
+    # Add article categories
+    set_categories(object_list, poa_article, split_article_categories)
 
     # Add keywords
     for keyword in poa_article.author_keywords:
@@ -595,13 +620,7 @@ def set_object_list(parent, poa_article, split_article_categories):
         set_object(object_list, "keyword", params)
 
     # Add grant / funding
-    for award in poa_article.funding_awards:
-        for award_id in award.award_ids:
-            if award.institution_name is not None and award.institution_name != '':
-                params = OrderedDict()
-                params["id"] = award_id
-                params["grantor"] = award.institution_name
-                set_object(object_list, "grant", params)
+    set_grants(object_list, poa_article)
 
     # Finally, do not leave an empty ObjectList tag, if present
     if len(object_list) <= 0:

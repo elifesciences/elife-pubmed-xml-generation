@@ -48,7 +48,7 @@ class TestGenerate(unittest.TestCase):
             articles = generate.build_articles_for_pubmed(
                 article_xmls=[file_path], config_section=config_section)
             p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
-            pubmed_xml = p_xml.output_XML()
+            pubmed_xml = p_xml.output_xml()
             model_pubmed_xml = self.read_file_content(TEST_DATA_PATH + pubmed_xml_file)
             try:
                 # python 3
@@ -87,7 +87,7 @@ class TestGenerate(unittest.TestCase):
         self.assertIsNotNone(pubmed_object.generated)
         self.assertIsNotNone(pubmed_object.last_commit)
         self.assertIsNotNone(pubmed_object.comment)
-        self.assertIsNotNone(pubmed_object.output_XML(pretty=True, indent='\t'))
+        self.assertIsNotNone(pubmed_object.output_xml(pretty=True, indent='\t'))
 
     def test_pubmed_xml_to_disk(self):
         "test writing to disk for test coverage"

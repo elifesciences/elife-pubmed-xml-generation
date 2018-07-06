@@ -558,12 +558,11 @@ class PubMedXML(object):
             self.param.text = param
         return self.object
 
-    def output_XML(self, pretty=False, indent=""):
+    def output_xml(self, pretty=False, indent=""):
         encoding = 'utf-8'
-        namespaceURI = None
-        qualifiedName = "ArticleSet"
+        qualified_name = "ArticleSet"
 
-        doctype = xmlio.ElifeDocumentType(qualifiedName)
+        doctype = xmlio.ElifeDocumentType(qualified_name)
         doctype._identified_mixin_init(
             publicId=self.pubmed_config.get('pubmed_xml_public_id'),
             systemId=self.pubmed_config.get('pubmed_xml_system_id'))
@@ -591,18 +590,18 @@ def build_pubmed_xml(poa_articles, config_section="elife", pub_date=None, add_co
 
 def pubmed_xml(poa_articles, config_section="elife", pub_date=None, add_comment=True):
     "build PubMed xml and return output as a string"
-    pXML = build_pubmed_xml(poa_articles, config_section, pub_date, add_comment)
-    return pXML.output_XML()
+    p_xml = build_pubmed_xml(poa_articles, config_section, pub_date, add_comment)
+    return p_xml.output_xml()
 
 
 def pubmed_xml_to_disk(poa_articles, config_section="elife", pub_date=None, add_comment=True):
     "build pubmed xml and write the output to disk"
-    pXML = build_pubmed_xml(poa_articles, config_section, pub_date, add_comment)
-    xml_string = pXML.output_XML()
+    p_xml = build_pubmed_xml(poa_articles, config_section, pub_date, add_comment)
+    xml_string = p_xml.output_xml()
     # Write to file
-    filename = TMP_DIR + os.sep + pXML.batch_id + '.xml'
-    with open(filename, "wb") as fp:
-        fp.write(xml_string)
+    filename = TMP_DIR + os.sep + p_xml.batch_id + '.xml'
+    with open(filename, "wb") as open_file:
+        open_file.write(xml_string)
 
 
 def build_articles_for_pubmed(article_xmls, config_section="elife"):

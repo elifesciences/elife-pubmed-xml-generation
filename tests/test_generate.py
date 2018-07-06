@@ -1,13 +1,22 @@
 import unittest
 import time
 import os
+from elifearticle.utils import unicode_value
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
-from elifearticle.utils import unicode_value
+
 
 TEST_BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep
 TEST_DATA_PATH = TEST_BASE_PATH + "test_data" + os.sep
 generate.TMP_DIR = TEST_BASE_PATH + "tmp" + os.sep
+
+
+def read_file_content(file_name):
+    file_p = open(file_name, 'rb')
+    content = file_p.read()
+    file_p.close()
+    return content
+
 
 class TestGenerate(unittest.TestCase):
 
@@ -36,12 +45,6 @@ class TestGenerate(unittest.TestCase):
             ('pb369-jats.xml', 'pb-pubmed-369-20170717071707.xml',
              'pb', self.default_pub_date))
 
-    def read_file_content(self, file_name):
-        file_p = open(file_name, 'rb')
-        content = file_p.read()
-        file_p.close()
-        return content
-
     def test_parse(self):
         for (article_xml_file, pubmed_xml_file, config_section, pub_date) in self.passes:
             file_path = TEST_DATA_PATH + article_xml_file
@@ -49,7 +52,7 @@ class TestGenerate(unittest.TestCase):
                 article_xmls=[file_path], config_section=config_section)
             p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
             pubmed_xml = p_xml.output_xml()
-            model_pubmed_xml = self.read_file_content(TEST_DATA_PATH + pubmed_xml_file)
+            model_pubmed_xml = read_file_content(TEST_DATA_PATH + pubmed_xml_file)
             try:
                 # python 3
                 self.assertEqual(unicode_value(pubmed_xml), unicode_value(model_pubmed_xml))
@@ -59,16 +62,16 @@ class TestGenerate(unittest.TestCase):
             # check the batch_id will be similar to the XML filename
             self.assertEqual(p_xml.batch_id + '.xml', pubmed_xml_file)
 
-
     def test_pubmed_xml(self):
         "test at least one article through this function for test coverage"
-        article_xml_file, pubmed_xml_file, config_section, pub_date = self.passes[0]
+        article_xml_file = 'elife-15743-v1.xml'
+        config_section = 'elife'
+        pub_date = self.default_pub_date
         file_path = TEST_DATA_PATH + article_xml_file
         articles = generate.build_articles_for_pubmed(
             article_xmls=[file_path], config_section=config_section)
         pubmed_xml = generate.pubmed_xml(articles, config_section, pub_date, False)
         self.assertIsNotNone(pubmed_xml)
-
 
     def test_parse_do_no_pass_pub_date(self):
         """

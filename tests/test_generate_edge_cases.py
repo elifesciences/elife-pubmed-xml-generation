@@ -1,8 +1,8 @@
 import unittest
-import time
-from elifepubmed import generate
-from elifearticle.article import Article, Contributor, ArticleDate, FundingAward, RelatedArticle
+from elifearticle.article import Article, Contributor, FundingAward, RelatedArticle
 from elifearticle.utils import unicode_value
+from elifepubmed import generate
+
 
 class TestGenerateArticleTitle(unittest.TestCase):
 
@@ -39,8 +39,8 @@ class TestGenerateArticleType(unittest.TestCase):
     def test_generate_article_type_correction(self):
         "build an article object, set the article_type and related_articles, generate PubMed XML"
         # create the related article
-        related_article = RelatedArticle();
-        related_article.xlink_href = "10.7554/eLife.99999";
+        related_article = RelatedArticle()
+        related_article.xlink_href = "10.7554/eLife.99999"
         related_article.ext_link_type = "doi"
         related_article.related_article_type = "corrected-article"
         # build the main article
@@ -53,7 +53,8 @@ class TestGenerateArticleType(unittest.TestCase):
         # set some expectations
         expected_fragments = [
             '<PublicationType>Published Erratum</PublicationType>',
-            '<Object Type="Erratum"><Param Name="type">doi</Param><Param Name="id">10.7554/eLife.99999</Param>'
+            ('<Object Type="Erratum"><Param Name="type">doi</Param>' +
+             '<Param Name="id">10.7554/eLife.99999</Param>')
             ]
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
@@ -62,13 +63,13 @@ class TestGenerateArticleType(unittest.TestCase):
         # A quick test just look for the expected string in the output
         for expected_fragment in expected_fragments:
             self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string),
-                        '{fragment} not found'.format(fragment=expected_fragment))
+                            '{fragment} not found'.format(fragment=expected_fragment))
 
     def test_generate_article_type_retraction(self):
         "build an article object, set the article_type and related_articles, generate PubMed XML"
         # create the related article
-        related_article = RelatedArticle();
-        related_article.xlink_href = "10.7554/eLife.99999";
+        related_article = RelatedArticle()
+        related_article.xlink_href = "10.7554/eLife.99999"
         related_article.ext_link_type = "doi"
         related_article.related_article_type = "retracted-article"
         # build the main article
@@ -81,7 +82,8 @@ class TestGenerateArticleType(unittest.TestCase):
         # set some expectations
         expected_fragments = [
             '<PublicationType>Retraction of Publication</PublicationType>',
-            '<Object Type="Retraction"><Param Name="type">doi</Param><Param Name="id">10.7554/eLife.99999</Param>'
+            ('<Object Type="Retraction"><Param Name="type">doi</Param>' +
+             '<Param Name="id">10.7554/eLife.99999</Param>')
             ]
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
@@ -90,7 +92,7 @@ class TestGenerateArticleType(unittest.TestCase):
         # A quick test just look for the expected string in the output
         for expected_fragment in expected_fragments:
             self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string),
-                        '{fragment} not found'.format(fragment=expected_fragment))
+                            '{fragment} not found'.format(fragment=expected_fragment))
 
 
 class TestGenerateArticleContributors(unittest.TestCase):
@@ -117,12 +119,18 @@ class TestGenerateArticleContributors(unittest.TestCase):
         "build an article object, set the contributors, generate PubMed XML"
         doi = "10.7554/eLife.00666"
         title = "Test article"
-        expected_fragment = '<AuthorList><Author><CollectiveName>Group name</CollectiveName></Author></AuthorList><GroupList><Group><GroupName>Group name</GroupName><IndividualName><FirstName EmptyYN="Y"/><LastName>eLife</LastName></IndividualName></Group></GroupList>'
+        expected_fragment = (
+            '<AuthorList><Author><CollectiveName>Group name</CollectiveName></Author>' +
+            '</AuthorList><GroupList><Group><GroupName>Group name</GroupName><IndividualName>' +
+            '<FirstName EmptyYN="Y"/><LastName>eLife</LastName></IndividualName></Group>' +
+            '</GroupList>')
         article = Article(doi, title)
-        contributor1 = Contributor(contrib_type="author", surname=None, given_name=None, collab="Group name")
+        contributor1 = Contributor(contrib_type="author", surname=None,
+                                   given_name=None, collab="Group name")
         contributor1.group_author_key = 'group1'
         article.add_contributor(contributor1)
-        contributor2 = Contributor(contrib_type="author non-byline", surname="eLife", given_name=None)
+        contributor2 = Contributor(contrib_type="author non-byline",
+                                   surname="eLife", given_name=None)
         contributor2.group_author_key = 'group1'
         article.add_contributor(contributor2)
         # generate the PubMed XML
@@ -142,8 +150,6 @@ class TestGenerateArticlePOAStatus(unittest.TestCase):
         article = Article(doi, title)
         article.is_poa = False
         article.was_ever_poa = True
-        default_pub_date = time.strptime("2017-07-17 07:17:07", "%Y-%m-%d %H:%M:%S")
-        date_instance = ArticleDate('pub', default_pub_date)
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
         pubmed_xml_string = p_xml.output_xml()
@@ -198,7 +204,10 @@ class TestSetCoiStatement(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue('<CoiStatement>AA, CC No competing interests declared, BB Holds the position of Queen Bee</CoiStatement>' in unicode_value(pubmed_xml_string))
+        expected_fragment = (
+            '<CoiStatement>AA, CC No competing interests declared, ' +
+            'BB Holds the position of Queen Bee</CoiStatement>')
+        self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string))
 
 
 class TestReplaces(unittest.TestCase):

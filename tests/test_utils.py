@@ -1,6 +1,7 @@
 import unittest
-from elifepubmed import utils
 from collections import OrderedDict
+from elifepubmed import utils
+
 
 class TestUtils(unittest.TestCase):
 
@@ -19,16 +20,17 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(
             utils.replace_mathml_tags(
                 '<inline-formula><mml:math>m</mml:math></inline-formula>'),
-                '[Formula: see text]')
+            '[Formula: see text]')
         self.assertEqual(
             utils.replace_mathml_tags(
-                '<inline-formula><mml:math>m</mml:math></inline-formula><inline-formula></inline-formula>'),
-                '[Formula: see text][Formula: see text]')
+                ('<inline-formula><mml:math>m</mml:math></inline-formula>' +
+                 '<inline-formula></inline-formula>')),
+            '[Formula: see text][Formula: see text]')
         # test newline matches
         self.assertEqual(
             utils.replace_mathml_tags(
                 "\n<inline-formula>\n\n<mml:math>m</mml:math>\n</inline-formula>\n"),
-                "\n[Formula: see text]\n")
+            "\n[Formula: see text]\n")
 
     def test_compare_values(self):
         "various comparisons of values"
@@ -116,8 +118,8 @@ class TestUtils(unittest.TestCase):
         "test splitting abstract content into sections"
         label_types = ['Editorial note:']
         self.assertEqual(utils.abstract_parts(None, []), [])
-        self.assertEqual(utils.abstract_parts(
-            '<p>First.</p><p>Second.</p>', label_types),
+        self.assertEqual(
+            utils.abstract_parts('<p>First.</p><p>Second.</p>', label_types),
             [
                 OrderedDict([
                     ('text', 'First.'),
@@ -129,8 +131,9 @@ class TestUtils(unittest.TestCase):
                     ]),
                 ]
             )
-        self.assertEqual(utils.abstract_parts(
-            '<p>One.</p><p><bold>Editorial note: </bold>A note.</p>', label_types),
+        self.assertEqual(
+            utils.abstract_parts('<p>One.</p><p><bold>Editorial note: </bold>A note.</p>',
+                                 label_types),
             [
                 OrderedDict([
                     ('text', 'One.'),
@@ -143,8 +146,8 @@ class TestUtils(unittest.TestCase):
                 ]
             )
         # test without a label type match
-        self.assertEqual(utils.abstract_parts(
-            '<p>One.</p><p><bold>Editorial note: </bold>A note.</p>', []),
+        self.assertEqual(
+            utils.abstract_parts('<p>One.</p><p><bold>Editorial note: </bold>A note.</p>', []),
             [
                 OrderedDict([
                     ('text', 'One.'),
@@ -156,16 +159,17 @@ class TestUtils(unittest.TestCase):
                     ]),
                 ]
             )
-        self.assertEqual(utils.abstract_parts(
-            '''<p>One.</p><p><bold>Editorial note: </bold>A note
-            across multiple lines.</p>''', label_types),
+        self.assertEqual(
+            utils.abstract_parts(
+                "<p>One.</p><p><bold>Editorial note: </bold>A note \nacross multiple lines.</p>",
+                label_types),
             [
                 OrderedDict([
                     ('text', 'One.'),
                     ('label', '')
                     ]),
                 OrderedDict([
-                    ('text', 'A note\n            across multiple lines.'),
+                    ('text', "A note \nacross multiple lines."),
                     ('label', 'Editorial note')
                     ]),
                 ]

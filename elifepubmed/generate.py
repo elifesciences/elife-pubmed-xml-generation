@@ -52,6 +52,9 @@ class PubMedXML(object):
                                    ' from version ' + self.last_commit)
             self.root.append(self.comment)
 
+        self.contributors = None
+        self.groups = None
+
         self.build(self.root, poa_articles)
 
     def build(self, root, poa_articles):
@@ -61,24 +64,24 @@ class PubMedXML(object):
             self.contributors = None
             self.groups = None
 
-            self.article = SubElement(root, "Article")
+            article_tag = SubElement(root, "Article")
 
-            self.set_journal(self.article, poa_article)
-            self.set_replaces(self.article, poa_article)
-            self.set_article_title(self.article, poa_article)
-            self.set_e_location_id(self.article, poa_article)
-            self.set_language(self.article, poa_article)
+            self.set_journal(article_tag, poa_article)
+            self.set_replaces(article_tag, poa_article)
+            self.set_article_title(article_tag, poa_article)
+            self.set_e_location_id(article_tag, poa_article)
+            self.set_language(article_tag, poa_article)
             for contrib_type in self.pubmed_config.get('author_contrib_types'):
-                self.set_author_list(self.article, poa_article, contrib_type)
+                self.set_author_list(article_tag, poa_article, contrib_type)
             for contrib_type in self.pubmed_config.get('group_author_contrib_types'):
-                self.set_group_list(self.article, poa_article, contrib_type)
-            self.set_publication_type(self.article, poa_article)
-            self.set_article_id_list(self.article, poa_article)
-            self.set_history(self.article, poa_article)
-            self.set_abstract(self.article, poa_article)
-            self.set_copyright_information(self.article, poa_article)
-            self.set_coi_statement(self.article, poa_article)
-            self.set_object_list(self.article, poa_article)
+                self.set_group_list(article_tag, poa_article, contrib_type)
+            self.set_publication_type(article_tag, poa_article)
+            self.set_article_id_list(article_tag, poa_article)
+            self.set_history(article_tag, poa_article)
+            self.set_abstract(article_tag, poa_article)
+            self.set_copyright_information(article_tag, poa_article)
+            self.set_coi_statement(article_tag, poa_article)
+            self.set_object_list(article_tag, poa_article)
 
     def get_pub_type(self, poa_article):
         """
@@ -114,36 +117,36 @@ class PubMedXML(object):
         return pub_date
 
     def set_journal(self, parent, poa_article):
-        self.journal = SubElement(parent, "Journal")
+        journal_tag = SubElement(parent, "Journal")
 
-        self.publisher_name = SubElement(self.journal, "PublisherName")
-        self.publisher_name.text = poa_article.publisher_name
+        publisher_name = SubElement(journal_tag, "PublisherName")
+        publisher_name.text = poa_article.publisher_name
 
-        self.journal_title = SubElement(self.journal, 'JournalTitle')
-        self.journal_title.text = poa_article.journal_title
+        journal_title = SubElement(journal_tag, 'JournalTitle')
+        journal_title.text = poa_article.journal_title
 
-        self.issn = SubElement(self.journal, 'Issn')
-        self.issn.text = poa_article.journal_issn
+        issn = SubElement(journal_tag, 'Issn')
+        issn.text = poa_article.journal_issn
 
         pub_date = self.get_pub_date(poa_article)
 
-        self.volume = SubElement(self.journal, "Volume")
+        volume = SubElement(journal_tag, "Volume")
         # Use volume from the article unless not present then use the default
         if poa_article.volume:
-            self.volume.text = poa_article.volume
+            volume.text = poa_article.volume
         else:
             if pub_date and self.pubmed_config.get("year_of_first_volume"):
-                self.volume.text = eautils.calculate_journal_volume(
+                volume.text = eautils.calculate_journal_volume(
                     pub_date, self.pubmed_config.get("year_of_first_volume"))
 
         if poa_article.issue:
-            self.issue = SubElement(self.journal, "Issue")
-            self.issue.text = poa_article.issue
+            issue = SubElement(journal_tag, "Issue")
+            issue.text = poa_article.issue
 
         # Add the pub date now
         pub_type = self.get_pub_type(poa_article)
         if pub_type:
-            self.set_pub_date(self.journal, pub_date, pub_type)
+            self.set_pub_date(journal_tag, pub_date, pub_type)
 
     def set_replaces(self, parent, poa_article):
         """
@@ -156,9 +159,9 @@ class PubMedXML(object):
         if ((poa_article.is_poa is False and poa_article.was_ever_poa is True)
                 or (poa_article.version and poa_article.version > 1)
                 or (hasattr(poa_article, 'replaces') and poa_article.replaces is True)):
-            self.replaces = SubElement(parent, 'Replaces')
-            self.replaces.set("IdType", "doi")
-            self.replaces.text = poa_article.doi
+            replaces = SubElement(parent, 'Replaces')
+            replaces.set("IdType", "doi")
+            replaces.text = poa_article.doi
 
     def set_article_title(self, parent, poa_article):
         """
@@ -179,23 +182,23 @@ class PubMedXML(object):
         tagged_string = '<' + tag_name + '>' + tag_converted_title + '</' + tag_name + '>'
         reparsed = minidom.parseString(etoolsutils.escape_ampersand(tagged_string).encode('utf-8'))
 
-        root_xml_element = xmlio.append_minidom_xml_to_elementtree_xml(
+        xmlio.append_minidom_xml_to_elementtree_xml(
             parent, reparsed
         )
 
     def set_e_location_id(self, parent, poa_article):
-        self.e_location_id = SubElement(parent, "ELocationID")
-        self.e_location_id.set("EIdType", "doi")
-        self.e_location_id.text = poa_article.doi
+        e_location_id = SubElement(parent, "ELocationID")
+        e_location_id.set("EIdType", "doi")
+        e_location_id.text = poa_article.doi
 
         if poa_article.elocation_id:
-            self.e_location_id = SubElement(parent, "ELocationID")
-            self.e_location_id.set("EIdType", "pii")
-            self.e_location_id.text = poa_article.elocation_id
+            e_location_id = SubElement(parent, "ELocationID")
+            e_location_id.set("EIdType", "pii")
+            e_location_id.text = poa_article.elocation_id
 
     def set_language(self, parent, poa_article):
-        self.language = SubElement(parent, "Language")
-        self.language.text = self.pubmed_config.get('language')
+        language = SubElement(parent, "Language")
+        language.text = self.pubmed_config.get('language')
 
     def set_author_list(self, parent, poa_article, contrib_type=None):
         # If contrib_type is None, all contributors will be added regardless of their type
@@ -214,29 +217,29 @@ class PubMedXML(object):
             and (contributor.collab == "" or contributor.collab is None):
                 continue
 
-            self.person_name = SubElement(self.contributors, "Author")
+            person_name = SubElement(self.contributors, "Author")
 
             if contributor.equal_contrib is True:
-                self.person_name.set("EqualContrib", "Y")
+                person_name.set("EqualContrib", "Y")
 
             if contributor.given_name:
-                self.given_name = SubElement(self.person_name, "FirstName")
-                self.given_name.text = contributor.given_name
+                given_name = SubElement(person_name, "FirstName")
+                given_name.text = contributor.given_name
             elif contributor.surname:
                 # Empty given_name but has a surname
-                self.given_name = SubElement(self.person_name, "FirstName")
-                self.given_name.set("EmptyYN", "Y")
+                given_name = SubElement(person_name, "FirstName")
+                given_name.set("EmptyYN", "Y")
 
             if contributor.surname:
-                self.surname = SubElement(self.person_name, "LastName")
-                self.surname.text = contributor.surname
+                surname = SubElement(person_name, "LastName")
+                surname.text = contributor.surname
 
             if contributor.collab:
-                self.collective_name = SubElement(self.person_name, "CollectiveName")
-                self.collective_name.text = contributor.collab
+                collective_name = SubElement(person_name, "CollectiveName")
+                collective_name.text = contributor.collab
 
             if contributor.suffix:
-                suffix = SubElement(self.person_name, "Suffix")
+                suffix = SubElement(person_name, "Suffix")
                 suffix.text = contributor.suffix
 
             # Add each affiliation for multiple affiliation support
@@ -244,18 +247,18 @@ class PubMedXML(object):
             for aff in contributor.affiliations:
                 if aff.text != "":
                     if non_blank_aff_count == 1:
-                        self.affiliation = SubElement(self.person_name, "Affiliation")
-                        self.affiliation.text = aff.text
+                        affiliation = SubElement(person_name, "Affiliation")
+                        affiliation.text = aff.text
                     elif non_blank_aff_count > 1:
                         # Wrap each in AffiliationInfo tag
-                        self.affiliation_info = SubElement(self.person_name, "AffiliationInfo")
-                        self.affiliation = SubElement(self.affiliation_info, "Affiliation")
-                        self.affiliation.text = aff.text
+                        affiliation_info = SubElement(person_name, "AffiliationInfo")
+                        affiliation = SubElement(affiliation_info, "Affiliation")
+                        affiliation.text = aff.text
 
             if contributor.orcid:
-                self.orcid = SubElement(self.person_name, "Identifier")
-                self.orcid.set("Source", "ORCID")
-                self.orcid.text = contributor.orcid
+                orcid = SubElement(person_name, "Identifier")
+                orcid.set("Source", "ORCID")
+                orcid.text = contributor.orcid
 
     def set_group_list(self, parent, poa_article, contrib_type=None):
         # If contrib_type is None, all contributors will be added regardless of their type
@@ -275,6 +278,7 @@ class PubMedXML(object):
                 continue
 
             # Set the GroupName value
+            group_name_text = None
             if contributor.group_author_key:
                 # The contributor has a contrib-id contrib-id-type="group-author-key"
                 #  Match this value to article contributors of type collab having the same id
@@ -282,47 +286,47 @@ class PubMedXML(object):
                     if (collab_contrib.collab is not None
                             and collab_contrib.group_author_key == contributor.group_author_key):
                         # Set the individual GroupName to the collab name
-                        self.group_name_text = collab_contrib.collab
+                        group_name_text = collab_contrib.collab
             elif contributor.collab:
                 # If a collab value and no group_author_key then use the collab value
-                self.group_name_text = contributor.collab
+                group_name_text = contributor.collab
 
             # Find existing group with the same name or create it if not exists
-            self.group = None
+            matched_group = None
             for group in self.groups.findall('./Group'):
                 for group_name in group.findall('./GroupName'):
-                    if group_name.text == self.group_name_text:
+                    if group_name.text == group_name_text:
                         # Matched an existing group tag, use it
-                        self.group = group
+                        matched_group = group
                         break
 
-            if self.group is None:
+            if matched_group is None:
                 # Create a new group
-                self.group = SubElement(self.groups, "Group")
+                group_tag = SubElement(self.groups, "Group")
 
                 # Set the GroupName of the group
-                self.group_name = SubElement(self.group, "GroupName")
-                self.group_name.text = self.group_name_text
+                group_name = SubElement(group_tag, "GroupName")
+                group_name.text = group_name_text
 
             # Add the individual to the group
-            individual = SubElement(self.group, "IndividualName")
+            individual = SubElement(group_tag, "IndividualName")
             if contributor.collab:
                 # for on-behalf-of group author values
-                self.given_name = SubElement(individual, "FirstName")
-                self.given_name.set("EmptyYN", "Y")
-                self.surname = SubElement(individual, "LastName")
-                self.surname.text = contributor.collab
+                given_name = SubElement(individual, "FirstName")
+                given_name.set("EmptyYN", "Y")
+                surname = SubElement(individual, "LastName")
+                surname.text = contributor.collab
             else:
                 if contributor.given_name:
-                    self.given_name = SubElement(individual, "FirstName")
-                    self.given_name.text = contributor.given_name
+                    given_name = SubElement(individual, "FirstName")
+                    given_name.text = contributor.given_name
                 elif contributor.surname:
                     # Empty given_name but has a surname
-                    self.given_name = SubElement(individual, "FirstName")
-                    self.given_name.set("EmptyYN", "Y")
+                    given_name = SubElement(individual, "FirstName")
+                    given_name.set("EmptyYN", "Y")
                 if contributor.surname:
-                    self.surname = SubElement(individual, "LastName")
-                    self.surname.text = contributor.surname
+                    surname = SubElement(individual, "LastName")
+                    surname.text = contributor.surname
 
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:
@@ -336,57 +340,57 @@ class PubMedXML(object):
             poa_article.article_type, poa_article.display_channel, types_map
         )
         if publication_type:
-            self.publication_type = SubElement(parent, "PublicationType")
-            self.publication_type.text = publication_type
+            publication_type_tag = SubElement(parent, "PublicationType")
+            publication_type_tag.text = publication_type
 
     def set_article_id_list(self, parent, poa_article):
-        self.article_id_list = SubElement(parent, "ArticleIdList")
+        article_id_list = SubElement(parent, "ArticleIdList")
         if poa_article.doi:
-            self.article_id = SubElement(self.article_id_list, "ArticleId")
-            self.article_id.set("IdType", "doi")
-            self.article_id.text = poa_article.doi
+            article_id = SubElement(article_id_list, "ArticleId")
+            article_id.set("IdType", "doi")
+            article_id.text = poa_article.doi
         if poa_article.pii:
-            self.article_id = SubElement(self.article_id_list, "ArticleId")
-            self.article_id.set("IdType", "pii")
-            self.article_id.text = poa_article.pii
+            article_id = SubElement(article_id_list, "ArticleId")
+            article_id.set("IdType", "pii")
+            article_id.text = poa_article.pii
 
     def set_pub_date(self, parent, pub_date, pub_type):
         if pub_date:
-            self.publication_date = SubElement(parent, "PubDate")
-            self.publication_date.set("PubStatus", pub_type)
-            year = SubElement(self.publication_date, "Year")
+            publication_date = SubElement(parent, "PubDate")
+            publication_date.set("PubStatus", pub_type)
+            year = SubElement(publication_date, "Year")
             year.text = str(pub_date.tm_year)
-            month = SubElement(self.publication_date, "Month")
+            month = SubElement(publication_date, "Month")
             # Get full text name of month
             month.text = time.strftime('%B', pub_date)
-            day = SubElement(self.publication_date, "Day")
+            day = SubElement(publication_date, "Day")
             day.text = str(pub_date.tm_mday).zfill(2)
 
     def set_date(self, parent, a_date, date_type):
         if a_date:
-            self.date = SubElement(parent, "PubDate")
-            self.date.set("PubStatus", date_type)
-            year = SubElement(self.date, "Year")
+            date = SubElement(parent, "PubDate")
+            date.set("PubStatus", date_type)
+            year = SubElement(date, "Year")
             year.text = str(a_date.tm_year)
-            month = SubElement(self.date, "Month")
+            month = SubElement(date, "Month")
             month.text = str(a_date.tm_mon).zfill(2)
-            day = SubElement(self.date, "Day")
+            day = SubElement(date, "Day")
             day.text = str(a_date.tm_mday).zfill(2)
 
     def set_history(self, parent, poa_article):
-        self.history = SubElement(parent, "History")
+        history = SubElement(parent, "History")
 
         for date_type in self.pubmed_config.get('history_date_types'):
             date = poa_article.get_date(date_type)
             if date:
-                self.set_date(self.history, date.date, date_type)
+                self.set_date(history, date.date, date_type)
 
         # If the article is VoR and is was ever PoA, then set the aheadofprint history date
         if poa_article.is_poa is False and poa_article.was_ever_poa is True:
             date_type = "aheadofprint"
             date = self.get_pub_date(poa_article)
             if date:
-                self.set_date(self.history, date, date_type)
+                self.set_date(history, date, date_type)
 
     def set_abstract(self, parent, poa_article):
         "set the Abstract"
@@ -422,7 +426,7 @@ class PubMedXML(object):
         tagged_string = '<' + tag_name + '>' + tag_converted_abstract + '</' + tag_name + '>'
         reparsed = minidom.parseString(tagged_string.encode('utf-8'))
 
-        root_xml_element = xmlio.append_minidom_xml_to_elementtree_xml(
+        xmlio.append_minidom_xml_to_elementtree_xml(
             parent, reparsed
         )
         # add the Label value to the last tag
@@ -478,7 +482,7 @@ class PubMedXML(object):
 
     def set_object_list(self, parent, poa_article):
         # Keywords and others go in Object tags
-        self.object_list = SubElement(parent, "ObjectList")
+        object_list = SubElement(parent, "ObjectList")
 
         # Add related article data for correction articles
         if poa_article.article_type in ["correction", "retraction"]:
@@ -492,7 +496,7 @@ class PubMedXML(object):
                     params = OrderedDict()
                     params["type"] = str(related_article.ext_link_type)
                     params["id"] = str(related_article.xlink_href)
-                    object_object = self.set_object(self.object_list, object_type, params)
+                    object_object = self.set_object(object_list, object_type, params)
 
         # Add research organisms
         for research_organism in poa_article.research_organisms:
@@ -500,7 +504,7 @@ class PubMedXML(object):
                 # Convert the research organism
                 research_organism_converted = self.convert_research_organism(research_organism)
                 params = {"value": research_organism_converted}
-                self.set_object(self.object_list, "keyword", params)
+                self.set_object(object_list, "keyword", params)
 
         # Add article categories
         for article_category in poa_article.article_categories:
@@ -518,12 +522,12 @@ class PubMedXML(object):
             for category in categories:
                 category = category.strip().lower()
                 params = {"value": category}
-                self.set_object(self.object_list, "keyword", params)
+                self.set_object(object_list, "keyword", params)
 
         # Add keywords
         for keyword in poa_article.author_keywords:
             params = {"value": keyword}
-            self.set_object(self.object_list, "keyword", params)
+            self.set_object(object_list, "keyword", params)
 
         # Add grant / funding
         for award in poa_article.funding_awards:
@@ -532,11 +536,11 @@ class PubMedXML(object):
                     params = OrderedDict()
                     params["id"] = award_id
                     params["grantor"] = award.institution_name
-                    self.set_object(self.object_list, "grant", params)
+                    self.set_object(object_list, "grant", params)
 
         # Finally, do not leave an empty ObjectList tag, if present
-        if len(self.object_list) <= 0:
-            parent.remove(self.object_list)
+        if len(object_list) <= 0:
+            parent.remove(object_list)
 
     def convert_research_organism(self, research_organism):
         # Lower case except for the first letter followed by a dot by a space
@@ -550,13 +554,13 @@ class PubMedXML(object):
 
     def set_object(self, parent, object_type, params):
         # e.g.  <Object Type="keyword"><Param Name="value">human</Param></Object>
-        self.object = SubElement(parent, "Object")
-        self.object.set("Type", object_type)
+        object_tag = SubElement(parent, "Object")
+        object_tag.set("Type", object_type)
         for param_name, param in params.items():
-            self.param = SubElement(self.object, "Param")
-            self.param.set("Name", param_name)
-            self.param.text = param
-        return self.object
+            param_tag = SubElement(object_tag, "Param")
+            param_tag.set("Name", param_name)
+            param_tag.text = param
+        return object_tag
 
     def output_xml(self, pretty=False, indent=""):
         encoding = 'utf-8'

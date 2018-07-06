@@ -145,48 +145,19 @@ class PubMedXML(object):
             if not contributor.surname and not contributor.collab:
                 continue
 
-            # Set the GroupName value
-            group_name_text = None
-            if contributor.group_author_key:
-                # The contributor has a contrib-id contrib-id-type="group-author-key"
-                #  Match this value to article contributors of type collab having the same id
-                for collab_contrib in poa_article.contributors:
-                    if (collab_contrib.collab is not None
-                            and collab_contrib.group_author_key == contributor.group_author_key):
-                        # Set the individual GroupName to the collab name
-                        group_name_text = collab_contrib.collab
-            elif contributor.collab:
-                # If a collab value and no group_author_key then use the collab value
-                group_name_text = contributor.collab
+            group_name_text = get_group_name_text(poa_article, contributor)
 
             # Find existing group with the same name or create it if not exists
-            matched_group = None
-            for group in self.groups.findall('./Group'):
-                for group_name in group.findall('./GroupName'):
-                    if group_name.text == group_name_text:
-                        # Matched an existing group tag, use it
-                        matched_group = group
-                        break
-
+            matched_group = group_exists(self.groups, group_name_text)
             if matched_group is None:
                 # Create a new group
                 group_tag = SubElement(self.groups, "Group")
-
                 # Set the GroupName of the group
                 group_name = SubElement(group_tag, "GroupName")
                 group_name.text = group_name_text
 
             # Add the individual to the group
-            individual = SubElement(group_tag, "IndividualName")
-            if contributor.collab:
-                # for on-behalf-of group author values
-                given_name = SubElement(individual, "FirstName")
-                given_name.set("EmptyYN", "Y")
-                surname = SubElement(individual, "LastName")
-                surname.text = contributor.collab
-            else:
-                set_first_name(individual, contributor)
-                set_surname(individual, contributor)
+            set_group_individual(group_tag, contributor)
 
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:
@@ -226,6 +197,50 @@ class PubMedXML(object):
         if pretty is True:
             return reparsed.toprettyxml(indent, encoding=encoding)
         return reparsed.toxml(encoding=encoding)
+
+
+def set_group_individual(parent, contributor):
+    # Add the individual to the group
+    individual = SubElement(parent, "IndividualName")
+    if contributor.collab:
+        # for on-behalf-of group author values
+        given_name = SubElement(individual, "FirstName")
+        given_name.set("EmptyYN", "Y")
+        surname = SubElement(individual, "LastName")
+        surname.text = contributor.collab
+    else:
+        set_first_name(individual, contributor)
+        set_surname(individual, contributor)
+
+
+def group_exists(group_tags, group_name_text):
+    "look in the Group tags if the group exists already"
+    matched_group = None
+    for group in group_tags.findall('./Group'):
+        for group_name in group.findall('./GroupName'):
+            if group_name.text == group_name_text:
+                # Matched an existing group tag, use it
+                matched_group = group
+                break
+    return matched_group
+
+
+def get_group_name_text(poa_article, contributor):
+    "for setting groups find the group name text in the contributors"
+    # Set the GroupName value
+    group_name_text = None
+    if contributor.group_author_key:
+        # The contributor has a contrib-id contrib-id-type="group-author-key"
+        #  Match this value to article contributors of type collab having the same id
+        for collab_contrib in poa_article.contributors:
+            if (collab_contrib.collab is not None
+                    and collab_contrib.group_author_key == contributor.group_author_key):
+                # Set the individual GroupName to the collab name
+                group_name_text = collab_contrib.collab
+    elif contributor.collab:
+        # If a collab value and no group_author_key then use the collab value
+        group_name_text = contributor.collab
+    return group_name_text
 
 
 def set_first_name(parent, contributor):

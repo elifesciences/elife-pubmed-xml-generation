@@ -128,57 +128,7 @@ class PubMedXML(object):
             self.contributors = SubElement(parent, "AuthorList")
 
         for contributor in poa_article.contributors:
-            if contrib_type:
-                # Filter by contrib_type if supplied
-                if contributor.contrib_type != contrib_type:
-                    continue
-            # Skip contributors with no surname and no collab
-            if  (contributor.surname == "" or contributor.surname is None) \
-            and (contributor.collab == "" or contributor.collab is None):
-                continue
-
-            person_name = SubElement(self.contributors, "Author")
-
-            if contributor.equal_contrib is True:
-                person_name.set("EqualContrib", "Y")
-
-            if contributor.given_name:
-                given_name = SubElement(person_name, "FirstName")
-                given_name.text = contributor.given_name
-            elif contributor.surname:
-                # Empty given_name but has a surname
-                given_name = SubElement(person_name, "FirstName")
-                given_name.set("EmptyYN", "Y")
-
-            if contributor.surname:
-                surname = SubElement(person_name, "LastName")
-                surname.text = contributor.surname
-
-            if contributor.collab:
-                collective_name = SubElement(person_name, "CollectiveName")
-                collective_name.text = contributor.collab
-
-            if contributor.suffix:
-                suffix = SubElement(person_name, "Suffix")
-                suffix.text = contributor.suffix
-
-            # Add each affiliation for multiple affiliation support
-            non_blank_aff_count = len([aff for aff in contributor.affiliations if aff.text != ""])
-            for aff in contributor.affiliations:
-                if aff.text != "":
-                    if non_blank_aff_count == 1:
-                        affiliation = SubElement(person_name, "Affiliation")
-                        affiliation.text = aff.text
-                    elif non_blank_aff_count > 1:
-                        # Wrap each in AffiliationInfo tag
-                        affiliation_info = SubElement(person_name, "AffiliationInfo")
-                        affiliation = SubElement(affiliation_info, "Affiliation")
-                        affiliation.text = aff.text
-
-            if contributor.orcid:
-                orcid = SubElement(person_name, "Identifier")
-                orcid.set("Source", "ORCID")
-                orcid.text = contributor.orcid
+            set_contributor(self.contributors, contributor, contrib_type)
 
     def set_group_list(self, parent, poa_article, contrib_type=None):
         # If contrib_type is None, all contributors will be added regardless of their type
@@ -188,13 +138,11 @@ class PubMedXML(object):
             self.groups = SubElement(parent, "GroupList")
 
         for contributor in poa_article.contributors:
-            if contrib_type:
+            if contrib_type and contributor.contrib_type != contrib_type:
                 # Filter by contrib_type if supplied
-                if contributor.contrib_type != contrib_type:
-                    continue
+                continue
             # Skip contributors with no surname and no collab
-            if  (contributor.surname == "" or contributor.surname is None) \
-            and (contributor.collab == "" or contributor.collab is None):
+            if not contributor.surname and not contributor.collab:
                 continue
 
             # Set the GroupName value
@@ -237,16 +185,8 @@ class PubMedXML(object):
                 surname = SubElement(individual, "LastName")
                 surname.text = contributor.collab
             else:
-                if contributor.given_name:
-                    given_name = SubElement(individual, "FirstName")
-                    given_name.text = contributor.given_name
-                elif contributor.surname:
-                    # Empty given_name but has a surname
-                    given_name = SubElement(individual, "FirstName")
-                    given_name.set("EmptyYN", "Y")
-                if contributor.surname:
-                    surname = SubElement(individual, "LastName")
-                    surname.text = contributor.surname
+                set_first_name(individual, contributor)
+                set_surname(individual, contributor)
 
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:
@@ -287,6 +227,66 @@ class PubMedXML(object):
             return reparsed.toprettyxml(indent, encoding=encoding)
         return reparsed.toxml(encoding=encoding)
 
+
+def set_first_name(parent, contributor):
+    if contributor.given_name:
+        given_name = SubElement(parent, "FirstName")
+        given_name.text = contributor.given_name
+    elif contributor.surname:
+        # Empty given_name but has a surname
+        given_name = SubElement(parent, "FirstName")
+        given_name.set("EmptyYN", "Y")
+
+
+def set_surname(parent, contributor):
+    if contributor.surname:
+        surname = SubElement(parent, "LastName")
+        surname.text = contributor.surname
+
+
+def set_contributor(parent, contributor, contrib_type):
+    "set contributor tag details"
+    # Filter by contrib_type if supplied
+    if contrib_type and contributor.contrib_type != contrib_type:
+        # Filter by contrib_type if supplied
+        return
+    # Skip contributors with no surname and no collab
+    if not contributor.surname and not contributor.collab:
+        return
+
+    person_name = SubElement(parent, "Author")
+
+    if contributor.equal_contrib is True:
+        person_name.set("EqualContrib", "Y")
+
+    set_first_name(person_name, contributor)
+    set_surname(person_name, contributor)
+
+    if contributor.collab:
+        collective_name = SubElement(person_name, "CollectiveName")
+        collective_name.text = contributor.collab
+
+    if contributor.suffix:
+        suffix = SubElement(person_name, "Suffix")
+        suffix.text = contributor.suffix
+
+    # Add each affiliation for multiple affiliation support
+    non_blank_aff_count = len([aff for aff in contributor.affiliations if aff.text != ""])
+    for aff in contributor.affiliations:
+        if aff.text != "":
+            if non_blank_aff_count == 1:
+                affiliation = SubElement(person_name, "Affiliation")
+                affiliation.text = aff.text
+            elif non_blank_aff_count > 1:
+                # Wrap each in AffiliationInfo tag
+                affiliation_info = SubElement(person_name, "AffiliationInfo")
+                affiliation = SubElement(affiliation_info, "Affiliation")
+                affiliation.text = aff.text
+
+    if contributor.orcid:
+        orcid = SubElement(person_name, "Identifier")
+        orcid.set("Source", "ORCID")
+        orcid.text = contributor.orcid
 
 def set_publication_type(parent, poa_article, types_map):
     "PubMed will set PublicationType as Journal Article as the default, also the default here"

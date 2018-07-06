@@ -67,35 +67,21 @@ class PubMedXML(object):
             article_tag = SubElement(root, "Article")
 
             self.set_journal(article_tag, poa_article)
-            self.set_replaces(article_tag, poa_article)
-            self.set_article_title(article_tag, poa_article)
-            self.set_e_location_id(article_tag, poa_article)
+            set_replaces(article_tag, poa_article)
+            set_article_title(article_tag, poa_article)
+            set_e_location_id(article_tag, poa_article)
             self.set_language(article_tag, poa_article)
             for contrib_type in self.pubmed_config.get('author_contrib_types'):
                 self.set_author_list(article_tag, poa_article, contrib_type)
             for contrib_type in self.pubmed_config.get('group_author_contrib_types'):
                 self.set_group_list(article_tag, poa_article, contrib_type)
             self.set_publication_type(article_tag, poa_article)
-            self.set_article_id_list(article_tag, poa_article)
+            set_article_id_list(article_tag, poa_article)
             self.set_history(article_tag, poa_article)
             self.set_abstract(article_tag, poa_article)
-            self.set_copyright_information(article_tag, poa_article)
+            set_copyright_information(article_tag, poa_article)
             self.set_coi_statement(article_tag, poa_article)
             self.set_object_list(article_tag, poa_article)
-
-    def get_pub_type(self, poa_article):
-        """
-        Given an article object, determine whether the pub_type is for
-        PoA article or VoR article
-        """
-        pub_type = None
-        if poa_article.is_poa is True:
-            # PoA
-            pub_type = "aheadofprint"
-        else:
-            # VoR
-            pub_type = "epublish"
-        return pub_type
 
     def get_pub_date(self, poa_article):
         """
@@ -144,57 +130,9 @@ class PubMedXML(object):
             issue.text = poa_article.issue
 
         # Add the pub date now
-        pub_type = self.get_pub_type(poa_article)
+        pub_type = get_pub_type(poa_article)
         if pub_type:
-            self.set_pub_date(journal_tag, pub_date, pub_type)
-
-    def set_replaces(self, parent, poa_article):
-        """
-        Set the Replaces tag, if applicable
-        """
-        # ways a Replaces tag will be added to the PubMed deposit
-        # - is not a poa but was a poa in the past (indicates a version > 1)
-        # - article has a version attribute  > 1
-        # - article has a replaces attribute set to True
-        if ((poa_article.is_poa is False and poa_article.was_ever_poa is True)
-                or (poa_article.version and poa_article.version > 1)
-                or (hasattr(poa_article, 'replaces') and poa_article.replaces is True)):
-            replaces = SubElement(parent, 'Replaces')
-            replaces.set("IdType", "doi")
-            replaces.text = poa_article.doi
-
-    def set_article_title(self, parent, poa_article):
-        """
-        Set the titles and title tags allowing sub tags within title
-        """
-        tag_name = 'ArticleTitle'
-        # Pubmed allows <i> tags, not <italic> tags
-        tag_converted_title = poa_article.title
-        tag_converted_title = eautils.replace_tags(tag_converted_title, 'italic', 'i')
-        tag_converted_title = eautils.replace_tags(tag_converted_title, 'bold', 'b')
-        tag_converted_title = eautils.replace_tags(tag_converted_title, 'underline', 'u')
-        # Specific issue to remove b tag wrapping the entire title, if present
-        if tag_converted_title.startswith('<b>') and tag_converted_title.endswith('</b>'):
-            tag_converted_title = tag_converted_title.lstrip('<b>')
-            tag_converted_title = tag_converted_title.rstrip('</b>')
-        tag_converted_title = etoolsutils.escape_unmatched_angle_brackets(
-            tag_converted_title, utils.allowed_tags())
-        tagged_string = '<' + tag_name + '>' + tag_converted_title + '</' + tag_name + '>'
-        reparsed = minidom.parseString(etoolsutils.escape_ampersand(tagged_string).encode('utf-8'))
-
-        xmlio.append_minidom_xml_to_elementtree_xml(
-            parent, reparsed
-        )
-
-    def set_e_location_id(self, parent, poa_article):
-        e_location_id = SubElement(parent, "ELocationID")
-        e_location_id.set("EIdType", "doi")
-        e_location_id.text = poa_article.doi
-
-        if poa_article.elocation_id:
-            e_location_id = SubElement(parent, "ELocationID")
-            e_location_id.set("EIdType", "pii")
-            e_location_id.text = poa_article.elocation_id
+            set_pub_date(journal_tag, pub_date, pub_type)
 
     def set_language(self, parent, poa_article):
         language = SubElement(parent, "Language")
@@ -343,54 +281,20 @@ class PubMedXML(object):
             publication_type_tag = SubElement(parent, "PublicationType")
             publication_type_tag.text = publication_type
 
-    def set_article_id_list(self, parent, poa_article):
-        article_id_list = SubElement(parent, "ArticleIdList")
-        if poa_article.doi:
-            article_id = SubElement(article_id_list, "ArticleId")
-            article_id.set("IdType", "doi")
-            article_id.text = poa_article.doi
-        if poa_article.pii:
-            article_id = SubElement(article_id_list, "ArticleId")
-            article_id.set("IdType", "pii")
-            article_id.text = poa_article.pii
-
-    def set_pub_date(self, parent, pub_date, pub_type):
-        if pub_date:
-            publication_date = SubElement(parent, "PubDate")
-            publication_date.set("PubStatus", pub_type)
-            year = SubElement(publication_date, "Year")
-            year.text = str(pub_date.tm_year)
-            month = SubElement(publication_date, "Month")
-            # Get full text name of month
-            month.text = time.strftime('%B', pub_date)
-            day = SubElement(publication_date, "Day")
-            day.text = str(pub_date.tm_mday).zfill(2)
-
-    def set_date(self, parent, a_date, date_type):
-        if a_date:
-            date = SubElement(parent, "PubDate")
-            date.set("PubStatus", date_type)
-            year = SubElement(date, "Year")
-            year.text = str(a_date.tm_year)
-            month = SubElement(date, "Month")
-            month.text = str(a_date.tm_mon).zfill(2)
-            day = SubElement(date, "Day")
-            day.text = str(a_date.tm_mday).zfill(2)
-
     def set_history(self, parent, poa_article):
         history = SubElement(parent, "History")
 
         for date_type in self.pubmed_config.get('history_date_types'):
             date = poa_article.get_date(date_type)
             if date:
-                self.set_date(history, date.date, date_type)
+                set_date(history, date.date, date_type)
 
         # If the article is VoR and is was ever PoA, then set the aheadofprint history date
         if poa_article.is_poa is False and poa_article.was_ever_poa is True:
             date_type = "aheadofprint"
             date = self.get_pub_date(poa_article)
             if date:
-                self.set_date(history, date, date_type)
+                set_date(history, date, date_type)
 
     def set_abstract(self, parent, poa_article):
         "set the Abstract"
@@ -401,42 +305,11 @@ class PubMedXML(object):
                                             self.pubmed_config.get('abstract_label_types'))
             for section in sections:
                 if section.get('text'):
-                    self.set_abstract_text(abstract_tag, section.get('text'),
-                                           section.get('label'))
+                    set_abstract_text(abstract_tag, section.get('text'),
+                                      section.get('label'))
         else:
             # Add an empty abstract
-            self.set_abstract_text(abstract_tag, '', '')
-
-    def set_abstract_text(self, parent, abstract, label=None):
-        "set the AbstractText value of an Abstract given an abstract string"
-        tag_name = 'AbstractText'
-        tag_converted_abstract = abstract
-        tag_converted_abstract = utils.replace_mathml_tags(tag_converted_abstract)
-        # Pubmed allows <i> tags, not <italic> tags
-        tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'italic', 'i')
-        tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'bold', 'b')
-        tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'underline', 'u')
-        tag_converted_abstract = tag_converted_abstract.replace('<p>', '').replace('</p>', '')
-        tag_converted_abstract = etoolsutils.escape_ampersand(tag_converted_abstract)
-        not_allowed_tags = ['<sc>', '</sc>']
-        for tagname in not_allowed_tags:
-            tag_converted_abstract = tag_converted_abstract.replace(tagname, '')
-        tag_converted_abstract = etoolsutils.escape_unmatched_angle_brackets(
-            tag_converted_abstract, utils.allowed_tags())
-        tagged_string = '<' + tag_name + '>' + tag_converted_abstract + '</' + tag_name + '>'
-        reparsed = minidom.parseString(tagged_string.encode('utf-8'))
-
-        xmlio.append_minidom_xml_to_elementtree_xml(
-            parent, reparsed
-        )
-        # add the Label value to the last tag
-        if label != None:
-            parent[-1].set('Label', label)
-
-    def set_copyright_information(self, parent, poa_article):
-        if poa_article.license and poa_article.license.copyright_statement:
-            copyright_tag = SubElement(parent, "CopyrightInformation")
-            copyright_tag.text = poa_article.license.copyright_statement
+            set_abstract_text(abstract_tag, '', '')
 
     def set_coi_statement(self, parent, poa_article):
         "add a CoiStatement as all the conflict values from article contributors"
@@ -496,15 +369,15 @@ class PubMedXML(object):
                     params = OrderedDict()
                     params["type"] = str(related_article.ext_link_type)
                     params["id"] = str(related_article.xlink_href)
-                    object_object = self.set_object(object_list, object_type, params)
+                    object_object = set_object(object_list, object_type, params)
 
         # Add research organisms
         for research_organism in poa_article.research_organisms:
             if research_organism.lower() != 'other':
                 # Convert the research organism
-                research_organism_converted = self.convert_research_organism(research_organism)
+                research_organism_converted = convert_research_organism(research_organism)
                 params = {"value": research_organism_converted}
-                self.set_object(object_list, "keyword", params)
+                set_object(object_list, "keyword", params)
 
         # Add article categories
         for article_category in poa_article.article_categories:
@@ -522,12 +395,12 @@ class PubMedXML(object):
             for category in categories:
                 category = category.strip().lower()
                 params = {"value": category}
-                self.set_object(object_list, "keyword", params)
+                set_object(object_list, "keyword", params)
 
         # Add keywords
         for keyword in poa_article.author_keywords:
             params = {"value": keyword}
-            self.set_object(object_list, "keyword", params)
+            set_object(object_list, "keyword", params)
 
         # Add grant / funding
         for award in poa_article.funding_awards:
@@ -536,31 +409,11 @@ class PubMedXML(object):
                     params = OrderedDict()
                     params["id"] = award_id
                     params["grantor"] = award.institution_name
-                    self.set_object(object_list, "grant", params)
+                    set_object(object_list, "grant", params)
 
         # Finally, do not leave an empty ObjectList tag, if present
         if len(object_list) <= 0:
             parent.remove(object_list)
-
-    def convert_research_organism(self, research_organism):
-        # Lower case except for the first letter followed by a dot by a space
-        research_organism_converted = research_organism.lower()
-        if re.match(r'^[a-z]\. ', research_organism_converted):
-            # Upper the first character and add to the remainder
-            research_organism_converted = (
-                research_organism_converted[0].upper() +
-                research_organism_converted[1:])
-        return research_organism_converted
-
-    def set_object(self, parent, object_type, params):
-        # e.g.  <Object Type="keyword"><Param Name="value">human</Param></Object>
-        object_tag = SubElement(parent, "Object")
-        object_tag.set("Type", object_type)
-        for param_name, param in params.items():
-            param_tag = SubElement(object_tag, "Param")
-            param_tag.set("Name", param_name)
-            param_tag.text = param
-        return object_tag
 
     def output_xml(self, pretty=False, indent=""):
         encoding = 'utf-8'
@@ -580,6 +433,164 @@ class PubMedXML(object):
             return reparsed.toprettyxml(indent, encoding=encoding)
         else:
             return reparsed.toxml(encoding=encoding)
+
+
+def set_replaces(parent, poa_article):
+    """
+    Set the Replaces tag, if applicable
+    """
+    # ways a Replaces tag will be added to the PubMed deposit
+    # - is not a poa but was a poa in the past (indicates a version > 1)
+    # - article has a version attribute  > 1
+    # - article has a replaces attribute set to True
+    if ((poa_article.is_poa is False and poa_article.was_ever_poa is True)
+            or (poa_article.version and poa_article.version > 1)
+            or (hasattr(poa_article, 'replaces') and poa_article.replaces is True)):
+        replaces = SubElement(parent, 'Replaces')
+        replaces.set("IdType", "doi")
+        replaces.text = poa_article.doi
+
+
+def set_article_title(parent, poa_article):
+    """
+    Set the titles and title tags allowing sub tags within title
+    """
+    tag_name = 'ArticleTitle'
+    # Pubmed allows <i> tags, not <italic> tags
+    tag_converted_title = poa_article.title
+    tag_converted_title = eautils.replace_tags(tag_converted_title, 'italic', 'i')
+    tag_converted_title = eautils.replace_tags(tag_converted_title, 'bold', 'b')
+    tag_converted_title = eautils.replace_tags(tag_converted_title, 'underline', 'u')
+    # Specific issue to remove b tag wrapping the entire title, if present
+    if tag_converted_title.startswith('<b>') and tag_converted_title.endswith('</b>'):
+        tag_converted_title = tag_converted_title.lstrip('<b>')
+        tag_converted_title = tag_converted_title.rstrip('</b>')
+    tag_converted_title = etoolsutils.escape_unmatched_angle_brackets(
+        tag_converted_title, utils.allowed_tags())
+    tagged_string = '<' + tag_name + '>' + tag_converted_title + '</' + tag_name + '>'
+    reparsed = minidom.parseString(etoolsutils.escape_ampersand(tagged_string).encode('utf-8'))
+
+    xmlio.append_minidom_xml_to_elementtree_xml(
+        parent, reparsed
+    )
+
+
+def set_e_location_id(parent, poa_article):
+    e_location_id = SubElement(parent, "ELocationID")
+    e_location_id.set("EIdType", "doi")
+    e_location_id.text = poa_article.doi
+
+    if poa_article.elocation_id:
+        e_location_id = SubElement(parent, "ELocationID")
+        e_location_id.set("EIdType", "pii")
+        e_location_id.text = poa_article.elocation_id
+
+
+def set_article_id_list(parent, poa_article):
+    article_id_list = SubElement(parent, "ArticleIdList")
+    if poa_article.doi:
+        article_id = SubElement(article_id_list, "ArticleId")
+        article_id.set("IdType", "doi")
+        article_id.text = poa_article.doi
+    if poa_article.pii:
+        article_id = SubElement(article_id_list, "ArticleId")
+        article_id.set("IdType", "pii")
+        article_id.text = poa_article.pii
+
+
+def set_pub_date(parent, pub_date, pub_type):
+    if pub_date:
+        publication_date = SubElement(parent, "PubDate")
+        publication_date.set("PubStatus", pub_type)
+        year = SubElement(publication_date, "Year")
+        year.text = str(pub_date.tm_year)
+        month = SubElement(publication_date, "Month")
+        # Get full text name of month
+        month.text = time.strftime('%B', pub_date)
+        day = SubElement(publication_date, "Day")
+        day.text = str(pub_date.tm_mday).zfill(2)
+
+
+def set_date(parent, a_date, date_type):
+    if a_date:
+        date = SubElement(parent, "PubDate")
+        date.set("PubStatus", date_type)
+        year = SubElement(date, "Year")
+        year.text = str(a_date.tm_year)
+        month = SubElement(date, "Month")
+        month.text = str(a_date.tm_mon).zfill(2)
+        day = SubElement(date, "Day")
+        day.text = str(a_date.tm_mday).zfill(2)
+
+
+def set_abstract_text(parent, abstract, label=None):
+    "set the AbstractText value of an Abstract given an abstract string"
+    tag_name = 'AbstractText'
+    tag_converted_abstract = abstract
+    tag_converted_abstract = utils.replace_mathml_tags(tag_converted_abstract)
+    # Pubmed allows <i> tags, not <italic> tags
+    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'italic', 'i')
+    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'bold', 'b')
+    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'underline', 'u')
+    tag_converted_abstract = tag_converted_abstract.replace('<p>', '').replace('</p>', '')
+    tag_converted_abstract = etoolsutils.escape_ampersand(tag_converted_abstract)
+    not_allowed_tags = ['<sc>', '</sc>']
+    for tagname in not_allowed_tags:
+        tag_converted_abstract = tag_converted_abstract.replace(tagname, '')
+    tag_converted_abstract = etoolsutils.escape_unmatched_angle_brackets(
+        tag_converted_abstract, utils.allowed_tags())
+    tagged_string = '<' + tag_name + '>' + tag_converted_abstract + '</' + tag_name + '>'
+    reparsed = minidom.parseString(tagged_string.encode('utf-8'))
+
+    xmlio.append_minidom_xml_to_elementtree_xml(
+        parent, reparsed
+    )
+    # add the Label value to the last tag
+    if label != None:
+        parent[-1].set('Label', label)
+
+
+def set_copyright_information(parent, poa_article):
+    if poa_article.license and poa_article.license.copyright_statement:
+        copyright_tag = SubElement(parent, "CopyrightInformation")
+        copyright_tag.text = poa_article.license.copyright_statement
+
+
+def convert_research_organism(research_organism):
+    # Lower case except for the first letter followed by a dot by a space
+    research_organism_converted = research_organism.lower()
+    if re.match(r'^[a-z]\. ', research_organism_converted):
+        # Upper the first character and add to the remainder
+        research_organism_converted = (
+            research_organism_converted[0].upper() +
+            research_organism_converted[1:])
+    return research_organism_converted
+
+
+def set_object(parent, object_type, params):
+    # e.g.  <Object Type="keyword"><Param Name="value">human</Param></Object>
+    object_tag = SubElement(parent, "Object")
+    object_tag.set("Type", object_type)
+    for param_name, param in params.items():
+        param_tag = SubElement(object_tag, "Param")
+        param_tag.set("Name", param_name)
+        param_tag.text = param
+    return object_tag
+
+
+def get_pub_type(poa_article):
+    """
+    Given an article object, determine whether the pub_type is for
+    PoA article or VoR article
+    """
+    pub_type = None
+    if poa_article.is_poa is True:
+        # PoA
+        pub_type = "aheadofprint"
+    else:
+        # VoR
+        pub_type = "epublish"
+    return pub_type
 
 
 def build_pubmed_xml(poa_articles, config_section="elife", pub_date=None, add_comment=True):

@@ -42,7 +42,7 @@ class PubMedXML(object):
             # If only one article is supplied, then add the doi to the batch file name
             batch_doi = str(poa_articles[0].manuscript) + '-'
         self.batch_id = (str(self.pubmed_config.get('batch_file_prefix')) + batch_doi +
-                                   time.strftime("%Y%m%d%H%M%S", self.pub_date))
+                         time.strftime("%Y%m%d%H%M%S", self.pub_date))
 
         # set comment
         if add_comment:
@@ -155,8 +155,8 @@ class PubMedXML(object):
         # - article has a version attribute  > 1
         # - article has a replaces attribute set to True
         if ((poa_article.is_poa is False and poa_article.was_ever_poa is True)
-            or (poa_article.version and poa_article.version > 1)
-            or (hasattr(poa_article, 'replaces') and poa_article.replaces is True)):
+                or (poa_article.version and poa_article.version > 1)
+                or (hasattr(poa_article, 'replaces') and poa_article.replaces is True)):
             self.replaces = SubElement(parent, 'Replaces')
             self.replaces.set("IdType", "doi")
             self.replaces.text = poa_article.doi
@@ -281,7 +281,7 @@ class PubMedXML(object):
                 #  Match this value to article contributors of type collab having the same id
                 for collab_contrib in poa_article.contributors:
                     if (collab_contrib.collab is not None
-                        and collab_contrib.group_author_key == contributor.group_author_key):
+                            and collab_contrib.group_author_key == contributor.group_author_key):
                         # Set the individual GroupName to the collab name
                         self.group_name_text = collab_contrib.collab
             elif contributor.collab:
@@ -437,7 +437,7 @@ class PubMedXML(object):
 
     def set_coi_statement(self, parent, poa_article):
         "add a CoiStatement as all the conflict values from article contributors"
-        coi_list =[]
+        coi_list = []
         coi_map = OrderedDict()
 
         # step 1 look for contributors with conflicts first
@@ -445,7 +445,7 @@ class PubMedXML(object):
         # look for contributors with conflicts first
         for contributor in poa_article.contributors:
             if (contributor.contrib_type in self.pubmed_config.get('author_contrib_types') and
-               contributor.conflict):
+                    contributor.conflict):
                 contributor_list.append(contributor)
 
         # step 2 compile a map of coi statements and their associated contributors
@@ -542,7 +542,7 @@ class PubMedXML(object):
     def convert_research_organism(self, research_organism):
         # Lower case except for the first letter followed by a dot by a space
         research_organism_converted = research_organism.lower()
-        if re.match('^[a-z]\. ', research_organism_converted):
+        if re.match(r'^[a-z]\. ', research_organism_converted):
             # Upper the first character and add to the remainder
             research_organism_converted = (
                 research_organism_converted[0].upper() +

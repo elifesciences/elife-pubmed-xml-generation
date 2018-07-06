@@ -12,10 +12,8 @@ generate.TMP_DIR = TEST_BASE_PATH + "tmp" + os.sep
 
 
 def read_file_content(file_name):
-    file_p = open(file_name, 'rb')
-    content = file_p.read()
-    file_p.close()
-    return content
+    with open(file_name, 'rb') as open_file:
+        return open_file.read()
 
 
 class TestGenerate(unittest.TestCase):

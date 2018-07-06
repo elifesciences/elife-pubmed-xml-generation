@@ -14,6 +14,7 @@ from elifepubmed import utils
 
 TMP_DIR = 'tmp'
 
+
 class PubMedXML(object):
     """
     Generate PubMed XML for the article
@@ -303,6 +304,7 @@ def set_contributor(parent, contributor, contrib_type):
         orcid.set("Source", "ORCID")
         orcid.text = contributor.orcid
 
+
 def set_publication_type(parent, poa_article, types_map):
     "PubMed will set PublicationType as Journal Article as the default, also the default here"
     publication_type = utils.pubmed_publication_type(
@@ -403,9 +405,14 @@ def set_replaces(parent, poa_article):
     # - is not a poa but was a poa in the past (indicates a version > 1)
     # - article has a version attribute  > 1
     # - article has a replaces attribute set to True
-    if ((poa_article.is_poa is False and poa_article.was_ever_poa is True)
-            or (poa_article.version and poa_article.version > 1)
-            or (hasattr(poa_article, 'replaces') and poa_article.replaces is True)):
+    add_replaces_tag = False
+    if poa_article.is_poa is False and poa_article.was_ever_poa is True:
+        add_replaces_tag = True
+    if poa_article.version and poa_article.version > 1:
+        add_replaces_tag = True
+    if hasattr(poa_article, 'replaces') and poa_article.replaces is True:
+        add_replaces_tag = True
+    if add_replaces_tag:
         replaces = SubElement(parent, 'Replaces')
         replaces.set("IdType", "doi")
         replaces.text = poa_article.doi

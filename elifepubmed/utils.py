@@ -1,6 +1,7 @@
 import re
 from collections import OrderedDict
 
+
 def allowed_tags():
     "tuple of whitelisted tags"
     return (
@@ -15,10 +16,11 @@ def allowed_tags():
         '<p>', '</p>'
     )
 
+
 def allowed_tag_names():
     "only tag names of allow_tags sorted with no duplicates"
-    return list(sorted(set([tag.replace('<', '').replace('>', '').replace('/', '')
-                   for tag in allowed_tags()])))
+    return list(sorted(set([re.sub('[<>/]', '', tag) for tag in allowed_tags()])))
+
 
 def replace_mathml_tags(string, replacement="[Formula: see text]"):
     if not string:
@@ -37,9 +39,8 @@ def compare_values(value1, value2, case_sensitive):
         return None
     if case_sensitive:
         return bool(value1 == value2)
-    else:
-        # default case insensitive matching
-        return bool(value1.lower() == value2.lower())
+    # default case insensitive matching
+    return bool(value1.lower() == value2.lower())
 
 
 def pubmed_publication_type(article_type, display_channel, types_map):
@@ -70,6 +71,7 @@ def pubmed_publication_type(article_type, display_channel, types_map):
     # default
     return "Journal Article"
 
+
 def contributor_initials(surname, given_name):
     "a simple author initials format"
     return ''.join([value[0] for value in [given_name, surname] if value is not None])
@@ -92,6 +94,7 @@ def join_phrases(phrase_list, glue_one=', ', glue_two=' '):
             phrase_text = phrase
     return phrase_text
 
+
 def abstract_part_label(string, label_types):
     "look for a label for part of an abstract and return the string without the label"
     label = ''
@@ -105,6 +108,7 @@ def abstract_part_label(string, label_types):
                 string = string.split(first_section)[-1]
     return label, string
 
+
 def abstract_paragraph(string, label_types):
     "parse an abstract paragraph into section data"
     part = OrderedDict()
@@ -114,6 +118,7 @@ def abstract_paragraph(string, label_types):
         part['text'] = text
         part['label'] = label
     return part
+
 
 def abstract_parts(abstract, label_types):
     "break apart an abstract into sections with optional labels"

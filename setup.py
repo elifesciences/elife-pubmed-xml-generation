@@ -16,7 +16,8 @@ setup(
         "elifetools",
         "elifearticle",
         "GitPython",
-        "configparser"
+        "configparser",
+        "PyYAML"
     ],
     url='https://github.com/elifesciences/elife-pubmed-xml-generation',
     maintainer='eLife Sciences Publications Ltd.',

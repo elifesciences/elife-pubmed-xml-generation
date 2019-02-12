@@ -601,6 +601,17 @@ def set_grants(parent, poa_article):
                 set_object(parent, "grant", params)
 
 
+def set_datasets(parent, poa_article):
+    """object tags for datasets"""
+    for dataset in poa_article.datasets:
+        assigning_authority = dataset.assigning_authority
+        id_value = utils.first_property(dataset, ["doi", "accession_id"])
+        if assigning_authority and id_value:
+            params = OrderedDict()
+            params["id"] = id_value
+            set_object(parent, assigning_authority, params)
+
+
 def set_object_list(parent, poa_article, split_article_categories):
     # Keywords and others go in Object tags
     object_list = SubElement(parent, "ObjectList")
@@ -621,6 +632,9 @@ def set_object_list(parent, poa_article, split_article_categories):
 
     # Add grant / funding
     set_grants(object_list, poa_article)
+
+    # Add datasets
+    set_datasets(object_list, poa_article)
 
     # Finally, do not leave an empty ObjectList tag, if present
     if len(object_list) <= 0:

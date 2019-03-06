@@ -617,6 +617,7 @@ def dataset_assigning_authority(assigning_authority, uri):
         for hint, new_value in ASSIGNING_AUTHORITY_MAP.get(assigning_authority):
             if hint in uri:
                 assigning_authority = new_value
+                break
     return assigning_authority
 
 

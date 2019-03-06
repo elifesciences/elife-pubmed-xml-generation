@@ -601,11 +601,23 @@ def set_grants(parent, poa_article):
                 set_object(parent, "grant", params)
 
 
+def dataset_details(dataset):
+    """
+    return assigning_authority and id value for dataset
+    consider the uri value, it may change the assigning_authority
+    
+    :param dataset: Dataset object
+    :returns: string assigning authority of the dataset, string id is the uri or doi
+    """
+    assigning_authority = dataset.assigning_authority
+    id_value = utils.first_property(dataset, ["doi", "accession_id"])
+    return assigning_authority, id_value
+
+
 def set_datasets(parent, poa_article):
     """object tags for datasets"""
     for dataset in poa_article.datasets:
-        assigning_authority = dataset.assigning_authority
-        id_value = utils.first_property(dataset, ["doi", "accession_id"])
+        assigning_authority, id_value = dataset_details(dataset)
         if assigning_authority and id_value:
             params = OrderedDict()
             params["id"] = id_value

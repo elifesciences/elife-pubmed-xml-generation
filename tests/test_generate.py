@@ -1,6 +1,7 @@
 import unittest
 import time
 import os
+from elifearticle.article import Dataset
 from elifearticle.utils import unicode_value
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
@@ -125,6 +126,47 @@ class TestGenerate(unittest.TestCase):
         pubmed_xml = unicode_value_safe(generate.pubmed_xml(articles, config_section))
         self.assertTrue('<PubDate PubStatus="aheadofprint">' in pubmed_xml,
                         'aheadofprint date not found in PubMed XML after setting is_poa')
+
+
+class TestDataset(unittest.TestCase):
+
+    def test_dataset_details_empty(self):
+        """test an empty Dataset object"""
+        dataset = Dataset()
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertIsNone(assigning_authority)
+        self.assertIsNone(id_value)
+
+    def test_dataset_details_doi(self):
+        """test Dataset that has a doi"""
+        doi = 'doi'
+        dataset = Dataset()
+        dataset.doi = doi
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertIsNone(assigning_authority)
+        self.assertEqual(id_value, doi)
+
+    def test_dataset_details_accession_id(self):
+        """test Dataset that has a accession_id"""
+        accession_id = 'accession_id'
+        dataset = Dataset()
+        dataset.accession_id = accession_id
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertIsNone(assigning_authority)
+        self.assertEqual(id_value, accession_id)
+
+    def test_dataset_details_both(self):
+        """test Dataset that has both a doi and accession_id"""
+        assigning_authority_value = 'assigning_authority'
+        doi = 'doi'
+        accession_id = 'accession_id'
+        dataset = Dataset()
+        dataset.doi = doi
+        dataset.accession_id = accession_id
+        dataset.assigning_authority = assigning_authority_value
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertEqual(assigning_authority, assigning_authority_value)
+        self.assertEqual(id_value, doi)
 
 
 if __name__ == '__main__':

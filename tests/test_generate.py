@@ -191,6 +191,30 @@ class TestDatasetAssigningAuthority(unittest.TestCase):
         assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
         self.assertEqual(assigning_authority, expected)
 
+    def test_dataset_assigning_authority_ncbi_dbgap(self):
+        """NCBI dbgap"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001660.v1.p1'
+        expected = 'NCBI:dbgap'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
+
+    def test_dataset_assigning_authority_ncbi_nucleotide(self):
+        """NCBI nucleotide"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/nuccore/KY616976'
+        expected = 'NCBI:nucleotide'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
+
+    def test_dataset_assigning_authority_ncbi_sra(self):
+        """NCBI sra"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/sra/?term=SRA012474'
+        expected = 'NCBI:sra'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
+
 
 if __name__ == '__main__':
     unittest.main()

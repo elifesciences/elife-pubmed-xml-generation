@@ -613,7 +613,7 @@ def set_grants(parent, poa_article):
 
 def dataset_assigning_authority(assigning_authority, uri):
     """precise assigning_authority value considering the uri in some cases"""
-    if assigning_authority in ASSIGNING_AUTHORITY_MAP:
+    if ASSIGNING_AUTHORITY_MAP and assigning_authority in ASSIGNING_AUTHORITY_MAP:
         for hint, new_value in ASSIGNING_AUTHORITY_MAP.get(assigning_authority):
             if hint in uri:
                 assigning_authority = new_value

@@ -169,5 +169,28 @@ class TestDataset(unittest.TestCase):
         self.assertEqual(id_value, doi)
 
 
+class TestDatasetAssigningAuthority(unittest.TestCase):
+
+    def test_dataset_assigning_authority(self):
+        """regular assigning authority value"""
+        assigning_authority_value = 'assigning_authority'
+        uri = None
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, assigning_authority_value)
+
+    def test_dataset_assigning_authority_none(self):
+        """dataset assigning authority when None"""
+        assigning_authority = generate.dataset_assigning_authority(None, None)
+        self.assertIsNone(assigning_authority)
+
+    def test_dataset_assigning_authority_ncbi_geo(self):
+        """dataset assigning authority for NCBI geo"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE48760'
+        expected = 'NCBI:geo'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
+
+
 if __name__ == '__main__':
     unittest.main()

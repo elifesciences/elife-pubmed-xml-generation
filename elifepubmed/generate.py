@@ -601,6 +601,13 @@ def set_grants(parent, poa_article):
                 set_object(parent, "grant", params)
 
 
+def dataset_assigning_authority(assigning_authority, uri):
+    """precise assigning_authority value considering the uri in some cases"""
+    if assigning_authority == 'NCBI' and 'www.ncbi.nlm.nih.gov/geo' in uri:
+        assigning_authority = 'NCBI:geo'
+    return assigning_authority
+
+
 def dataset_details(dataset):
     """
     return assigning_authority and id value for dataset
@@ -609,7 +616,7 @@ def dataset_details(dataset):
     :param dataset: Dataset object
     :returns: string assigning authority of the dataset, string id is the uri or doi
     """
-    assigning_authority = dataset.assigning_authority
+    assigning_authority = dataset_assigning_authority(dataset.assigning_authority, dataset.uri)
     id_value = utils.first_property(dataset, ["doi", "accession_id"])
     return assigning_authority, id_value
 

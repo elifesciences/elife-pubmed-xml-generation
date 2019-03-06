@@ -132,12 +132,12 @@ def abstract_parts(abstract, label_types):
     return parts
 
 
-def first_property(the_object, properties):
-    """find the first non-None property of an object
+def first_attribute(the_object, attributes):
+    """find the first non-None attribute of an object with a name from attributes
     
     :param the_object: the object from which to get a property
-    :param properties: a list of property names to check if not None
+    :param attributes: a list of attribute names to check if not None
     """
-    for object_property in properties:
-        if hasattr(the_object, object_property) and getattr(the_object, object_property):
-            return getattr(the_object, object_property)
+    for attribute in attributes:
+        if hasattr(the_object, attribute) and getattr(the_object, attribute):
+            return getattr(the_object, attribute)

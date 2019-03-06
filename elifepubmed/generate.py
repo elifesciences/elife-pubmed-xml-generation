@@ -630,7 +630,7 @@ def dataset_details(dataset):
     :returns: string assigning authority of the dataset, string id is the uri or doi
     """
     assigning_authority = dataset_assigning_authority(dataset.assigning_authority, dataset.uri)
-    id_value = utils.first_property(dataset, ["doi", "accession_id"])
+    id_value = utils.first_attribute(dataset, ["doi", "accession_id"])
     return assigning_authority, id_value
 
 

@@ -612,7 +612,7 @@ def dataset_details(dataset):
     """
     return assigning_authority and id value for dataset
     consider the uri value, it may change the assigning_authority
-    
+
     :param dataset: Dataset object
     :returns: string assigning authority of the dataset, string id is the uri or doi
     """

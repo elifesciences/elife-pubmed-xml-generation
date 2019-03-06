@@ -15,6 +15,16 @@ from elifepubmed import utils
 TMP_DIR = 'tmp'
 
 
+ASSIGNING_AUTHORITY_MAP = OrderedDict([
+    ('NCBI', [
+        ('www.ncbi.nlm.nih.gov/geo', 'NCBI:geo'),
+        ('www.ncbi.nlm.nih.gov/projects/gap', 'NCBI:dbgap'),
+        ('www.ncbi.nlm.nih.gov/nuccore', 'NCBI:nucleotide'),
+        ('www.ncbi.nlm.nih.gov/sra', 'NCBI:sra')
+        ]
+    )])
+
+
 class PubMedXML(object):
     """
     Generate PubMed XML for the article
@@ -603,15 +613,8 @@ def set_grants(parent, poa_article):
 
 def dataset_assigning_authority(assigning_authority, uri):
     """precise assigning_authority value considering the uri in some cases"""
-    authority_map = OrderedDict([('NCBI', [])])
-    # tuple in form: uri hint, new assigning authority
-    authority_map['NCBI'].append(('www.ncbi.nlm.nih.gov/geo', 'NCBI:geo'))
-    authority_map['NCBI'].append(('www.ncbi.nlm.nih.gov/projects/gap', 'NCBI:dbgap'))
-    authority_map['NCBI'].append(('www.ncbi.nlm.nih.gov/nuccore', 'NCBI:nucleotide'))
-    authority_map['NCBI'].append(('www.ncbi.nlm.nih.gov/sra', 'NCBI:sra'))
-
-    if assigning_authority in authority_map:
-        for hint, new_value in authority_map.get(assigning_authority):
+    if assigning_authority in ASSIGNING_AUTHORITY_MAP:
+        for hint, new_value in ASSIGNING_AUTHORITY_MAP.get(assigning_authority):
             if hint in uri:
                 assigning_authority = new_value
     return assigning_authority

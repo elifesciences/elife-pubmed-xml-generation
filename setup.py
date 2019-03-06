@@ -15,7 +15,6 @@ setup(
     install_requires=[
         "elifetools",
         "elifearticle",
-        "GitPython",
         "configparser",
         "PyYAML"
     ],

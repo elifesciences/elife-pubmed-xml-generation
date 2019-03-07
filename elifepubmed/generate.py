@@ -15,14 +15,14 @@ from elifepubmed import utils
 TMP_DIR = 'tmp'
 
 
-ASSIGNING_AUTHORITY_MAP = OrderedDict([
-    ('NCBI', [
+ASSIGNING_AUTHORITY_MAP = {
+    'NCBI': [
         ('www.ncbi.nlm.nih.gov/geo', 'NCBI:geo'),
         ('www.ncbi.nlm.nih.gov/projects/gap', 'NCBI:dbgap'),
         ('www.ncbi.nlm.nih.gov/nuccore', 'NCBI:nucleotide'),
         ('www.ncbi.nlm.nih.gov/sra', 'NCBI:sra')
         ]
-    )])
+    }
 
 
 class PubMedXML(object):

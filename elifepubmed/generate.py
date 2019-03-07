@@ -15,6 +15,16 @@ from elifepubmed import utils
 TMP_DIR = 'tmp'
 
 
+ASSIGNING_AUTHORITY_MAP = {
+    'NCBI': [
+        ('www.ncbi.nlm.nih.gov/geo', 'NCBI:geo'),
+        ('www.ncbi.nlm.nih.gov/projects/gap', 'NCBI:dbgap'),
+        ('www.ncbi.nlm.nih.gov/nuccore', 'NCBI:nucleotide'),
+        ('www.ncbi.nlm.nih.gov/sra', 'NCBI:sra')
+        ]
+    }
+
+
 class PubMedXML(object):
     """
     Generate PubMed XML for the article
@@ -601,6 +611,38 @@ def set_grants(parent, poa_article):
                 set_object(parent, "grant", params)
 
 
+def dataset_assigning_authority(assigning_authority, uri):
+    """precise assigning_authority value considering the uri in some cases"""
+    if ASSIGNING_AUTHORITY_MAP and assigning_authority in ASSIGNING_AUTHORITY_MAP:
+        for hint, new_value in ASSIGNING_AUTHORITY_MAP.get(assigning_authority):
+            if hint in uri:
+                return new_value
+    return assigning_authority
+
+
+def dataset_details(dataset):
+    """
+    return assigning_authority and id value for dataset
+    consider the uri value, it may change the assigning_authority
+
+    :param dataset: Dataset object
+    :returns: string assigning authority of the dataset, string id is the uri or doi
+    """
+    assigning_authority = dataset_assigning_authority(dataset.assigning_authority, dataset.uri)
+    id_value = etoolsutils.firstnn([dataset.doi, dataset.accession_id])
+    return assigning_authority, id_value
+
+
+def set_datasets(parent, poa_article):
+    """object tags for datasets"""
+    for dataset in poa_article.datasets:
+        assigning_authority, id_value = dataset_details(dataset)
+        if assigning_authority and id_value:
+            params = OrderedDict()
+            params["id"] = id_value
+            set_object(parent, assigning_authority, params)
+
+
 def set_object_list(parent, poa_article, split_article_categories):
     # Keywords and others go in Object tags
     object_list = SubElement(parent, "ObjectList")
@@ -621,6 +663,9 @@ def set_object_list(parent, poa_article, split_article_categories):
 
     # Add grant / funding
     set_grants(object_list, poa_article)
+
+    # Add datasets
+    set_datasets(object_list, poa_article)
 
     # Finally, do not leave an empty ObjectList tag, if present
     if len(object_list) <= 0:

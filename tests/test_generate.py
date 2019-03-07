@@ -1,6 +1,7 @@
 import unittest
 import time
 import os
+from elifearticle.article import Dataset
 from elifearticle.utils import unicode_value
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
@@ -14,6 +15,14 @@ generate.TMP_DIR = TEST_BASE_PATH + "tmp" + os.sep
 def read_file_content(file_name):
     with open(file_name, 'rb') as open_file:
         return open_file.read()
+
+
+def unicode_value_safe(string):
+    """call unicode_value with exception catching"""
+    try:
+        return unicode_value(string)
+    except UnicodeDecodeError:
+        return string
 
 
 class TestGenerate(unittest.TestCase):
@@ -49,14 +58,10 @@ class TestGenerate(unittest.TestCase):
             articles = generate.build_articles_for_pubmed(
                 article_xmls=[file_path], config_section=config_section)
             p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
-            pubmed_xml = p_xml.output_xml()
-            model_pubmed_xml = read_file_content(TEST_DATA_PATH + pubmed_xml_file)
-            try:
-                # python 3
-                self.assertEqual(unicode_value(pubmed_xml), unicode_value(model_pubmed_xml))
-            except UnicodeDecodeError:
-                # python 2
-                self.assertEqual(pubmed_xml, model_pubmed_xml)
+            pubmed_xml = unicode_value_safe(p_xml.output_xml())
+            model_pubmed_xml = unicode_value_safe(
+                read_file_content(TEST_DATA_PATH + pubmed_xml_file))
+            self.assertEqual(pubmed_xml, model_pubmed_xml)
             # check the batch_id will be similar to the XML filename
             self.assertEqual(p_xml.batch_id + '.xml', pubmed_xml_file)
 
@@ -118,15 +123,97 @@ class TestGenerate(unittest.TestCase):
             article_xmls=[file_path], config_section=config_section)
         # set the is_poa value
         articles[0].is_poa = True
-        pubmed_xml = None
-        try:
-            # python 3
-            pubmed_xml = unicode_value(generate.pubmed_xml(articles, config_section))
-        except UnicodeDecodeError:
-            # python 2
-            pubmed_xml = generate.pubmed_xml(articles, config_section)
+        pubmed_xml = unicode_value_safe(generate.pubmed_xml(articles, config_section))
         self.assertTrue('<PubDate PubStatus="aheadofprint">' in pubmed_xml,
                         'aheadofprint date not found in PubMed XML after setting is_poa')
+
+
+class TestDataset(unittest.TestCase):
+
+    def test_dataset_details_empty(self):
+        """test an empty Dataset object"""
+        dataset = Dataset()
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertIsNone(assigning_authority)
+        self.assertIsNone(id_value)
+
+    def test_dataset_details_doi(self):
+        """test Dataset that has a doi"""
+        doi = 'doi'
+        dataset = Dataset()
+        dataset.doi = doi
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertIsNone(assigning_authority)
+        self.assertEqual(id_value, doi)
+
+    def test_dataset_details_accession_id(self):
+        """test Dataset that has a accession_id"""
+        accession_id = 'accession_id'
+        dataset = Dataset()
+        dataset.accession_id = accession_id
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertIsNone(assigning_authority)
+        self.assertEqual(id_value, accession_id)
+
+    def test_dataset_details_both(self):
+        """test Dataset that has both a doi and accession_id"""
+        assigning_authority_value = 'assigning_authority'
+        doi = 'doi'
+        accession_id = 'accession_id'
+        dataset = Dataset()
+        dataset.doi = doi
+        dataset.accession_id = accession_id
+        dataset.assigning_authority = assigning_authority_value
+        assigning_authority, id_value = generate.dataset_details(dataset)
+        self.assertEqual(assigning_authority, assigning_authority_value)
+        self.assertEqual(id_value, doi)
+
+
+class TestDatasetAssigningAuthority(unittest.TestCase):
+
+    def test_dataset_assigning_authority(self):
+        """regular assigning authority value"""
+        assigning_authority_value = 'assigning_authority'
+        uri = None
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, assigning_authority_value)
+
+    def test_dataset_assigning_authority_none(self):
+        """dataset assigning authority when None"""
+        assigning_authority = generate.dataset_assigning_authority(None, None)
+        self.assertIsNone(assigning_authority)
+
+    def test_dataset_assigning_authority_ncbi_geo(self):
+        """dataset assigning authority for NCBI geo"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE48760'
+        expected = 'NCBI:geo'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
+
+    def test_dataset_assigning_authority_ncbi_dbgap(self):
+        """NCBI dbgap"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001660.v1.p1'
+        expected = 'NCBI:dbgap'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
+
+    def test_dataset_assigning_authority_ncbi_nucleotide(self):
+        """NCBI nucleotide"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/nuccore/KY616976'
+        expected = 'NCBI:nucleotide'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
+
+    def test_dataset_assigning_authority_ncbi_sra(self):
+        """NCBI sra"""
+        assigning_authority_value = 'NCBI'
+        uri = 'https://www.ncbi.nlm.nih.gov/sra/?term=SRA012474'
+        expected = 'NCBI:sra'
+        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        self.assertEqual(assigning_authority, expected)
 
 
 if __name__ == '__main__':

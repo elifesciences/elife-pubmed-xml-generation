@@ -1,6 +1,5 @@
 import unittest
 from elifearticle.article import Article, Contributor, FundingAward, RelatedArticle
-from elifearticle.utils import unicode_value
 from elifepubmed import generate
 
 
@@ -17,7 +16,7 @@ class TestGenerateArticleTitle(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue(expected_title in unicode_value(pubmed_xml_string))
+        self.assertTrue(expected_title in str(pubmed_xml_string))
 
 
 class TestGenerateArticleType(unittest.TestCase):
@@ -34,7 +33,7 @@ class TestGenerateArticleType(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string))
+        self.assertTrue(expected_fragment in str(pubmed_xml_string))
 
     def test_generate_article_type_correction(self):
         "build an article object, set the article_type and related_articles, generate PubMed XML"
@@ -62,7 +61,7 @@ class TestGenerateArticleType(unittest.TestCase):
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
         for expected_fragment in expected_fragments:
-            self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string),
+            self.assertTrue(expected_fragment in str(pubmed_xml_string),
                             '{fragment} not found'.format(fragment=expected_fragment))
 
     def test_generate_article_type_retraction(self):
@@ -91,7 +90,7 @@ class TestGenerateArticleType(unittest.TestCase):
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
         for expected_fragment in expected_fragments:
-            self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string),
+            self.assertTrue(expected_fragment in str(pubmed_xml_string),
                             '{fragment} not found'.format(fragment=expected_fragment))
 
 
@@ -111,8 +110,8 @@ class TestGenerateArticleContributors(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue('<AuthorList>' not in unicode_value(pubmed_xml_string))
-        self.assertTrue('<GroupList>' not in unicode_value(pubmed_xml_string))
+        self.assertTrue('<AuthorList>' not in str(pubmed_xml_string))
+        self.assertTrue('<GroupList>' not in str(pubmed_xml_string))
 
     def test_generate_contributor_surname_no_given_name(self):
         "build an article object, set the contributors, generate PubMed XML"
@@ -137,7 +136,7 @@ class TestGenerateArticleContributors(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string))
+        self.assertTrue(expected_fragment in str(pubmed_xml_string))
 
 
 class TestGenerateArticlePOAStatus(unittest.TestCase):
@@ -154,9 +153,9 @@ class TestGenerateArticlePOAStatus(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue('<Replaces IdType="doi">' in unicode_value(pubmed_xml_string))
+        self.assertTrue('<Replaces IdType="doi">' in str(pubmed_xml_string))
         self.assertTrue('<History><PubDate PubStatus="aheadofprint">' in
-                        unicode_value(pubmed_xml_string))
+                        str(pubmed_xml_string))
 
 
 class TestGenerateArticleIssue(unittest.TestCase):
@@ -176,7 +175,7 @@ class TestGenerateArticleIssue(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue('<Issue>1</Issue>' in unicode_value(pubmed_xml_string))
+        self.assertTrue('<Issue>1</Issue>' in str(pubmed_xml_string))
 
 
 class TestSetCoiStatement(unittest.TestCase):
@@ -206,7 +205,7 @@ class TestSetCoiStatement(unittest.TestCase):
         expected_fragment = (
             '<CoiStatement>AA, CC No competing interests declared, ' +
             'BB Holds the position of Queen Bee</CoiStatement>')
-        self.assertTrue(expected_fragment in unicode_value(pubmed_xml_string))
+        self.assertTrue(expected_fragment in str(pubmed_xml_string))
 
 
 class TestReplaces(unittest.TestCase):
@@ -226,14 +225,14 @@ class TestReplaces(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # expect to not find expected fragment
-        self.assertTrue(expected not in unicode_value(pubmed_xml_string))
+        self.assertTrue(expected not in str(pubmed_xml_string))
         # second test setting the replaces value on the article object
         article.replaces = True
         p_xml = generate.build_pubmed_xml([article])
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # expect to find expected fragment
-        self.assertTrue(expected in unicode_value(pubmed_xml_string))
+        self.assertTrue(expected in str(pubmed_xml_string))
 
 
 class TestGenerateArticleFunding(unittest.TestCase):
@@ -253,7 +252,7 @@ class TestGenerateArticleFunding(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look in a string of the output
-        self.assertTrue('<grant>' not in unicode_value(pubmed_xml_string))
+        self.assertTrue('<grant>' not in str(pubmed_xml_string))
 
 
 if __name__ == '__main__':

@@ -2,7 +2,6 @@ import unittest
 import time
 import os
 from elifearticle.article import Dataset
-from elifearticle.utils import unicode_value
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
 
@@ -15,14 +14,6 @@ generate.TMP_DIR = TEST_BASE_PATH + "tmp" + os.sep
 def read_file_content(file_name):
     with open(file_name, 'rb') as open_file:
         return open_file.read()
-
-
-def unicode_value_safe(string):
-    """call unicode_value with exception catching"""
-    try:
-        return unicode_value(string)
-    except UnicodeDecodeError:
-        return string
 
 
 class TestGenerate(unittest.TestCase):
@@ -58,8 +49,8 @@ class TestGenerate(unittest.TestCase):
             articles = generate.build_articles_for_pubmed(
                 article_xmls=[file_path], config_section=config_section)
             p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
-            pubmed_xml = unicode_value_safe(p_xml.output_xml())
-            model_pubmed_xml = unicode_value_safe(
+            pubmed_xml = str(p_xml.output_xml())
+            model_pubmed_xml = str(
                 read_file_content(TEST_DATA_PATH + pubmed_xml_file))
             self.assertEqual(pubmed_xml, model_pubmed_xml)
             # check the batch_id will be similar to the XML filename
@@ -123,7 +114,7 @@ class TestGenerate(unittest.TestCase):
             article_xmls=[file_path], config_section=config_section)
         # set the is_poa value
         articles[0].is_poa = True
-        pubmed_xml = unicode_value_safe(generate.pubmed_xml(articles, config_section))
+        pubmed_xml = str(generate.pubmed_xml(articles, config_section))
         self.assertTrue('<PubDate PubStatus="aheadofprint">' in pubmed_xml,
                         'aheadofprint date not found in PubMed XML after setting is_poa')
 

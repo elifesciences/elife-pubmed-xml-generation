@@ -92,6 +92,7 @@ class PubMedXML(object):
             self.set_history(article_tag, poa_article)
             set_abstract(article_tag, poa_article,
                          self.pubmed_config.get('abstract_label_types'))
+            set_plain_language_summary(article_tag, poa_article)
             set_copyright_information(article_tag, poa_article)
             set_coi_statement(article_tag, poa_article,
                               self.pubmed_config.get('author_contrib_types'))
@@ -362,6 +363,17 @@ def set_abstract(parent, poa_article, abstract_label_types):
     else:
         # Add an empty abstract
         set_abstract_text(abstract_tag, '', '')
+
+
+def set_plain_language_summary(parent, poa_article):
+    "set an OtherAbstract tag to include the digest as plain-language-summary"
+    if poa_article.digest:
+        tag_converted_digest = poa_article.digest.replace(
+            '<p>', '').replace('</p>', ' ').rstrip()
+        other_abstract_tag = SubElement(parent, 'OtherAbstract')
+        other_abstract_tag.set('Language', 'eng')
+        other_abstract_tag.set('Type', 'plain-language-summary')
+        other_abstract_tag.text = tag_converted_digest
 
 
 def set_coi_statement(parent, poa_article, author_contrib_types):

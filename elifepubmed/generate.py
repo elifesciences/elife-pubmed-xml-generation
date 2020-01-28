@@ -367,7 +367,7 @@ def set_abstract(parent, poa_article, abstract_label_types):
 
 def set_plain_language_summary(parent, poa_article):
     "set an OtherAbstract tag to include the digest as plain-language-summary"
-    if poa_article.digest:
+    if hasattr(poa_article, 'digest') and poa_article.digest:
         tag_converted_digest = poa_article.digest.replace(
             '<p>', '').replace('</p>', ' ').rstrip()
         other_abstract_tag = SubElement(parent, 'OtherAbstract')

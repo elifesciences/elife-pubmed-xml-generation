@@ -365,10 +365,10 @@ def set_abstract(parent, poa_article, abstract_label_types):
         set_abstract_text(abstract_tag, '', '')
 
 
-def set_plain_language_summary(parent, poa_article):
+def set_plain_language_summary(parent, article):
     "set an OtherAbstract tag to include the digest as plain-language-summary"
-    if hasattr(poa_article, 'digest') and poa_article.digest:
-        tag_converted_digest = poa_article.digest.replace(
+    if hasattr(article, 'digest') and article.digest:
+        tag_converted_digest = article.digest.replace(
             '<p>', '').replace('</p>', ' ').rstrip()
         other_abstract_tag = SubElement(parent, 'OtherAbstract')
         other_abstract_tag.set('Language', 'eng')

@@ -467,11 +467,10 @@ def set_article_title(parent, poa_article):
         tag_converted_title = tag_converted_title.rstrip('</b>')
     tag_converted_title = etoolsutils.escape_unmatched_angle_brackets(
         tag_converted_title, utils.allowed_tags())
-    tagged_string = '<' + tag_name + '>' + tag_converted_title + '</' + tag_name + '>'
-    reparsed = minidom.parseString(etoolsutils.escape_ampersand(tagged_string).encode('utf-8'))
-
+    tag_converted_title = etoolsutils.escape_ampersand(tag_converted_title)
+    minidom_tag = xmlio.reparsed_tag(tag_name, tag_converted_title)
     xmlio.append_minidom_xml_to_elementtree_xml(
-        parent, reparsed
+        parent, minidom_tag
     )
 
 
@@ -523,9 +522,12 @@ def set_date(parent, a_date, date_type):
         day.text = str(a_date.tm_mday).zfill(2)
 
 
-def set_abstract_text(parent, abstract, label=None):
+def set_abstract_text(parent, abstract, label=""):
     "set the AbstractText value of an Abstract given an abstract string"
     tag_name = 'AbstractText'
+    attr_map = {
+        'Label': label
+    }
     tag_converted_abstract = abstract
     tag_converted_abstract = utils.replace_mathml_tags(tag_converted_abstract)
     # Pubmed allows <i> tags, not <italic> tags
@@ -539,15 +541,11 @@ def set_abstract_text(parent, abstract, label=None):
         tag_converted_abstract = tag_converted_abstract.replace(tagname, '')
     tag_converted_abstract = etoolsutils.escape_unmatched_angle_brackets(
         tag_converted_abstract, utils.allowed_tags())
-    tagged_string = '<' + tag_name + '>' + tag_converted_abstract + '</' + tag_name + '>'
-    reparsed = minidom.parseString(tagged_string.encode('utf-8'))
-
+    minidom_tag = xmlio.reparsed_tag(
+        tag_name, tag_converted_abstract, attributes_text=eautils.attr_string(attr_map))
     xmlio.append_minidom_xml_to_elementtree_xml(
-        parent, reparsed
+        parent, minidom_tag, attributes=attr_map
     )
-    # add the Label value to the last tag
-    if label is not None:
-        parent[-1].set('Label', label)
 
 
 def set_copyright_information(parent, poa_article):

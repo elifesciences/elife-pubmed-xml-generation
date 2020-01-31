@@ -374,7 +374,7 @@ def set_plain_language_summary(parent, article):
     }
     if hasattr(article, 'digest') and article.digest:
         tag_converted_digest = utils.replace_inline_tags(article.digest)
-        tag_converted_digest = tag_converted_digest.replace('<p>', '').replace('</p>', '')
+        tag_converted_digest = eautils.remove_tag('p', tag_converted_digest)
         tag_converted_digest = etoolsutils.escape_unmatched_angle_brackets(
             tag_converted_digest, utils.allowed_tags())
         minidom_tag = xmlio.reparsed_tag(
@@ -525,11 +525,11 @@ def set_abstract_text(parent, abstract, label=""):
     tag_converted_abstract = abstract
     tag_converted_abstract = utils.replace_mathml_tags(tag_converted_abstract)
     tag_converted_abstract = utils.replace_inline_tags(tag_converted_abstract)
-    tag_converted_abstract = tag_converted_abstract.replace('<p>', '').replace('</p>', '')
+    tag_converted_abstract = eautils.remove_tag('p', tag_converted_abstract)
     tag_converted_abstract = etoolsutils.escape_ampersand(tag_converted_abstract)
-    not_allowed_tags = ['<sc>', '</sc>']
+    not_allowed_tags = ['sc']
     for tagname in not_allowed_tags:
-        tag_converted_abstract = tag_converted_abstract.replace(tagname, '')
+        tag_converted_abstract = eautils.remove_tag(tagname, tag_converted_abstract)
     tag_converted_abstract = etoolsutils.escape_unmatched_angle_brackets(
         tag_converted_abstract, utils.allowed_tags())
     minidom_tag = xmlio.reparsed_tag(

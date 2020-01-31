@@ -368,6 +368,10 @@ def set_abstract(parent, poa_article, abstract_label_types):
 def set_plain_language_summary(parent, article):
     "set an OtherAbstract tag to include the digest as plain-language-summary"
     tag_name = 'OtherAbstract'
+    attr_map = {
+        'Language': 'eng',
+        'Type': 'plain-language-summary'
+    }
     if hasattr(article, 'digest') and article.digest:
         # Pubmed allows <i> tags, not <italic> tags
         tag_converted_digest = eautils.replace_tags(article.digest, 'italic', 'i')
@@ -376,14 +380,11 @@ def set_plain_language_summary(parent, article):
         tag_converted_digest = tag_converted_digest.replace('<p>', '').replace('</p>', '')
         tag_converted_digest = etoolsutils.escape_unmatched_angle_brackets(
             tag_converted_digest, utils.allowed_tags())
-        tagged_string = '<' + tag_name + '>' + tag_converted_digest + '</' + tag_name + '>'
-        reparsed = minidom.parseString(tagged_string.encode('utf-8'))
+        minidom_tag = xmlio.reparsed_tag(
+            tag_name, tag_converted_digest, attributes_text=eautils.attr_string(attr_map))
         xmlio.append_minidom_xml_to_elementtree_xml(
-            parent, reparsed
+            parent, minidom_tag, attributes=attr_map
         )
-        # set attributes
-        parent[-1].set('Language', 'eng')
-        parent[-1].set('Type', 'plain-language-summary')
 
 
 def set_coi_statement(parent, poa_article, author_contrib_types):

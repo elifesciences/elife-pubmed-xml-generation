@@ -373,10 +373,7 @@ def set_plain_language_summary(parent, article):
         'Type': 'plain-language-summary'
     }
     if hasattr(article, 'digest') and article.digest:
-        # Pubmed allows <i> tags, not <italic> tags
-        tag_converted_digest = eautils.replace_tags(article.digest, 'italic', 'i')
-        tag_converted_digest = eautils.replace_tags(tag_converted_digest, 'bold', 'b')
-        tag_converted_digest = eautils.replace_tags(tag_converted_digest, 'underline', 'u')
+        tag_converted_digest = utils.replace_inline_tags(article.digest)
         tag_converted_digest = tag_converted_digest.replace('<p>', '').replace('</p>', '')
         tag_converted_digest = etoolsutils.escape_unmatched_angle_brackets(
             tag_converted_digest, utils.allowed_tags())
@@ -456,11 +453,8 @@ def set_article_title(parent, poa_article):
     Set the titles and title tags allowing sub tags within title
     """
     tag_name = 'ArticleTitle'
-    # Pubmed allows <i> tags, not <italic> tags
-    tag_converted_title = poa_article.title
-    tag_converted_title = eautils.replace_tags(tag_converted_title, 'italic', 'i')
-    tag_converted_title = eautils.replace_tags(tag_converted_title, 'bold', 'b')
-    tag_converted_title = eautils.replace_tags(tag_converted_title, 'underline', 'u')
+
+    tag_converted_title = utils.replace_inline_tags(poa_article.title)
     # Specific issue to remove b tag wrapping the entire title, if present
     if tag_converted_title.startswith('<b>') and tag_converted_title.endswith('</b>'):
         tag_converted_title = tag_converted_title.lstrip('<b>')
@@ -530,10 +524,7 @@ def set_abstract_text(parent, abstract, label=""):
     }
     tag_converted_abstract = abstract
     tag_converted_abstract = utils.replace_mathml_tags(tag_converted_abstract)
-    # Pubmed allows <i> tags, not <italic> tags
-    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'italic', 'i')
-    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'bold', 'b')
-    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'underline', 'u')
+    tag_converted_abstract = utils.replace_inline_tags(tag_converted_abstract)
     tag_converted_abstract = tag_converted_abstract.replace('<p>', '').replace('</p>', '')
     tag_converted_abstract = etoolsutils.escape_ampersand(tag_converted_abstract)
     not_allowed_tags = ['<sc>', '</sc>']

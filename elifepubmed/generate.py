@@ -92,6 +92,7 @@ class PubMedXML(object):
             self.set_history(article_tag, poa_article)
             set_abstract(article_tag, poa_article,
                          self.pubmed_config.get('abstract_label_types'))
+            set_plain_language_summary(article_tag, poa_article)
             set_copyright_information(article_tag, poa_article)
             set_coi_statement(article_tag, poa_article,
                               self.pubmed_config.get('author_contrib_types'))
@@ -364,6 +365,25 @@ def set_abstract(parent, poa_article, abstract_label_types):
         set_abstract_text(abstract_tag, '', '')
 
 
+def set_plain_language_summary(parent, article):
+    "set an OtherAbstract tag to include the digest as plain-language-summary"
+    tag_name = 'OtherAbstract'
+    attr_map = {
+        'Language': 'eng',
+        'Type': 'plain-language-summary'
+    }
+    if hasattr(article, 'digest') and article.digest:
+        tag_converted_digest = utils.replace_inline_tags(article.digest)
+        tag_converted_digest = eautils.remove_tag('p', tag_converted_digest)
+        tag_converted_digest = etoolsutils.escape_unmatched_angle_brackets(
+            tag_converted_digest, utils.allowed_tags())
+        minidom_tag = xmlio.reparsed_tag(
+            tag_name, tag_converted_digest, attributes_text=eautils.attr_string(attr_map))
+        xmlio.append_minidom_xml_to_elementtree_xml(
+            parent, minidom_tag, attributes=attr_map
+        )
+
+
 def set_coi_statement(parent, poa_article, author_contrib_types):
     "add a CoiStatement as all the conflict values from article contributors"
     coi_list = []
@@ -433,22 +453,18 @@ def set_article_title(parent, poa_article):
     Set the titles and title tags allowing sub tags within title
     """
     tag_name = 'ArticleTitle'
-    # Pubmed allows <i> tags, not <italic> tags
-    tag_converted_title = poa_article.title
-    tag_converted_title = eautils.replace_tags(tag_converted_title, 'italic', 'i')
-    tag_converted_title = eautils.replace_tags(tag_converted_title, 'bold', 'b')
-    tag_converted_title = eautils.replace_tags(tag_converted_title, 'underline', 'u')
+
+    tag_converted_title = utils.replace_inline_tags(poa_article.title)
     # Specific issue to remove b tag wrapping the entire title, if present
     if tag_converted_title.startswith('<b>') and tag_converted_title.endswith('</b>'):
         tag_converted_title = tag_converted_title.lstrip('<b>')
         tag_converted_title = tag_converted_title.rstrip('</b>')
     tag_converted_title = etoolsutils.escape_unmatched_angle_brackets(
         tag_converted_title, utils.allowed_tags())
-    tagged_string = '<' + tag_name + '>' + tag_converted_title + '</' + tag_name + '>'
-    reparsed = minidom.parseString(etoolsutils.escape_ampersand(tagged_string).encode('utf-8'))
-
+    tag_converted_title = etoolsutils.escape_ampersand(tag_converted_title)
+    minidom_tag = xmlio.reparsed_tag(tag_name, tag_converted_title)
     xmlio.append_minidom_xml_to_elementtree_xml(
-        parent, reparsed
+        parent, minidom_tag
     )
 
 
@@ -500,31 +516,27 @@ def set_date(parent, a_date, date_type):
         day.text = str(a_date.tm_mday).zfill(2)
 
 
-def set_abstract_text(parent, abstract, label=None):
+def set_abstract_text(parent, abstract, label=""):
     "set the AbstractText value of an Abstract given an abstract string"
     tag_name = 'AbstractText'
+    attr_map = {
+        'Label': label
+    }
     tag_converted_abstract = abstract
     tag_converted_abstract = utils.replace_mathml_tags(tag_converted_abstract)
-    # Pubmed allows <i> tags, not <italic> tags
-    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'italic', 'i')
-    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'bold', 'b')
-    tag_converted_abstract = eautils.replace_tags(tag_converted_abstract, 'underline', 'u')
-    tag_converted_abstract = tag_converted_abstract.replace('<p>', '').replace('</p>', '')
+    tag_converted_abstract = utils.replace_inline_tags(tag_converted_abstract)
+    tag_converted_abstract = eautils.remove_tag('p', tag_converted_abstract)
     tag_converted_abstract = etoolsutils.escape_ampersand(tag_converted_abstract)
-    not_allowed_tags = ['<sc>', '</sc>']
+    not_allowed_tags = ['sc']
     for tagname in not_allowed_tags:
-        tag_converted_abstract = tag_converted_abstract.replace(tagname, '')
+        tag_converted_abstract = eautils.remove_tag(tagname, tag_converted_abstract)
     tag_converted_abstract = etoolsutils.escape_unmatched_angle_brackets(
         tag_converted_abstract, utils.allowed_tags())
-    tagged_string = '<' + tag_name + '>' + tag_converted_abstract + '</' + tag_name + '>'
-    reparsed = minidom.parseString(tagged_string.encode('utf-8'))
-
+    minidom_tag = xmlio.reparsed_tag(
+        tag_name, tag_converted_abstract, attributes_text=eautils.attr_string(attr_map))
     xmlio.append_minidom_xml_to_elementtree_xml(
-        parent, reparsed
+        parent, minidom_tag, attributes=attr_map
     )
-    # add the Label value to the last tag
-    if label is not None:
-        parent[-1].set('Label', label)
 
 
 def set_copyright_information(parent, poa_article):

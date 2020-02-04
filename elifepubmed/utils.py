@@ -1,5 +1,13 @@
 import re
 from collections import OrderedDict
+from elifearticle import utils as eautils
+
+
+TAG_REPLACEMENT_MAP = OrderedDict([
+    ('italic', 'i'),
+    ('bold', 'b'),
+    ('underline', 'u'),
+])
 
 
 def allowed_tags():
@@ -30,6 +38,13 @@ def replace_mathml_tags(string, replacement="[Formula: see text]"):
         tag_content = tag_match.group(1)
         old_tag = '<inline-formula>' + tag_content + '</inline-formula>'
         string = string.replace(old_tag, replacement)
+    return string
+
+
+def replace_inline_tags(string, tag_map=TAG_REPLACEMENT_MAP):
+    """Pubmed allows <i> tags, not <italic> tags, replace them"""
+    for from_tag, to_tag in tag_map.items():
+        string = eautils.replace_tags(string, from_tag, to_tag)
     return string
 
 

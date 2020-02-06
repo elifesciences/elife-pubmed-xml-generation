@@ -1,7 +1,9 @@
 import unittest
 import time
 import os
-from elifearticle.article import Dataset
+from xml.etree.ElementTree import Element
+from xml.etree import ElementTree
+from elifearticle.article import Article, Dataset
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
 
@@ -205,6 +207,21 @@ class TestDatasetAssigningAuthority(unittest.TestCase):
         expected = 'NCBI:sra'
         assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
         self.assertEqual(assigning_authority, expected)
+
+
+class TestPlainLanguageSummary(unittest.TestCase):
+
+    def test_set_plain_language_summary(self):
+        digest = '<p>One.</p><p><italic>Two</italic>.</p>'
+        expected = (
+            b'<root><OtherAbstract Language="eng" Type="plain-language-summary">One. '
+            b'<i>Two</i>.</OtherAbstract></root>'
+        )
+        article = Article()
+        article.digest = digest
+        parent_tag = Element('root')
+        generate.set_plain_language_summary(parent_tag, article)
+        self.assertEqual(ElementTree.tostring(parent_tag), expected)
 
 
 if __name__ == '__main__':

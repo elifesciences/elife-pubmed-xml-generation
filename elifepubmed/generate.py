@@ -374,6 +374,8 @@ def set_plain_language_summary(parent, article):
     }
     if hasattr(article, 'digest') and article.digest:
         tag_converted_digest = utils.replace_inline_tags(article.digest)
+        # tweak to add spaces between paragraph tags
+        tag_converted_digest = tag_converted_digest.replace('</p><p>', '</p> <p>')
         tag_converted_digest = eautils.remove_tag('p', tag_converted_digest)
         tag_converted_digest = etoolsutils.escape_unmatched_angle_brackets(
             tag_converted_digest, utils.allowed_tags())

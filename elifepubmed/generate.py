@@ -15,13 +15,12 @@ from elifepubmed import utils
 TMP_DIR = 'tmp'
 
 
-ASSIGNING_AUTHORITY_MAP = {
-    'NCBI': [
-        ('www.ncbi.nlm.nih.gov/geo', 'NCBI:geo'),
-        ('www.ncbi.nlm.nih.gov/projects/gap', 'NCBI:dbgap'),
-        ('www.ncbi.nlm.nih.gov/nuccore', 'NCBI:nucleotide'),
-        ('www.ncbi.nlm.nih.gov/sra', 'NCBI:sra')
-        ]
+ASSIGNING_AUTHORITY_URI_MAP = {
+    '10.5061/dryad': 'Dryad',
+    'www.ncbi.nlm.nih.gov/geo': 'NCBI:geo',
+    'www.ncbi.nlm.nih.gov/projects/gap': 'NCBI:dbgap',
+    'www.ncbi.nlm.nih.gov/nuccore': 'NCBI:nucleotide',
+    'www.ncbi.nlm.nih.gov/sra': 'NCBI:sra'
     }
 
 
@@ -625,13 +624,12 @@ def set_grants(parent, poa_article):
                 set_object(parent, "grant", params)
 
 
-def dataset_assigning_authority(assigning_authority, uri):
+def dataset_assigning_authority(uri):
     """precise assigning_authority value considering the uri in some cases"""
-    if ASSIGNING_AUTHORITY_MAP and assigning_authority in ASSIGNING_AUTHORITY_MAP:
-        for hint, new_value in ASSIGNING_AUTHORITY_MAP.get(assigning_authority):
+    if ASSIGNING_AUTHORITY_URI_MAP and uri:
+        for hint, new_value in ASSIGNING_AUTHORITY_URI_MAP.items():
             if hint in uri:
                 return new_value
-    return assigning_authority
 
 
 def dataset_details(dataset):
@@ -642,7 +640,8 @@ def dataset_details(dataset):
     :param dataset: Dataset object
     :returns: string assigning authority of the dataset, string id is the uri or doi
     """
-    assigning_authority = dataset_assigning_authority(dataset.assigning_authority, dataset.uri)
+    assigning_authority = dataset_assigning_authority(
+        etoolsutils.firstnn([dataset.uri, dataset.doi]))
     id_value = etoolsutils.firstnn([dataset.doi, dataset.accession_id])
     return assigning_authority, id_value
 

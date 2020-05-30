@@ -150,62 +150,52 @@ class TestDataset(unittest.TestCase):
 
     def test_dataset_details_both(self):
         """test Dataset that has both a doi and accession_id"""
-        assigning_authority_value = 'assigning_authority'
+        uri = 'www.ncbi.nlm.nih.gov/geo'
         doi = 'doi'
         accession_id = 'accession_id'
+        expected_authority_value = 'NCBI:geo'
         dataset = Dataset()
+        dataset.uri = uri
         dataset.doi = doi
         dataset.accession_id = accession_id
-        dataset.assigning_authority = assigning_authority_value
         assigning_authority, id_value = generate.dataset_details(dataset)
-        self.assertEqual(assigning_authority, assigning_authority_value)
+        self.assertEqual(assigning_authority, expected_authority_value)
         self.assertEqual(id_value, doi)
 
 
 class TestDatasetAssigningAuthority(unittest.TestCase):
 
-    def test_dataset_assigning_authority(self):
-        """regular assigning authority value"""
-        assigning_authority_value = 'assigning_authority'
-        uri = None
-        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
-        self.assertEqual(assigning_authority, assigning_authority_value)
-
     def test_dataset_assigning_authority_none(self):
         """dataset assigning authority when None"""
-        assigning_authority = generate.dataset_assigning_authority(None, None)
+        assigning_authority = generate.dataset_assigning_authority(None)
         self.assertIsNone(assigning_authority)
 
     def test_dataset_assigning_authority_ncbi_geo(self):
         """dataset assigning authority for NCBI geo"""
-        assigning_authority_value = 'NCBI'
         uri = 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE48760'
         expected = 'NCBI:geo'
-        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        assigning_authority = generate.dataset_assigning_authority(uri)
         self.assertEqual(assigning_authority, expected)
 
     def test_dataset_assigning_authority_ncbi_dbgap(self):
         """NCBI dbgap"""
-        assigning_authority_value = 'NCBI'
         uri = 'https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001660.v1.p1'
         expected = 'NCBI:dbgap'
-        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        assigning_authority = generate.dataset_assigning_authority(uri)
         self.assertEqual(assigning_authority, expected)
 
     def test_dataset_assigning_authority_ncbi_nucleotide(self):
         """NCBI nucleotide"""
-        assigning_authority_value = 'NCBI'
         uri = 'https://www.ncbi.nlm.nih.gov/nuccore/KY616976'
         expected = 'NCBI:nucleotide'
-        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        assigning_authority = generate.dataset_assigning_authority(uri)
         self.assertEqual(assigning_authority, expected)
 
     def test_dataset_assigning_authority_ncbi_sra(self):
         """NCBI sra"""
-        assigning_authority_value = 'NCBI'
         uri = 'https://www.ncbi.nlm.nih.gov/sra/?term=SRA012474'
         expected = 'NCBI:sra'
-        assigning_authority = generate.dataset_assigning_authority(assigning_authority_value, uri)
+        assigning_authority = generate.dataset_assigning_authority(uri)
         self.assertEqual(assigning_authority, expected)
 
 

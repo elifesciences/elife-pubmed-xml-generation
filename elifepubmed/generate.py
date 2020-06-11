@@ -24,6 +24,24 @@ ASSIGNING_AUTHORITY_URI_MAP = {
     }
 
 
+# map of XML citation source value to PubMed dataset assigning authority value
+DATA_REF_SOURCE_MAP = {
+    'Dryad Digital Repository': 'Dryad',
+    'figshare': 'figshare',
+    'NCBI Assembly': 'NCBI:genome',
+    'NCBI BioProject': 'BioProject',
+    'NCBI dbGaP': 'NCBI:dbgap',
+    'NCBI GenBank': 'NCBI:genbank',
+    'NCBI Gene Expression Omnibus': 'NCBI:geo',
+    'NCBI Nucleotide': 'NCBI:nucleotide',
+    'NCBI PopSet': 'NCBI:popset',
+    'NCBI Protein': 'NCBI:protein',
+    'NCBI Sequence Read Archive': 'NCBI:sra',
+    'RCSB Protein Data Bank': 'PDB',
+    'Worldwide Protein Data Bank': 'PDB'
+}
+
+
 class PubMedXML(object):
     """
     Generate PubMed XML for the article
@@ -646,14 +664,44 @@ def dataset_details(dataset):
     return assigning_authority, id_value
 
 
+def data_ref_details(ref):
+    assigning_authority = None
+    id_value = None
+    if ref.source in DATA_REF_SOURCE_MAP.keys():
+        assigning_authority = DATA_REF_SOURCE_MAP[ref.source]
+        if ref.accession:
+            id_value = ref.accession
+        elif ref.doi:
+            id_value = ref.doi
+    return assigning_authority, id_value
+
+
 def set_datasets(parent, poa_article):
     """object tags for datasets"""
+    dataset_objects = []
     for dataset in poa_article.datasets:
         assigning_authority, id_value = dataset_details(dataset)
         if assigning_authority and id_value:
-            params = OrderedDict()
-            params["id"] = id_value
-            set_object(parent, assigning_authority, params)
+            dataset = OrderedDict([
+                ('assigning_authority', assigning_authority),
+                ('params', {'id': id_value})
+            ])
+            dataset_objects.append(dataset)
+    # next add from ref list but do not add duplicates
+    for ref in [ref for ref in poa_article.ref_list if ref.publication_type == 'data']:
+        assigning_authority, id_value = data_ref_details(ref)
+        if assigning_authority and id_value:
+            dataset = OrderedDict([
+                ('assigning_authority', assigning_authority),
+                ('params', {'id': id_value})
+            ])
+            # only add if not a duplicate
+            if str(dataset) not in [str(existing_dataset) for existing_dataset in dataset_objects]:
+                dataset_objects.append(dataset)
+
+    # set the object tags
+    for dataset in dataset_objects:
+        set_object(parent, dataset.get('assigning_authority'), dataset.get('params'))
 
 
 def set_object_list(parent, poa_article, split_article_categories):

@@ -3,7 +3,7 @@ import time
 import os
 from xml.etree.ElementTree import Element
 from xml.etree import ElementTree
-from elifearticle.article import Article, Dataset
+from elifearticle.article import Article, Citation, Dataset
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
 
@@ -212,6 +212,44 @@ class TestPlainLanguageSummary(unittest.TestCase):
         parent_tag = Element('root')
         generate.set_plain_language_summary(parent_tag, article)
         self.assertEqual(ElementTree.tostring(parent_tag), expected)
+
+
+class TestSetDatasets(unittest.TestCase):
+
+    def test_set_datasets(self):
+        parent_tag = Element('root')
+        expected = (
+            b'<root>'
+            b'<Object Type="Dryad"><Param Name="id">10.5061/dryad.example</Param></Object>'
+            b'<Object Type="NCBI:geo"><Param Name="id">GSE48760</Param></Object>'
+            b'</root>')
+        article = Article()
+        article.datasets.append(build_dataset(
+            uri='10.5061/dryad.example', doi='10.5061/dryad.example'))
+        # first ref is a duplicate should be ignored
+        article.ref_list.append(build_citation(
+            source='Dryad Digital Repository', doi='10.5061/dryad.example'))
+        article.ref_list.append(build_citation(
+            source='NCBI Gene Expression Omnibus', accession='GSE48760'))
+        generate.set_datasets(parent_tag, article)
+        self.assertEqual(ElementTree.tostring(parent_tag), expected)
+
+
+def build_dataset(uri=None, accession=None, doi=None):
+    dataset = Dataset()
+    dataset.uri = uri
+    dataset.accession = accession
+    dataset.doi = doi
+    return dataset
+
+
+def build_citation(publication_type='data', source=None, accession=None, doi=None):
+    citation = Citation()
+    citation.publication_type = publication_type
+    citation.source = source
+    citation.accession = accession
+    citation.doi = doi
+    return citation
 
 
 if __name__ == '__main__':

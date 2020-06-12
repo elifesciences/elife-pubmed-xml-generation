@@ -224,32 +224,23 @@ class TestSetDatasets(unittest.TestCase):
             b'<Object Type="NCBI:geo"><Param Name="id">GSE48760</Param></Object>'
             b'</root>')
         article = Article()
-        article.datasets.append(build_dataset(
-            uri='10.5061/dryad.example', doi='10.5061/dryad.example'))
+        dataset = Dataset()
+        dataset.uri = '10.5061/dryad.example'
+        dataset.doi = '10.5061/dryad.example'
+        article.datasets.append(dataset)
         # first ref is a duplicate should be ignored
-        article.ref_list.append(build_citation(
-            source='Dryad Digital Repository', doi='10.5061/dryad.example'))
-        article.ref_list.append(build_citation(
-            source='NCBI Gene Expression Omnibus', accession='GSE48760'))
+        citation1 = Citation()
+        citation1.publication_type = 'data'
+        citation1.source = 'Dryad Digital Repository'
+        citation1.doi = '10.5061/dryad.example'
+        article.ref_list.append(citation1)
+        citation2 = Citation()
+        citation2.publication_type = 'data'
+        citation2.source = 'NCBI Gene Expression Omnibus'
+        citation2.accession = 'GSE48760'
+        article.ref_list.append(citation2)
         generate.set_datasets(parent_tag, article)
         self.assertEqual(ElementTree.tostring(parent_tag), expected)
-
-
-def build_dataset(uri=None, accession=None, doi=None):
-    dataset = Dataset()
-    dataset.uri = uri
-    dataset.accession = accession
-    dataset.doi = doi
-    return dataset
-
-
-def build_citation(publication_type='data', source=None, accession=None, doi=None):
-    citation = Citation()
-    citation.publication_type = publication_type
-    citation.source = source
-    citation.accession = accession
-    citation.doi = doi
-    return citation
 
 
 if __name__ == '__main__':

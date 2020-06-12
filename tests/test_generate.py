@@ -217,11 +217,13 @@ class TestPlainLanguageSummary(unittest.TestCase):
 class TestSetDatasets(unittest.TestCase):
 
     def test_set_datasets(self):
+        """edge case testing of ignoring duplciate records and case-insensitive name matching"""
         parent_tag = Element('root')
         expected = (
             b'<root>'
             b'<Object Type="Dryad"><Param Name="id">10.5061/dryad.example</Param></Object>'
             b'<Object Type="NCBI:geo"><Param Name="id">GSE48760</Param></Object>'
+            b'<Object Type="figshare"><Param Name="id">example</Param></Object>'
             b'</root>')
         article = Article()
         dataset = Dataset()
@@ -234,11 +236,25 @@ class TestSetDatasets(unittest.TestCase):
         citation1.source = 'Dryad Digital Repository'
         citation1.doi = '10.5061/dryad.example'
         article.ref_list.append(citation1)
+        # second ref, should be added
         citation2 = Citation()
         citation2.publication_type = 'data'
         citation2.source = 'NCBI Gene Expression Omnibus'
         citation2.accession = 'GSE48760'
         article.ref_list.append(citation2)
+        # third ref is a duplicate with different case sensitivity, should be ignored
+        citation3 = Citation()
+        citation3.publication_type = 'data'
+        citation1.source = 'dryad digital repository'
+        citation1.doi = '10.5061/dryad.example'
+        article.ref_list.append(citation3)
+        # fourth ref tests case insensitive matching, should be added
+        citation4 = Citation()
+        citation4.publication_type = 'data'
+        citation4.source = 'figShare'
+        citation4.accession = 'example'
+        article.ref_list.append(citation4)
+
         generate.set_datasets(parent_tag, article)
         self.assertEqual(ElementTree.tostring(parent_tag), expected)
 

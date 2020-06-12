@@ -667,8 +667,13 @@ def dataset_details(dataset):
 def data_ref_details(ref):
     assigning_authority = None
     id_value = None
-    if ref.source in DATA_REF_SOURCE_MAP.keys():
-        assigning_authority = DATA_REF_SOURCE_MAP[ref.source]
+    # convert map keys to lower case
+    lower_case_map = OrderedDict()
+    for key, value in DATA_REF_SOURCE_MAP.items():
+        lower_case_map[key.lower()] = value
+    # case-insensitive matching of ref source to map key
+    if ref.source and ref.source.lower() in lower_case_map.keys():
+        assigning_authority = lower_case_map[ref.source.lower()]
         if ref.accession:
             id_value = ref.accession
         elif ref.doi:

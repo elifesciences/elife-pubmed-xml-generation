@@ -51,7 +51,7 @@ class TestGenerate(unittest.TestCase):
             articles = generate.build_articles_for_pubmed(
                 article_xmls=[file_path], config_section=config_section)
             p_xml = generate.build_pubmed_xml(articles, config_section, pub_date, False)
-            pubmed_xml = str(p_xml.output_xml())
+            pubmed_xml = str(p_xml.output_xml(pretty=True))
             model_pubmed_xml = str(
                 read_file_content(TEST_DATA_PATH + pubmed_xml_file))
             self.assertEqual(pubmed_xml, model_pubmed_xml)
@@ -99,7 +99,7 @@ class TestGenerate(unittest.TestCase):
         articles = generate.build_articles_for_pubmed(
             article_xmls=[file_path], config_section=config_section)
         # generate and write to disk
-        generate.pubmed_xml_to_disk(articles, config_section, pub_date, False)
+        generate.pubmed_xml_to_disk(articles, config_section, pub_date, False, True)
         # check the output matches
         with open(TEST_DATA_PATH + pubmed_xml_file, 'rb') as file_p:
             expected_output = file_p.read()

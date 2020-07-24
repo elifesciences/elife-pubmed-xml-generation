@@ -1,5 +1,6 @@
 import re
 from collections import OrderedDict
+from elifetools import utils as etoolsutils
 from elifearticle import utils as eautils
 
 
@@ -135,13 +136,42 @@ def abstract_paragraph(string, label_types):
     return part
 
 
+def abstract_sec_parts(string):
+    label = ''
+    if string:
+        parts = re.split(r".*?<title>(.*?)</title>", string)
+        label = parts[1]
+        string = parts[2]
+    return label, string
+
+
+def abstract_sec(string):
+    "parse an abstract sec tag into section data"
+    part = OrderedDict()
+    label, string = abstract_sec_parts(string)
+    string = etoolsutils.remove_tag('p', string)
+    string = etoolsutils.remove_tag('sec', string)
+    string = string.rstrip()
+    if string != '':
+        part['text'] = string
+        part['label'] = label
+    return part
+
+
 def abstract_parts(abstract, label_types):
     "break apart an abstract into sections with optional labels"
     parts = []
     if not abstract:
         return parts
-    for a_section in abstract.split('<p>'):
-        part = abstract_paragraph(a_section, label_types)
-        if part:
-            parts.append(part)
+    # check for structured abstract
+    if '<sec' in abstract and '<title' in abstract:
+        for a_sec in abstract.split('<sec'):
+            part = abstract_sec(a_sec)
+            if part:
+                parts.append(part)
+    else:
+        for a_section in abstract.split('<p>'):
+            part = abstract_paragraph(a_section, label_types)
+            if part:
+                parts.append(part)
     return parts

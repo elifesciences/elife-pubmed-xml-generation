@@ -125,11 +125,14 @@ This is the abstract. This article will describe the eLife article and the proce
                     also allowed: 
                     [Formula: see text]
                 .
+
 </AbstractText>
 <AbstractText Label="">eLife does not structure abstracts into sub headings expect in a clinical trial article, but the abstract can have
                     multiple paragarahs. The sub DOI is always .001 as it is the first asset in any
-                    article. I have added an unmatched &gt; bracket as this has been an issue for PubMed deposits in the past.</AbstractText>
-<AbstractText Label="">If this was a clinical trial the clinical trial details would be listed at the end of the abstract:</AbstractText>
+                    article. I have added an unmatched &gt; bracket as this has been an issue for PubMed deposits in the past.
+</AbstractText>
+<AbstractText Label="">If this was a clinical trial the clinical trial details would be listed at the end of the abstract:
+</AbstractText>
 <AbstractText Label="">Clinical trial Registration: EudraCT2004-000446-20.</AbstractText>
 </Abstract>
 <OtherAbstract Language="eng" Type="plain-language-summary">eLife digest are now optional and not every research article will contain one.

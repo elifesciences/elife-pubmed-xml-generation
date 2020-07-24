@@ -763,16 +763,18 @@ def build_pubmed_xml(poa_articles, config_section="elife", pub_date=None, add_co
     return PubMedXML(poa_articles, pubmed_config, pub_date, add_comment)
 
 
-def pubmed_xml(poa_articles, config_section="elife", pub_date=None, add_comment=True):
+def pubmed_xml(poa_articles, config_section="elife", pub_date=None, add_comment=True,
+               pretty=False):
     "build PubMed xml and return output as a string"
     p_xml = build_pubmed_xml(poa_articles, config_section, pub_date, add_comment)
-    return p_xml.output_xml()
+    return p_xml.output_xml(pretty=pretty)
 
 
-def pubmed_xml_to_disk(poa_articles, config_section="elife", pub_date=None, add_comment=True):
+def pubmed_xml_to_disk(poa_articles, config_section="elife", pub_date=None, add_comment=True,
+                       pretty=False):
     "build pubmed xml and write the output to disk"
     p_xml = build_pubmed_xml(poa_articles, config_section, pub_date, add_comment)
-    xml_string = p_xml.output_xml()
+    xml_string = p_xml.output_xml(pretty=pretty)
     # Write to file
     filename = TMP_DIR + os.sep + p_xml.batch_id + '.xml'
     with open(filename, "wb") as open_file:

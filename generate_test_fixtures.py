@@ -17,4 +17,4 @@ if __name__ == '__main__':
         generate.TMP_DIR = 'tests/test_data'
         articles = generate.build_articles_for_pubmed(
             article_xmls=[xml_file], config_section=config_section)
-        generate.pubmed_xml_to_disk(articles, config_section, pub_date, add_comment)
+        generate.pubmed_xml_to_disk(articles, config_section, pub_date, add_comment, pretty=True)

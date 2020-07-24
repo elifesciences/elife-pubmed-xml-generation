@@ -199,6 +199,31 @@ class TestDatasetAssigningAuthority(unittest.TestCase):
         self.assertEqual(assigning_authority, expected)
 
 
+class TestCleanAbstract(unittest.TestCase):
+
+    def test_clean_abstract(self):
+        abstract = (
+            '<abstract>'
+            '<object-id pub-id-type="doi">10.7554/eLife.00666.001</object-id>'
+            '<sec id="abs1">'
+            '<title>Background:</title>'
+            '<p>Lorem ipsum <xref ref-type="bibr" rid="bib12">Anon (2002)</xref> '
+            '<ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/">'
+            'eLife</ext-link> '
+            '<related-object xlink:href="https://clinicaltrials.gov/show/NCT02836002">'
+            'NCT02836002</related-object></p>'
+            '</sec>'
+            '</abstract>'
+        )
+        expected = (
+            '<sec id="abs1">'
+            '<title>Background:</title>'
+            '<p>Lorem ipsum Anon (2002) eLife NCT02836002</p>'
+            '</sec>'
+        )
+        self.assertEqual(generate.clean_abstract(abstract), expected)
+
+
 class TestPlainLanguageSummary(unittest.TestCase):
 
     def test_set_plain_language_summary(self):

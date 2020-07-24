@@ -8,7 +8,7 @@ from xml.dom import minidom
 from elifearticle import parse
 from elifearticle import utils as eautils
 from elifetools import utils as etoolsutils
-from elifetools import xmlio
+from elifetools import xmlio, utils_html
 from elifepubmed.conf import config, parse_raw_config
 from elifepubmed import utils
 
@@ -368,15 +368,28 @@ def set_language(parent, language):
     language_tag.text = language
 
 
+def clean_abstract(abstract):
+    abstract = etoolsutils.remove_tag('abstract', abstract)
+    abstract = etoolsutils.remove_tag('xref', abstract)
+    abstract = etoolsutils.remove_tag('ext-link', abstract)
+    abstract = etoolsutils.remove_tag('related-object', abstract)
+    abstract = etoolsutils.remove_tag_and_text('object-id', abstract)
+    abstract = utils_html.remove_comment_tags(abstract)
+    return abstract
+
+
 def set_abstract(parent, poa_article, abstract_label_types):
     "set the Abstract"
     abstract_tag = SubElement(parent, 'Abstract')
-    if poa_article.abstract:
-        sections = utils.abstract_parts(poa_article.abstract, abstract_label_types)
+
+    abstract = poa_article.abstract_xml if poa_article.abstract_xml else poa_article.abstract
+    sections = utils.abstract_parts(clean_abstract(abstract), abstract_label_types)
+
+    if sections:
         for section in sections:
             if section.get('text'):
-                set_abstract_text(abstract_tag, section.get('text'),
-                                  section.get('label'))
+                set_abstract_text(
+                    abstract_tag, section.get('text'), section.get('label'))
     else:
         # Add an empty abstract
         set_abstract_text(abstract_tag, '', '')

@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ArticleSet
+ PUBLIC "-//NLM//DTD PubMed 2.7//EN"
+  "https://dtd.nlm.nih.gov/ncbi/pubmed/in/PubMed.dtd">
+<ArticleSet>
+<Article>
+<Journal>
+<PublisherName>eLife Sciences Publications, Ltd</PublisherName>
+<JournalTitle>eLife</JournalTitle>
+<Issn>2050-084X</Issn>
+<Volume>9</Volume>
+<PubDate PubStatus="epublish">
+<Year>2020</Year>
+<Month>August</Month>
+<Day>21</Day>
+</PubDate>
+</Journal>
+<Replaces IdType="doi">10.7554/eLife.60675</Replaces>
+<ArticleTitle>Differential occupational risks to healthcare workers from SARS-CoV-2 observed during a prospective observational study</ArticleTitle>
+<ELocationID EIdType="doi">10.7554/eLife.60675</ELocationID>
+<ELocationID EIdType="pii">e60675</ELocationID>
+<Language>EN</Language>
+<AuthorList>
+<Author>
+<FirstName>David W</FirstName>
+<LastName>Eyre</LastName>
+<AffiliationInfo>
+<Affiliation>Big Data Institute, Nuffield Department of Population Health, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>NIHR Health Protection Research Unit in Healthcare Associated Infections and Antimicrobial Resistance at University of Oxford in partnership with Public Health England, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">https://orcid.org/0000-0001-5095-6367</Identifier>
+</Author>
+<Author>
+<FirstName>Sheila F</FirstName>
+<LastName>Lumley</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Denise</FirstName>
+<LastName>O'Donnell</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Mark</FirstName>
+<LastName>Campbell</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Elizabeth</FirstName>
+<LastName>Sims</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Elaine</FirstName>
+<LastName>Lawson</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Fiona</FirstName>
+<LastName>Warren</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Tim</FirstName>
+<LastName>James</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Stuart</FirstName>
+<LastName>Cox</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Alison</FirstName>
+<LastName>Howarth</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>George</FirstName>
+<LastName>Doherty</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Stephanie B</FirstName>
+<LastName>Hatch</LastName>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Target Discovery Institute, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>James</FirstName>
+<LastName>Kavanagh</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Kevin K</FirstName>
+<LastName>Chau</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Philip W</FirstName>
+<LastName>Fowler</LastName>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">https://orcid.org/0000-0003-0912-4483</Identifier>
+</Author>
+<Author>
+<FirstName>Jeremy</FirstName>
+<LastName>Swann</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Denis</FirstName>
+<LastName>Volk</LastName>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Fan</FirstName>
+<LastName>Yang-Turner</LastName>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Nicole</FirstName>
+<LastName>Stoesser</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>NIHR Health Protection Research Unit in Healthcare Associated Infections and Antimicrobial Resistance at University of Oxford in partnership with Public Health England, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">http://orcid.org/0000-0002-4508-7969</Identifier>
+</Author>
+<Author>
+<FirstName>Philippa C</FirstName>
+<LastName>Matthews</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Maria</FirstName>
+<LastName>Dudareva</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Timothy</FirstName>
+<LastName>Davies</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Robert H</FirstName>
+<LastName>Shaw</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Leon</FirstName>
+<LastName>Peto</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Louise O</FirstName>
+<LastName>Downs</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Alexander</FirstName>
+<LastName>Vogt</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Ali</FirstName>
+<LastName>Amini</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Bernadette C</FirstName>
+<LastName>Young</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">http://orcid.org/0000-0001-6071-6770</Identifier>
+</Author>
+<Author>
+<FirstName>Philip George</FirstName>
+<LastName>Drennan</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+<Identifier Source="ORCID">http://orcid.org/0000-0003-3367-3335</Identifier>
+</Author>
+<Author>
+<FirstName>Alexander J</FirstName>
+<LastName>Mentzer</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">https://orcid.org/0000-0002-4502-2209</Identifier>
+</Author>
+<Author>
+<FirstName>Donal T</FirstName>
+<LastName>Skelly</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Clinical Neurosciences, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">https://orcid.org/0000-0002-2426-3097</Identifier>
+</Author>
+<Author>
+<FirstName>Fredrik</FirstName>
+<LastName>Karpe</LastName>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Radcliffe Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Matt J</FirstName>
+<LastName>Neville</LastName>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Radcliffe Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">http://orcid.org/0000-0002-6004-5433</Identifier>
+</Author>
+<Author>
+<FirstName>Monique</FirstName>
+<LastName>Andersson</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Andrew J</FirstName>
+<LastName>Brent</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Nicola</FirstName>
+<LastName>Jones</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Lucas</FirstName>
+<LastName>Martins Ferreira</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Thomas</FirstName>
+<LastName>Christott</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Brian D</FirstName>
+<LastName>Marsden</LastName>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Kennedy Institute of Rheumatology Research, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">http://orcid.org/0000-0002-1937-4091</Identifier>
+</Author>
+<Author>
+<FirstName>Sarah</FirstName>
+<LastName>Hoosdally</LastName>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Richard</FirstName>
+<LastName>Cornall</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Derrick W</FirstName>
+<LastName>Crook</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">http://orcid.org/0000-0002-0590-2850</Identifier>
+</Author>
+<Author>
+<FirstName>David I</FirstName>
+<LastName>Stuart</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Gavin</FirstName>
+<LastName>Screaton</LastName>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<CollectiveName>Oxford University Hospitals Staff Testing Group</CollectiveName>
+</Author>
+<Author>
+<FirstName>Timothy EA</FirstName>
+<LastName>Peto</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>NIHR Oxford Biomedical Research Centre, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Bruno</FirstName>
+<LastName>Holthof</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Anne-Marie</FirstName>
+<LastName>O'Donnell</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Daniel</FirstName>
+<LastName>Ebner</LastName>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Target Discovery Institute, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<Identifier Source="ORCID">http://orcid.org/0000-0002-6495-7026</Identifier>
+</Author>
+<Author>
+<FirstName>Christopher P</FirstName>
+<LastName>Conlon</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author EqualContrib="Y">
+<FirstName>Katie</FirstName>
+<LastName>Jeffery</LastName>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author EqualContrib="Y">
+<FirstName>Timothy M</FirstName>
+<LastName>Walker</LastName>
+<AffiliationInfo>
+<Affiliation>Oxford University Hospitals NHS Foundation Trust, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Nuffield Department of Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Oxford University Clinical Research Unit, Ho Chi Minh City, Viet Nam</Affiliation>
+</AffiliationInfo>
+</Author>
+</AuthorList>
+<GroupList>
+<Group>
+<GroupName>Oxford University Hospitals Staff Testing Group</GroupName>
+<IndividualName>
+<FirstName>Adam JR</FirstName>
+<LastName>Watson</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Adan</FirstName>
+<LastName>Taylor</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Alan</FirstName>
+<LastName>Chetwynd</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Alexander</FirstName>
+<LastName>Grassam-Rowe</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Alexandra S</FirstName>
+<LastName>Mighiu</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Angus</FirstName>
+<LastName>Livingstone</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Annabel</FirstName>
+<LastName>Killen</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Caitlin</FirstName>
+<LastName>Rigler</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Callum</FirstName>
+<LastName>Harries</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Cameron</FirstName>
+<LastName>East</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Charlotte</FirstName>
+<LastName>Lee</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Chris JB</FirstName>
+<LastName>Mason</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Christian</FirstName>
+<LastName>Holland</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Connor</FirstName>
+<LastName>Thompson</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Conor</FirstName>
+<LastName>Hennesey</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Constantinos</FirstName>
+<LastName>Savva</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>David S</FirstName>
+<LastName>Kim</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Edward WA</FirstName>
+<LastName>Harris</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Euan J</FirstName>
+<LastName>McGivern</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Evelyn</FirstName>
+<LastName>Qian</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Evie</FirstName>
+<LastName>Rothwell</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Francesca</FirstName>
+<LastName>Back</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Gabriella</FirstName>
+<LastName>Kelly</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Gareth</FirstName>
+<LastName>Watson</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Gregory</FirstName>
+<LastName>Howgego</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Hannah</FirstName>
+<LastName>Chase</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Hannah</FirstName>
+<LastName>Danbury</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Hannah</FirstName>
+<LastName>Laurenson-Schafer</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Harry L</FirstName>
+<LastName>Ward</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Holly</FirstName>
+<LastName>Hendron</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Imogen C</FirstName>
+<LastName>Vorley</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Isabel</FirstName>
+<LastName>Tol</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>James</FirstName>
+<LastName>Gunnell</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Jocelyn LF</FirstName>
+<LastName>Ward</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Jonathan</FirstName>
+<LastName>Drake</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Joseph D</FirstName>
+<LastName>Wilson</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Joshua</FirstName>
+<LastName>Morton</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Julie</FirstName>
+<LastName>Dequaire</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Katherine</FirstName>
+<LastName>O'Byrne</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Kenzo</FirstName>
+<LastName>Motohashi</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Kirsty</FirstName>
+<LastName>Harper</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Krupa</FirstName>
+<LastName>Ravi</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Lancelot J</FirstName>
+<LastName>Millar</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Liam J</FirstName>
+<LastName>Peck</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Madeleine</FirstName>
+<LastName>Oliver</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Marcus Rex</FirstName>
+<LastName>English</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Mary</FirstName>
+<LastName>Kumarendran</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Matthew</FirstName>
+<LastName>Wedlich</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Olivia</FirstName>
+<LastName>Ambler</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Oscar T</FirstName>
+<LastName>Deal</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Owen</FirstName>
+<LastName>Sweeney</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Philip</FirstName>
+<LastName>Cowie</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Rebecca te Water</FirstName>
+<LastName>Naudé</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Rebecca</FirstName>
+<LastName>Young</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Rosie</FirstName>
+<LastName>Freer</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Samuel</FirstName>
+<LastName>Scott</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Samuel</FirstName>
+<LastName>Sussmes</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Sarah</FirstName>
+<LastName>Peters</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Saxon</FirstName>
+<LastName>Pattenden</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Seren</FirstName>
+<LastName>Waite</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Síle Ann</FirstName>
+<LastName>Johnson</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Stefan</FirstName>
+<LastName>Kourdov</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Stephanie</FirstName>
+<LastName>Santos-Paulo</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Stoyan</FirstName>
+<LastName>Dimitrov</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Sven</FirstName>
+<LastName>Kerneis</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Tariq</FirstName>
+<LastName>Ahmed-Firani</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Thomas B</FirstName>
+<LastName>King</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Thomas G</FirstName>
+<LastName>Ritter</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Thomas H</FirstName>
+<LastName>Foord</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Zoe</FirstName>
+<LastName>De Toledo</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Thomas</FirstName>
+<LastName>Christie</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Bernadett</FirstName>
+<LastName>Gergely</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>David</FirstName>
+<LastName>Axten</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Emma-Jane</FirstName>
+<LastName>Simons</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Heather</FirstName>
+<LastName>Nevard</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Jane</FirstName>
+<LastName>Philips</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Justyna</FirstName>
+<LastName>Szczurkowska</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Kaisha</FirstName>
+<LastName>Patel</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Kyla</FirstName>
+<LastName>Smit</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Laura</FirstName>
+<LastName>Warren</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Lisa</FirstName>
+<LastName>Morgan</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Lucianne</FirstName>
+<LastName>Smith</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Maria</FirstName>
+<LastName>Robles</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Mary</FirstName>
+<LastName>McKnight</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Michael</FirstName>
+<LastName>Luciw</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Michelle</FirstName>
+<LastName>Gates</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Nellia</FirstName>
+<LastName>Sande</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Rachel</FirstName>
+<LastName>Turford</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Roshni</FirstName>
+<LastName>Ray</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Sonam</FirstName>
+<LastName>Rughani</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Tracey</FirstName>
+<LastName>Mitchell</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Trisha</FirstName>
+<LastName>Bellinger</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Vicki</FirstName>
+<LastName>Wharton</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Anita</FirstName>
+<LastName>Justice</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Gerald</FirstName>
+<LastName>Jesuthasan</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Susan</FirstName>
+<LastName>Wareing</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Nurul</FirstName>
+<LastName>Huda Mohamad Fadzillah</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Kathryn</FirstName>
+<LastName>Cann</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Richard</FirstName>
+<LastName>Kirton</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Claire</FirstName>
+<LastName>Sutton</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Claudia</FirstName>
+<LastName>Salvagno</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Gabriella</FirstName>
+<LastName>DAmato</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Gemma</FirstName>
+<LastName>Pill</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Lisa</FirstName>
+<LastName>Butcher</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Lydia</FirstName>
+<LastName>Rylance-Knight</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Merline</FirstName>
+<LastName>Tabirao</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Ruth</FirstName>
+<LastName>Moroney</LastName>
+</IndividualName>
+<IndividualName>
+<FirstName>Sarah</FirstName>
+<LastName>Wright</LastName>
+</IndividualName>
+</Group>
+</GroupList>
+<PublicationType>Journal Article</PublicationType>
+<ArticleIdList>
+<ArticleId IdType="doi">10.7554/eLife.60675</ArticleId>
+<ArticleId IdType="pii">60675</ArticleId>
+</ArticleIdList>
+<History>
+<PubDate PubStatus="received">
+<Year>2020</Year>
+<Month>07</Month>
+<Day>02</Day>
+</PubDate>
+<PubDate PubStatus="accepted">
+<Year>2020</Year>
+<Month>08</Month>
+<Day>18</Day>
+</PubDate>
+</History>
+<Abstract>
+<AbstractText Label="">We conducted voluntary Covid-19 testing programmes for symptomatic and asymptomatic staff at a UK teaching hospital using naso-/oro-pharyngeal PCR testing and immunoassays for IgG antibodies. 1128/10,034 (11.2%) staff had evidence of Covid-19 at some time. Using questionnaire data provided on potential risk-factors, staff with a confirmed household contact were at greatest risk (adjusted odds ratio [aOR] 4.82 [95%CI 3.45–6.72]). Higher rates of Covid-19 were seen in staff working in Covid-19-facing areas (22.6% vs. 8.6% elsewhere) (aOR 2.47 [1.99–3.08]). Controlling for Covid-19-facing status, risks were heterogenous across the hospital, with higher rates in acute medicine (1.52 [1.07–2.16]) and sporadic outbreaks in areas with few or no Covid-19 patients. Covid-19 intensive care unit staff were relatively protected (0.44 [0.28–0.69]), likely by a bundle of PPE-related measures. Positive results were more likely in Black (1.66 [1.25–2.21]) and Asian (1.51 [1.28–1.77]) staff, independent of role or working location, and in porters and cleaners (2.06 [1.34–3.15]).</AbstractText>
+</Abstract>
+<CopyrightInformation>© 2020, Eyre et al</CopyrightInformation>
+<CoiStatement>DE Lecture fees from Gilead, outside the submitted work, SL, DO, MC, ES, EL, FW, TJ, SC, AH, GD, SH, JK, KC, PF, JS, DV, FY, NS, PM, MD, TD, RS, LP, LD, AV, AA, BY, PD, AM, DS, FK, MN, MA, AB, NJ, LM, TC, BM, SH, RC, DC, DS, GS, TP, BH, AO, DE, CC, KJ, TW No competing interests declared</CoiStatement>
+<ObjectList>
+<Object Type="keyword">
+<Param Name="value">virus</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">epidemiology</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">global health</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">Covid-19</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">SARS-CoV-2</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">healthcare workers</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">serology</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">risk factors</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">symptoms</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Department of Health and Social Care</Param>
+<Param Name="grantor">UK Government</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">HPRU-2012-10041</Param>
+<Param Name="grantor">National Institute of Health Research Health Protection Research Unit in Healthcare Associated Infections and Antimicrobial Resistance</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Oxford BRC Senior Fellow</Param>
+<Param Name="grantor">NIHR</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Clinical Research Fellow</Param>
+<Param Name="grantor">Wellcome Trust</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">MR/N00065X/1</Param>
+<Param Name="grantor">Medical Research Council</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Intermediate Fellowship 110110/Z/15/Z</Param>
+<Param Name="grantor">Wellcome Trust</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Doctoral Research Fellow</Param>
+<Param Name="grantor">NIHR</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">MRF-145-004-TPG-AVISO</Param>
+<Param Name="grantor">Medical Research Foundation</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Clinical Research Training Fellow 216417/Z/19/Z</Param>
+<Param Name="grantor">Wellcome Trust</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Clinical Lecturer</Param>
+<Param Name="grantor">NIHR</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Senior Investigator</Param>
+<Param Name="grantor">Wellcome Trust</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">214560/Z/18/Z</Param>
+<Param Name="grantor">Wellcome Trust Career Development Fellow</Param>
+</Object>
+</ObjectList>
+</Article>
+</ArticleSet>

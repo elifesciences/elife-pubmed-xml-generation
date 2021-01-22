@@ -44,6 +44,9 @@ class TestGenerate(unittest.TestCase):
         self.passes.append(
             ('pb369-jats.xml', 'pb-pubmed-369-20170717071707.xml',
              'pb', self.default_pub_date))
+        self.passes.append(
+            ('elife-60675-v2.xml', 'elife-pubmed-60675-20170717071707.xml',
+             'elife', self.default_pub_date))
 
     def test_parse(self):
         for (article_xml_file, pubmed_xml_file, config_section, pub_date) in self.passes:

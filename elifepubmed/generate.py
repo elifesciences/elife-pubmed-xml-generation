@@ -101,8 +101,7 @@ class PubMedXML(object):
             set_language(article_tag, self.pubmed_config.get('language'))
             for contrib_type in self.pubmed_config.get('author_contrib_types'):
                 self.set_author_list(article_tag, poa_article, contrib_type)
-            for contrib_type in self.pubmed_config.get('group_author_contrib_types'):
-                self.set_group_list(article_tag, poa_article, contrib_type)
+            self.set_group_list(article_tag, poa_article)
             set_publication_type(article_tag, poa_article,
                                  self.pubmed_config.get('publication_types'))
             set_article_id_list(article_tag, poa_article)
@@ -156,23 +155,31 @@ class PubMedXML(object):
             # Create the XML element on first use
             self.contributors = SubElement(parent, "AuthorList")
 
-        for contributor in poa_article.contributors:
+        for contributor in [
+            contrib
+            for contrib in poa_article.contributors
+            if contrib.group_author_key is None or contrib.collab is not None
+        ]:
             set_contributor(self.contributors, contributor, contrib_type)
 
     def set_group_list(self, parent, poa_article, contrib_type=None):
         # If contrib_type is None, all contributors will be added regardless of their type
 
+        on_behalf_of_contrib_type = "on-behalf-of"
+
         if self.groups is None:
             # Create the XML element on first use
             self.groups = SubElement(parent, "GroupList")
 
-        for contributor in poa_article.contributors:
-            if contrib_type and contributor.contrib_type != contrib_type:
-                # Filter by contrib_type if supplied
-                continue
-            # Skip contributors with no surname and no collab
-            if not contributor.surname and not contributor.collab:
-                continue
+        for contributor in [
+            contrib
+            for contrib in poa_article.contributors
+            if (
+                contrib.group_author_key is not None
+                or contrib.contrib_type == on_behalf_of_contrib_type
+            )
+            and (contrib.surname or contrib.collab)
+        ]:
 
             group_name_text = get_group_name_text(poa_article, contributor)
 
@@ -185,8 +192,14 @@ class PubMedXML(object):
                 group_name = SubElement(group_tag, "GroupName")
                 group_name.text = group_name_text
 
+                # skip to the next contributor in list unless it is on-behalf-of
+                if contributor.contrib_type == on_behalf_of_contrib_type:
+                    matched_group = group_tag
+                else:
+                    continue
+
             # Add the individual to the group
-            set_group_individual(group_tag, contributor)
+            set_group_individual(matched_group, contributor)
 
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:

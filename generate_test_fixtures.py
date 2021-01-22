@@ -12,6 +12,7 @@ if __name__ == '__main__':
     xml_files.append(['tests/test_data/elife_poa_e12717.xml', 'elife', default_pub_date, False])
     xml_files.append(['tests/test_data/bmjopen-4-e003269.xml', 'bmjopen', default_pub_date, False])
     xml_files.append(['tests/test_data/pb369-jats.xml', 'pb', default_pub_date, False])
+    xml_files.append(['tests/test_data/elife-60675-v2.xml', 'elife', default_pub_date, False])
 
     for xml_file, config_section, pub_date, add_comment in xml_files:
         generate.TMP_DIR = 'tests/test_data'

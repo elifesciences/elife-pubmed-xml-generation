@@ -241,6 +241,19 @@ class TestPlainLanguageSummary(unittest.TestCase):
         generate.set_plain_language_summary(parent_tag, article)
         self.assertEqual(ElementTree.tostring(parent_tag), expected)
 
+    def test_set_plain_language_summary_edge_case(self):
+        "test escaping ampersand character"
+        digest = '<p>CUT&Tag.</p>'
+        expected = (
+            b'<root><OtherAbstract Language="eng" Type="plain-language-summary">'
+            b'CUT&amp;Tag.</OtherAbstract></root>'
+        )
+        article = Article()
+        article.digest = digest
+        parent_tag = Element('root')
+        generate.set_plain_language_summary(parent_tag, article)
+        self.assertEqual(ElementTree.tostring(parent_tag), expected)
+
 
 class TestSetDatasets(unittest.TestCase):
 

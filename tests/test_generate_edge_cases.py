@@ -255,5 +255,111 @@ class TestGenerateArticleFunding(unittest.TestCase):
         self.assertTrue('<grant>' not in str(pubmed_xml_string))
 
 
+class TestSetGroupList(unittest.TestCase):
+
+    def test_set_group_list_no_individuals(self):
+        "test a collab contributor with no group member contributors"
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        # add contributors
+        group_author_name = "Test Group"
+        contributor1 = Contributor(
+            contrib_type="author",
+            surname=None,
+            given_name=None,
+            collab=group_author_name,
+        )
+        contributor1.group_author_key = group_author_name
+        article.add_contributor(contributor1)
+        # generate the PubMed XML
+        p_xml = generate.build_pubmed_xml([article])
+        pubmed_xml_string = p_xml.output_xml()
+        self.assertIsNotNone(pubmed_xml_string)
+        # assertions
+        self.assertTrue("<CollectiveName>Test Group</CollectiveName>" in str(pubmed_xml_string))
+        self.assertTrue("<GroupList>" not in str(pubmed_xml_string))
+
+    def test_set_group_list_with_individual(self):
+        "test one collab contributor with one group member contributor"
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        # add contributors
+        group_author_name = "Test Group"
+        contributor1 = Contributor(
+            contrib_type="author",
+            surname=None,
+            given_name=None,
+            collab=group_author_name,
+        )
+        contributor1.group_author_key = group_author_name
+        article.add_contributor(contributor1)
+        contributor2 = Contributor(contrib_type="author", surname="Ant", given_name="Adam")
+        contributor2.group_author_key = group_author_name
+        article.add_contributor(contributor2)
+        # generate the PubMed XML
+        p_xml = generate.build_pubmed_xml([article])
+        pubmed_xml_string = p_xml.output_xml()
+        self.assertIsNotNone(pubmed_xml_string)
+        # assertions
+        self.assertTrue("<CollectiveName>Test Group</CollectiveName>" in str(pubmed_xml_string))
+        self.assertTrue(
+            "<GroupList>"
+            "<Group><GroupName>Test Group</GroupName>"
+            "<IndividualName>"
+            "<FirstName>Adam</FirstName>"
+            "<LastName>Ant</LastName>"
+            "</IndividualName></Group>"
+            "</GroupList>" in str(pubmed_xml_string))
+
+    def test_set_group_list_complex(self):
+        "test two types of collab, one with individual and one without"
+        doi = "10.7554/eLife.00666"
+        title = "Test article"
+        article = Article(doi, title)
+        # add contributors
+        group_author_name_1 = "Group with Individual"
+        contributor1 = Contributor(
+            contrib_type="author",
+            surname=None,
+            given_name=None,
+            collab=group_author_name_1,
+        )
+        contributor1.group_author_key = group_author_name_1
+        article.add_contributor(contributor1)
+
+        contributor2 = Contributor(contrib_type="author", surname="Ant", given_name="Adam")
+        contributor2.group_author_key = group_author_name_1
+        article.add_contributor(contributor2)
+
+        group_author_name_2 = "Group without Individual"
+        contributor3 = Contributor(
+            contrib_type="author",
+            surname=None,
+            given_name=None,
+            collab=group_author_name_2,
+        )
+        contributor3.group_author_key = group_author_name_2
+        article.add_contributor(contributor3)
+        # generate the PubMed XML
+        p_xml = generate.build_pubmed_xml([article])
+        pubmed_xml_string = p_xml.output_xml()
+        self.assertIsNotNone(pubmed_xml_string)
+        # assertions
+        self.assertTrue(
+            "<CollectiveName>Group with Individual</CollectiveName>" in str(pubmed_xml_string))
+        self.assertTrue(
+            "<CollectiveName>Group without Individual</CollectiveName>" in str(pubmed_xml_string))
+        self.assertTrue(
+            "<GroupList>"
+            "<Group><GroupName>Group with Individual</GroupName>"
+            "<IndividualName>"
+            "<FirstName>Adam</FirstName>"
+            "<LastName>Ant</LastName>"
+            "</IndividualName></Group>"
+            "</GroupList>" in str(pubmed_xml_string))
+
+
 if __name__ == '__main__':
     unittest.main()

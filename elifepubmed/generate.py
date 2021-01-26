@@ -201,6 +201,12 @@ class PubMedXML(object):
             # Add the individual to the group
             set_group_individual(matched_group, contributor)
 
+        # Remove any GroupName with no IndividualName
+        if self.groups and len(self.groups) > 0:
+            for i, tag in enumerate(self.groups):
+                if len(tag.findall('.//IndividualName')) <= 0:
+                    del self.groups[i]
+
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:
             parent.remove(self.groups)

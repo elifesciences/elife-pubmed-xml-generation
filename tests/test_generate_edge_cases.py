@@ -272,6 +272,16 @@ class TestSetGroupList(unittest.TestCase):
         )
         contributor1.group_author_key = group_author_name
         article.add_contributor(contributor1)
+        # add another group with no individuals
+        group_author_name = "Test Group Two"
+        contributor2 = Contributor(
+            contrib_type="author",
+            surname=None,
+            given_name=None,
+            collab=group_author_name,
+        )
+        contributor2.group_author_key = group_author_name
+        article.add_contributor(contributor2)
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
         pubmed_xml_string = p_xml.output_xml()

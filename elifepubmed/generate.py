@@ -202,10 +202,15 @@ class PubMedXML(object):
             set_group_individual(matched_group, contributor)
 
         # Remove any GroupName with no IndividualName
+        group_delete_indexes = []
         if self.groups and len(self.groups) > 0:
             for i, tag in enumerate(self.groups):
                 if len(tag.findall('.//IndividualName')) <= 0:
-                    del self.groups[i]
+                    # mark the group for deletion
+                    group_delete_indexes.append(i)
+        # delete groups by index in reverse order to avoid index reordering side effect
+        for i in sorted(group_delete_indexes)[::-1]:
+            del self.groups[i]
 
         # Remove a completely empty GroupList element, if empty
         if len(self.groups) <= 0:

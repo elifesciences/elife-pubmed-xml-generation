@@ -47,26 +47,37 @@
 <IndividualName>
 <FirstName>Alistair</FirstName>
 <LastName>Shearer</LastName>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
 </IndividualName>
 <IndividualName>
 <FirstName>Hannah</FirstName>
 <LastName>Caton</LastName>
+<AffiliationInfo>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>eLife Institute, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
 </IndividualName>
 <IndividualName>
 <FirstName>Wei Mun</FirstName>
 <LastName>Chan</LastName>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
 </IndividualName>
 <IndividualName>
 <FirstName>Hannah</FirstName>
 <LastName>Drury</LastName>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
 </IndividualName>
 <IndividualName>
 <FirstName>Maria</FirstName>
 <LastName>Guerreiro</LastName>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
 </IndividualName>
 <IndividualName>
 <FirstName>Susanna</FirstName>
 <LastName>Richmond</LastName>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
 </IndividualName>
 </Group>
 <Group>
@@ -74,14 +85,17 @@
 <IndividualName>
 <FirstName>Graham</FirstName>
 <LastName>Nott</LastName>
+<Affiliation>Graham Nott Enterprises, Victoria, Canada</Affiliation>
 </IndividualName>
 <IndividualName>
 <FirstName>Chris</FirstName>
 <LastName>Wilkinson</LastName>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
 </IndividualName>
 <IndividualName>
 <FirstName>Luke</FirstName>
 <LastName>Skibinski</LastName>
+<Affiliation>eLife, Cambridge, United Kingdom</Affiliation>
 </IndividualName>
 </Group>
 <Group>

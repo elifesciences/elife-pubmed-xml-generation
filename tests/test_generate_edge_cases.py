@@ -1,5 +1,11 @@
 import unittest
-from elifearticle.article import Article, Contributor, FundingAward, RelatedArticle
+from elifearticle.article import (
+    Article,
+    Affiliation,
+    Contributor,
+    FundingAward,
+    RelatedArticle,
+)
 from elifepubmed import generate
 
 
@@ -305,23 +311,32 @@ class TestSetGroupList(unittest.TestCase):
         )
         contributor1.group_author_key = group_author_name
         article.add_contributor(contributor1)
-        contributor2 = Contributor(contrib_type="author", surname="Ant", given_name="Adam")
+        contributor2 = Contributor(
+            contrib_type="author", surname="Ant", given_name="Adam"
+        )
         contributor2.group_author_key = group_author_name
+        aff = Affiliation()
+        aff.text = "Anthill Institute"
+        contributor2.set_affiliation(aff)
         article.add_contributor(contributor2)
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # assertions
-        self.assertTrue("<CollectiveName>Test Group</CollectiveName>" in str(pubmed_xml_string))
+        self.assertTrue(
+            "<CollectiveName>Test Group</CollectiveName>" in str(pubmed_xml_string)
+        )
         self.assertTrue(
             "<GroupList>"
             "<Group><GroupName>Test Group</GroupName>"
             "<IndividualName>"
             "<FirstName>Adam</FirstName>"
             "<LastName>Ant</LastName>"
+            "<Affiliation>Anthill Institute</Affiliation>"
             "</IndividualName></Group>"
-            "</GroupList>" in str(pubmed_xml_string))
+            "</GroupList>" in str(pubmed_xml_string)
+        )
 
     def test_set_group_list_complex(self):
         "test two types of collab, one with individual and one without"

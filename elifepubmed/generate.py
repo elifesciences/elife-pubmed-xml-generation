@@ -264,6 +264,22 @@ def set_group_individual(parent, contributor):
     else:
         set_first_name(individual, contributor)
         set_surname(individual, contributor)
+    set_affiliation(individual, contributor)
+
+
+def set_affiliation(parent, contributor):
+    # Add each affiliation for multiple affiliation support
+    non_blank_aff_count = len([aff for aff in contributor.affiliations if aff.text != ""])
+    for aff in contributor.affiliations:
+        if aff.text != "":
+            if non_blank_aff_count == 1:
+                affiliation = SubElement(parent, "Affiliation")
+                affiliation.text = aff.text
+            elif non_blank_aff_count > 1:
+                # Wrap each in AffiliationInfo tag
+                affiliation_info = SubElement(parent, "AffiliationInfo")
+                affiliation = SubElement(affiliation_info, "Affiliation")
+                affiliation.text = aff.text
 
 
 def group_exists(group_tags, group_name_text):
@@ -339,17 +355,7 @@ def set_contributor(parent, contributor, contrib_type):
         suffix.text = contributor.suffix
 
     # Add each affiliation for multiple affiliation support
-    non_blank_aff_count = len([aff for aff in contributor.affiliations if aff.text != ""])
-    for aff in contributor.affiliations:
-        if aff.text != "":
-            if non_blank_aff_count == 1:
-                affiliation = SubElement(person_name, "Affiliation")
-                affiliation.text = aff.text
-            elif non_blank_aff_count > 1:
-                # Wrap each in AffiliationInfo tag
-                affiliation_info = SubElement(person_name, "AffiliationInfo")
-                affiliation = SubElement(affiliation_info, "Affiliation")
-                affiliation.text = aff.text
+    set_affiliation(person_name, contributor)
 
     if contributor.orcid:
         orcid = SubElement(person_name, "Identifier")

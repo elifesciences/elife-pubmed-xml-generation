@@ -753,6 +753,23 @@ def set_datasets(parent, poa_article):
         set_object(parent, dataset.get('assigning_authority'), dataset.get('params'))
 
 
+def set_clinical_trials(parent, poa_article):
+    """object tags for datasets"""
+    clinical_trial_data = []
+    # next add from ref list but do not add duplicates
+    for trial in poa_article.clinical_trials:
+        if trial.source_id and trial.document_id:
+            clinical_trial = OrderedDict([
+                ('registry_type', trial.source_id),
+                ('params', {'id': trial.document_id})
+            ])
+            clinical_trial_data.append(clinical_trial)
+
+    # set the object tags
+    for clinical_trial in clinical_trial_data:
+        set_object(parent, clinical_trial.get('registry_type'), clinical_trial.get('params'))
+
+
 def set_object_list(parent, poa_article, split_article_categories):
     # Keywords and others go in Object tags
     object_list = SubElement(parent, "ObjectList")
@@ -776,6 +793,9 @@ def set_object_list(parent, poa_article, split_article_categories):
 
     # Add datasets
     set_datasets(object_list, poa_article)
+
+    # Add clinical trial data
+    set_clinical_trials(object_list, poa_article)
 
     # Finally, do not leave an empty ObjectList tag, if present
     if len(object_list) <= 0:

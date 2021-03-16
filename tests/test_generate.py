@@ -3,7 +3,7 @@ import time
 import os
 from xml.etree.ElementTree import Element
 from xml.etree import ElementTree
-from elifearticle.article import Article, Citation, Dataset
+from elifearticle.article import Article, Citation, ClinicalTrial, Dataset
 from elifepubmed import generate
 from elifepubmed.conf import config, parse_raw_config
 
@@ -297,6 +297,26 @@ class TestSetDatasets(unittest.TestCase):
         article.ref_list.append(citation4)
 
         generate.set_datasets(parent_tag, article)
+        self.assertEqual(ElementTree.tostring(parent_tag), expected)
+
+
+class TestSetClinicalTrials(unittest.TestCase):
+
+    def test_set_clinical_trials(self):
+        parent_tag = Element('root')
+        expected = (
+            b'<root>'
+            b'<Object Type="ClinicalTrials.gov"><Param Name="id">TEST999</Param></Object>'
+            b'</root>')
+        article = Article()
+        clinical_trial = ClinicalTrial()
+        clinical_trial.source_id = 'ClinicalTrials.gov'
+        clinical_trial.source_id_type = 'registry-name'
+        clinical_trial.document_id = 'TEST999'
+        clinical_trial.content_type = 'preResults'
+        article.clinical_trials = [clinical_trial]
+
+        generate.set_clinical_trials(parent_tag, article)
         self.assertEqual(ElementTree.tostring(parent_tag), expected)
 
 

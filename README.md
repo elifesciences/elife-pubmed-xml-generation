@@ -83,6 +83,32 @@ Example 3 - Convert two test fixture XML files to elifearticle Article() objects
 >>> generate.pubmed_xml_to_disk(articles)
 ```
 
+## Run code tests
+
+Use `pytest` for testing, install it if missing:
+
+```
+pip install pytest
+```
+
+Run tests
+
+```
+pytest
+```
+
+Run tests with coverage
+
+```
+coverage run -m pytest
+```
+
+then report on code coverage
+
+```
+converage report -m
+```
+
 ## License
 
 Licensed under [MIT](https://opensource.org/licenses/mit-license.php).

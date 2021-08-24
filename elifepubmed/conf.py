@@ -31,7 +31,7 @@ def parse_raw_config(raw_config):
             pubmed_config[value_name] = json.loads(raw_config.get(value_name))
         elif value_name in yaml_values:
             with open(raw_config.get(value_name), 'rb') as yaml_file:
-                pubmed_config[value_name] = yaml.load(yaml_file.read())
+                pubmed_config[value_name] = yaml.load(yaml_file.read(), Loader=yaml.FullLoader)
         else:
             # default
             pubmed_config[value_name] = raw_config.get(value_name)

@@ -3,7 +3,8 @@ import json
 import yaml
 
 config = configparser.ConfigParser(interpolation=None)
-config.read('pubmed.cfg')
+config.read("pubmed.cfg")
+
 
 def parse_raw_config(raw_config):
     "parse the raw config to something good"
@@ -20,7 +21,7 @@ def parse_raw_config(raw_config):
     list_values.append("history_date_types")
     list_values.append("remove_tags")
     list_values.append("abstract_label_types")
-    yaml_values.append('publication_types')
+    yaml_values.append("publication_types")
 
     for value_name in raw_config:
         if value_name in boolean_values:
@@ -30,8 +31,10 @@ def parse_raw_config(raw_config):
         elif value_name in list_values:
             pubmed_config[value_name] = json.loads(raw_config.get(value_name))
         elif value_name in yaml_values:
-            with open(raw_config.get(value_name), 'rb') as yaml_file:
-                pubmed_config[value_name] = yaml.load(yaml_file.read(), Loader=yaml.FullLoader)
+            with open(raw_config.get(value_name), "rb") as yaml_file:
+                pubmed_config[value_name] = yaml.load(
+                    yaml_file.read(), Loader=yaml.FullLoader
+                )
         else:
             # default
             pubmed_config[value_name] = raw_config.get(value_name)

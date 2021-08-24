@@ -1,5 +1,5 @@
-git+https://github.com/elifesciences/elife-tools.git@4e76f5eb3efecdad4a5b6ea3ee3b2254ab528586#egg=elifetools
-git+https://github.com/elifesciences/elife-article.git@9c754f54c501da3cbd0c8bfd222f30988e7f9c2a#egg=elifearticle
+elifetools==0.10.0
+elifearticle==0.5.0
 configparser==3.5.0
 PyYAML==5.4
 coverage==4.4.2

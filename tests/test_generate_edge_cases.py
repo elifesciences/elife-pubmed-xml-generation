@@ -10,7 +10,6 @@ from elifepubmed import generate
 
 
 class TestGenerateArticleTitle(unittest.TestCase):
-
     def test_generate_bold_article_title(self):
         "build an article object, set the title, generate PubMed XML"
         doi = "10.7554/eLife.00666"
@@ -26,7 +25,6 @@ class TestGenerateArticleTitle(unittest.TestCase):
 
 
 class TestGenerateArticleType(unittest.TestCase):
-
     def test_generate_article_type(self):
         "build an article object, set the article_type, generate PubMed XML"
         doi = "10.7554/eLife.00666"
@@ -57,18 +55,22 @@ class TestGenerateArticleType(unittest.TestCase):
         article.related_articles = [related_article]
         # set some expectations
         expected_fragments = [
-            '<PublicationType>Published Erratum</PublicationType>',
-            ('<Object Type="Erratum"><Param Name="type">doi</Param>' +
-             '<Param Name="id">10.7554/eLife.99999</Param>')
-            ]
+            "<PublicationType>Published Erratum</PublicationType>",
+            (
+                '<Object Type="Erratum"><Param Name="type">doi</Param>'
+                + '<Param Name="id">10.7554/eLife.99999</Param>'
+            ),
+        ]
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
         for expected_fragment in expected_fragments:
-            self.assertTrue(expected_fragment in str(pubmed_xml_string),
-                            '{fragment} not found'.format(fragment=expected_fragment))
+            self.assertTrue(
+                expected_fragment in str(pubmed_xml_string),
+                "{fragment} not found".format(fragment=expected_fragment),
+            )
 
     def test_generate_article_type_retraction(self):
         "build an article object, set the article_type and related_articles, generate PubMed XML"
@@ -86,22 +88,25 @@ class TestGenerateArticleType(unittest.TestCase):
         article.related_articles = [related_article]
         # set some expectations
         expected_fragments = [
-            '<PublicationType>Retraction of Publication</PublicationType>',
-            ('<Object Type="Retraction"><Param Name="type">doi</Param>' +
-             '<Param Name="id">10.7554/eLife.99999</Param>')
-            ]
+            "<PublicationType>Retraction of Publication</PublicationType>",
+            (
+                '<Object Type="Retraction"><Param Name="type">doi</Param>'
+                + '<Param Name="id">10.7554/eLife.99999</Param>'
+            ),
+        ]
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
         for expected_fragment in expected_fragments:
-            self.assertTrue(expected_fragment in str(pubmed_xml_string),
-                            '{fragment} not found'.format(fragment=expected_fragment))
+            self.assertTrue(
+                expected_fragment in str(pubmed_xml_string),
+                "{fragment} not found".format(fragment=expected_fragment),
+            )
 
 
 class TestGenerateArticleContributors(unittest.TestCase):
-
     def test_generate_blank_contributors(self):
         "build an article object, set the contributors, generate PubMed XML"
         doi = "10.7554/eLife.00666"
@@ -109,33 +114,38 @@ class TestGenerateArticleContributors(unittest.TestCase):
         article = Article(doi, title)
         contributor1 = Contributor(contrib_type="author", surname=None, given_name=None)
         article.add_contributor(contributor1)
-        contributor2 = Contributor(contrib_type="author non-byline", surname=None, given_name=None)
+        contributor2 = Contributor(
+            contrib_type="author non-byline", surname=None, given_name=None
+        )
         article.add_contributor(contributor2)
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue('<AuthorList>' not in str(pubmed_xml_string))
-        self.assertTrue('<GroupList>' not in str(pubmed_xml_string))
+        self.assertTrue("<AuthorList>" not in str(pubmed_xml_string))
+        self.assertTrue("<GroupList>" not in str(pubmed_xml_string))
 
     def test_generate_contributor_surname_no_given_name(self):
         "build an article object, set the contributors, generate PubMed XML"
         doi = "10.7554/eLife.00666"
         title = "Test article"
         expected_fragment = (
-            '<AuthorList><Author><CollectiveName>Group name</CollectiveName></Author>' +
-            '</AuthorList><GroupList><Group><GroupName>Group name</GroupName><IndividualName>' +
-            '<FirstName EmptyYN="Y"/><LastName>eLife</LastName></IndividualName></Group>' +
-            '</GroupList>')
+            "<AuthorList><Author><CollectiveName>Group name</CollectiveName></Author>"
+            + "</AuthorList><GroupList><Group><GroupName>Group name</GroupName><IndividualName>"
+            + '<FirstName EmptyYN="Y"/><LastName>eLife</LastName></IndividualName></Group>'
+            + "</GroupList>"
+        )
         article = Article(doi, title)
-        contributor1 = Contributor(contrib_type="author", surname=None,
-                                   given_name=None, collab="Group name")
-        contributor1.group_author_key = 'group1'
+        contributor1 = Contributor(
+            contrib_type="author", surname=None, given_name=None, collab="Group name"
+        )
+        contributor1.group_author_key = "group1"
         article.add_contributor(contributor1)
-        contributor2 = Contributor(contrib_type="author non-byline",
-                                   surname="eLife", given_name=None)
-        contributor2.group_author_key = 'group1'
+        contributor2 = Contributor(
+            contrib_type="author non-byline", surname="eLife", given_name=None
+        )
+        contributor2.group_author_key = "group1"
         article.add_contributor(contributor2)
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
@@ -146,7 +156,6 @@ class TestGenerateArticleContributors(unittest.TestCase):
 
 
 class TestGenerateArticlePOAStatus(unittest.TestCase):
-
     def test_generate_vor_was_ever_poa(self):
         "build an article object, set the poa status values, generate PubMed XML"
         doi = "10.7554/eLife.00666"
@@ -160,12 +169,12 @@ class TestGenerateArticlePOAStatus(unittest.TestCase):
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
         self.assertTrue('<Replaces IdType="doi">' in str(pubmed_xml_string))
-        self.assertTrue('<History><PubDate PubStatus="aheadofprint">' in
-                        str(pubmed_xml_string))
+        self.assertTrue(
+            '<History><PubDate PubStatus="aheadofprint">' in str(pubmed_xml_string)
+        )
 
 
 class TestGenerateArticleIssue(unittest.TestCase):
-
     def test_generate_issue(self):
         """
         until there is a test example that has an article issue in the XML,
@@ -181,11 +190,10 @@ class TestGenerateArticleIssue(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
-        self.assertTrue('<Issue>1</Issue>' in str(pubmed_xml_string))
+        self.assertTrue("<Issue>1</Issue>" in str(pubmed_xml_string))
 
 
 class TestSetCoiStatement(unittest.TestCase):
-
     def test_set_coi_statement(self):
         """
         test the output of set_coi_statement with generated object data
@@ -194,14 +202,20 @@ class TestSetCoiStatement(unittest.TestCase):
         title = "Test article"
         article = Article(doi, title)
         # add contributors
-        contributor1 = Contributor(contrib_type="author", surname="Ant", given_name="Adam")
-        contributor1.conflict = ['No competing interests declared']
+        contributor1 = Contributor(
+            contrib_type="author", surname="Ant", given_name="Adam"
+        )
+        contributor1.conflict = ["No competing interests declared"]
         article.add_contributor(contributor1)
-        contributor2 = Contributor(contrib_type="author", surname="Bee", given_name="Billie")
-        contributor2.conflict = ['Holds the position of <italic>Queen Bee</italic>']
+        contributor2 = Contributor(
+            contrib_type="author", surname="Bee", given_name="Billie"
+        )
+        contributor2.conflict = ["Holds the position of <italic>Queen Bee</italic>"]
         article.add_contributor(contributor2)
-        contributor3 = Contributor(contrib_type="author", surname="Caterpillar", given_name="Cecil")
-        contributor3.conflict = ['No competing interests declared']
+        contributor3 = Contributor(
+            contrib_type="author", surname="Caterpillar", given_name="Cecil"
+        )
+        contributor3.conflict = ["No competing interests declared"]
         article.add_contributor(contributor3)
         # generate the PubMed XML
         p_xml = generate.build_pubmed_xml([article])
@@ -209,13 +223,13 @@ class TestSetCoiStatement(unittest.TestCase):
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look for the expected string in the output
         expected_fragment = (
-            '<CoiStatement>AA, CC No competing interests declared, ' +
-            'BB Holds the position of Queen Bee</CoiStatement>')
+            "<CoiStatement>AA, CC No competing interests declared, "
+            + "BB Holds the position of Queen Bee</CoiStatement>"
+        )
         self.assertTrue(expected_fragment in str(pubmed_xml_string))
 
 
 class TestReplaces(unittest.TestCase):
-
     def test_set_replaces(self):
         """
         test et_replaces when an article replaces attribute it set
@@ -242,7 +256,6 @@ class TestReplaces(unittest.TestCase):
 
 
 class TestGenerateArticleFunding(unittest.TestCase):
-
     def test_generate_funding(self):
         """
         Test incomplete funding data for test coverage
@@ -258,11 +271,10 @@ class TestGenerateArticleFunding(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # A quick test just look in a string of the output
-        self.assertTrue('<grant>' not in str(pubmed_xml_string))
+        self.assertTrue("<grant>" not in str(pubmed_xml_string))
 
 
 class TestSetGroupList(unittest.TestCase):
-
     def test_set_group_list_no_individuals(self):
         "test a collab contributor with no group member contributors"
         doi = "10.7554/eLife.00666"
@@ -293,7 +305,9 @@ class TestSetGroupList(unittest.TestCase):
         pubmed_xml_string = p_xml.output_xml()
         self.assertIsNotNone(pubmed_xml_string)
         # assertions
-        self.assertTrue("<CollectiveName>Test Group</CollectiveName>" in str(pubmed_xml_string))
+        self.assertTrue(
+            "<CollectiveName>Test Group</CollectiveName>" in str(pubmed_xml_string)
+        )
         self.assertTrue("<GroupList>" not in str(pubmed_xml_string))
 
     def test_set_group_list_with_individual(self):
@@ -354,7 +368,9 @@ class TestSetGroupList(unittest.TestCase):
         contributor1.group_author_key = group_author_name_1
         article.add_contributor(contributor1)
 
-        contributor2 = Contributor(contrib_type="author", surname="Ant", given_name="Adam")
+        contributor2 = Contributor(
+            contrib_type="author", surname="Ant", given_name="Adam"
+        )
         contributor2.group_author_key = group_author_name_1
         article.add_contributor(contributor2)
 
@@ -373,9 +389,13 @@ class TestSetGroupList(unittest.TestCase):
         self.assertIsNotNone(pubmed_xml_string)
         # assertions
         self.assertTrue(
-            "<CollectiveName>Group with Individual</CollectiveName>" in str(pubmed_xml_string))
+            "<CollectiveName>Group with Individual</CollectiveName>"
+            in str(pubmed_xml_string)
+        )
         self.assertTrue(
-            "<CollectiveName>Group without Individual</CollectiveName>" in str(pubmed_xml_string))
+            "<CollectiveName>Group without Individual</CollectiveName>"
+            in str(pubmed_xml_string)
+        )
         self.assertTrue(
             "<GroupList>"
             "<Group><GroupName>Group with Individual</GroupName>"
@@ -383,8 +403,9 @@ class TestSetGroupList(unittest.TestCase):
             "<FirstName>Adam</FirstName>"
             "<LastName>Ant</LastName>"
             "</IndividualName></Group>"
-            "</GroupList>" in str(pubmed_xml_string))
+            "</GroupList>" in str(pubmed_xml_string)
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ArticleSet
+ PUBLIC "-//NLM//DTD PubMed 2.7//EN"
+  "https://dtd.nlm.nih.gov/ncbi/pubmed/in/PubMed.dtd">
+<ArticleSet>
+<Article>
+<Journal>
+<PublisherName>eLife Sciences Publications, Ltd</PublisherName>
+<JournalTitle>eLife</JournalTitle>
+<Issn>2050-084X</Issn>
+<Volume>3</Volume>
+<PubDate PubStatus="epublish">
+<Year>2014</Year>
+<Month>October</Month>
+<Day>01</Day>
+</PubDate>
+</Journal>
+<Replaces IdType="doi">10.7554/eLife.02935</Replaces>
+<ArticleTitle>Origins and functional consequences of somatic mitochondrial DNA mutations in human cancer</ArticleTitle>
+<ELocationID EIdType="doi">10.7554/eLife.02935</ELocationID>
+<ELocationID EIdType="pii">e02935</ELocationID>
+<Language>EN</Language>
+<AuthorList>
+<Author>
+<FirstName>Young Seok</FirstName>
+<LastName>Ju</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Ludmil B</FirstName>
+<LastName>Alexandrov</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Moritz</FirstName>
+<LastName>Gerstung</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Inigo</FirstName>
+<LastName>Martincorena</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Serena</FirstName>
+<LastName>Nik-Zainal</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Manasa</FirstName>
+<LastName>Ramakrishna</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Helen R</FirstName>
+<LastName>Davies</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Elli</FirstName>
+<LastName>Papaemmanuil</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Gunes</FirstName>
+<LastName>Gundem</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Adam</FirstName>
+<LastName>Shlien</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Niccolo</FirstName>
+<LastName>Bolli</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Sam</FirstName>
+<LastName>Behjati</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Patrick S</FirstName>
+<LastName>Tarpey</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Jyoti</FirstName>
+<LastName>Nangalia</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Haematology, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Charles E</FirstName>
+<LastName>Massie</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Haematology, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Adam P</FirstName>
+<LastName>Butler</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Jon W</FirstName>
+<LastName>Teague</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>George S</FirstName>
+<LastName>Vassiliou</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Haematology, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Anthony R</FirstName>
+<LastName>Green</LastName>
+<AffiliationInfo>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Haematology, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Ming-Qing</FirstName>
+<LastName>Du</LastName>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Ashwin</FirstName>
+<LastName>Unnikrishnan</LastName>
+<Affiliation>Lowy Cancer Research Centre, University of New South Wales, Sydney, Australia</Affiliation>
+</Author>
+<Author>
+<FirstName>John E</FirstName>
+<LastName>Pimanda</LastName>
+<Affiliation>Lowy Cancer Research Centre, University of New South Wales, Sydney, Australia</Affiliation>
+</Author>
+<Author>
+<FirstName>Bin Tean</FirstName>
+<LastName>Teh</LastName>
+<AffiliationInfo>
+<Affiliation>Laboratory of Cancer Epigenome, National Cancer Centre, Singapore, Singapore</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Duke-NUS Graduate Medical School, Singapore, Singapore</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Nikhil</FirstName>
+<LastName>Munshi</LastName>
+<Affiliation>Department of Hematologic Oncology, Dana-Farber Cancer Institute, Boston, United States</Affiliation>
+</Author>
+<Author>
+<FirstName>Mel</FirstName>
+<LastName>Greaves</LastName>
+<Affiliation>Institute of Cancer Research, Sutton, London, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Paresh</FirstName>
+<LastName>Vyas</LastName>
+<Affiliation>Weatherall Institute for Molecular Medicine, University of Oxford, Oxford, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Adel K</FirstName>
+<LastName>El-Naggar</LastName>
+<Affiliation>Department of Pathology, MD Anderson Cancer Center, Houston, United States</Affiliation>
+</Author>
+<Author>
+<FirstName>Tom</FirstName>
+<LastName>Santarius</LastName>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>V Peter</FirstName>
+<LastName>Collins</LastName>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Richard</FirstName>
+<LastName>Grundy</LastName>
+<Affiliation>Children's Brain Tumour Research Centre, University of Nottingham, Nottingham, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Jack A</FirstName>
+<LastName>Taylor</LastName>
+<Affiliation>National Institute of Environmental Health Sciences, National Institute of Health, Triangle, North Carolina, United States</Affiliation>
+</Author>
+<Author>
+<FirstName>D Neil</FirstName>
+<LastName>Hayes</LastName>
+<Affiliation>Department of Internal Medicine, University of North Carolina, Chapel Hill, United States</Affiliation>
+</Author>
+<Author>
+<FirstName>David</FirstName>
+<LastName>Malkin</LastName>
+<Affiliation>Hospital for Sick Children, University of Toronto, Toronto, Canada</Affiliation>
+</Author>
+<Author>
+<CollectiveName>ICGC Breast Cancer Group</CollectiveName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<CollectiveName>ICGC Chronic Myeloid Disorders Group</CollectiveName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<CollectiveName>ICGC Prostate Cancer Group</CollectiveName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Institute of Cancer Research, Sutton, London, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Cancer Research UK Cambridge Institute, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Christopher S</FirstName>
+<LastName>Foster</LastName>
+<AffiliationInfo>
+<Affiliation>Department of Molecular and Clinical Cancer Medicine, University of Liverpool, London, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>HCA Pathology Laboratories, London, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Anne Y</FirstName>
+<LastName>Warren</LastName>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Hayley C</FirstName>
+<LastName>Whitaker</LastName>
+<Affiliation>Cancer Research UK Cambridge Institute, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Daniel</FirstName>
+<LastName>Brewer</LastName>
+<AffiliationInfo>
+<Affiliation>Institute of Cancer Research, Sutton, London, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>School of Biological Sciences, University of East Anglia, Norwich, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Rosalind</FirstName>
+<LastName>Eeles</LastName>
+<Affiliation>Institute of Cancer Research, Sutton, London, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Colin</FirstName>
+<LastName>Cooper</LastName>
+<AffiliationInfo>
+<Affiliation>Institute of Cancer Research, Sutton, London, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>School of Biological Sciences, University of East Anglia, Norwich, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>David</FirstName>
+<LastName>Neal</LastName>
+<Affiliation>Cancer Research UK Cambridge Institute, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Tapio</FirstName>
+<LastName>Visakorpi</LastName>
+<Affiliation>Institute of Biosciences and Medical Technology - BioMediTech and Fimlab Laboratories, University of Tampere and Tampere University Hospital, Tampere, Finland</Affiliation>
+</Author>
+<Author>
+<FirstName>William B</FirstName>
+<LastName>Isaacs</LastName>
+<Affiliation>Department of Oncology, Johns Hopkins University, Baltimore, United States</Affiliation>
+</Author>
+<Author>
+<FirstName>G Steven</FirstName>
+<LastName>Bova</LastName>
+<Affiliation>Institute of Biosciences and Medical Technology - BioMediTech and Fimlab Laboratories, University of Tampere and Tampere University Hospital, Tampere, Finland</Affiliation>
+</Author>
+<Author>
+<FirstName>Adrienne M</FirstName>
+<LastName>Flanagan</LastName>
+<AffiliationInfo>
+<Affiliation>Department of Histopathology, Royal National Orthopaedic Hospital, Middlesex, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>University College London Cancer Institute, University College London, London, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>P Andrew</FirstName>
+<LastName>Futreal</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Genomic Medicine, The University of Texas, MD Anderson Cancer Center, Houston, Texas, United States</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Andy G</FirstName>
+<LastName>Lynch</LastName>
+<Affiliation>Cancer Research UK Cambridge Institute, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Patrick F</FirstName>
+<LastName>Chinnery</LastName>
+<Affiliation>Wellcome Trust Centre for Mitochondrial Research, Institute of Genetic Medicine, Newcastle University, Newcastle-upon-tyne, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Ultan</FirstName>
+<LastName>McDermott</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+<Author>
+<FirstName>Michael R</FirstName>
+<LastName>Stratton</LastName>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</Author>
+<Author>
+<FirstName>Peter J</FirstName>
+<LastName>Campbell</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project, Wellcome Trust Sanger Institute, Hinxton, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Cambridge University Hospitals NHS Foundation Trust, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Haematology, University of Cambridge, Cambridge, United Kingdom</Affiliation>
+</AffiliationInfo>
+</Author>
+</AuthorList>
+<GroupList>
+<Group>
+<GroupName>ICGC Breast Cancer Group</GroupName>
+<IndividualName>
+<FirstName>Elena</FirstName>
+<LastName>Provenzano</LastName>
+<Affiliation>Cambridge Breast Unit, Addenbrooke’s Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge CB2 2QQ, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Marc</FirstName>
+<LastName>van de Vijver</LastName>
+<Affiliation>Department of Pathology, Academic Medical Center, Meibergdreef 9, 1105 AZ Amsterdam, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Andrea L</FirstName>
+<LastName>Richardson</LastName>
+<AffiliationInfo>
+<Affiliation>Department of Cancer Biology, Dana-Farber Cancer Institute, 450 Brookline Ave., Boston, Massachusetts 02215, USA</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Pathology, Brigham and Women's Hospital, Harvard Medical School, 75 Francis St., Boston, Massachusetts 02115, USA</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Colin</FirstName>
+<LastName>Purdie</LastName>
+<Affiliation>East of Scotland Breast Service, Ninewells Hospital, Dundee, United Kingdom</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Sarah</FirstName>
+<LastName>Pinder</LastName>
+<Affiliation>Department of Research Oncology, Guy’s Hospital, King’s Health Partners AHSC, King’s College London School of Medicine, London SE1 9RT, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Gaetan</FirstName>
+<LastName>MacGrogan</LastName>
+<Affiliation>Institut Bergonié, 229 cours de l’Argone, 33076, Bordeaux, France</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Anne</FirstName>
+<LastName>Vincent-Salomon</LastName>
+<AffiliationInfo>
+<Affiliation>Institut Curie, Department of Tumor Biology, 26 rue d’Ulm, 75248 Paris cédex 05, France</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Institut Curie, INSERM Unit 830, 26 rue d’Ulm, 75248 Paris cédex 05, France</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Denis</FirstName>
+<LastName>Larsimont</LastName>
+<Affiliation>Department of Pathology, Jules Bordet Institute, Brussels 1000, Belgium</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Dorthe</FirstName>
+<LastName>Grabau</LastName>
+<Affiliation>Department of Pathology, Skåne University Hospital, Lund University, SE-221 85 Lund, Sweden</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Torill</FirstName>
+<LastName>Sauer</LastName>
+<Affiliation>Department of Pathology, Oslo University Hospital Ulleval and University of Oslo, Faculty of Medicine and Institute of Clinical Medicine, Oslo, Norway</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Øystein</FirstName>
+<LastName>Garred</LastName>
+<Affiliation>Department of Pathology, Oslo University Hospital Ulleval and University of Oslo, Faculty of Medicine and Institute of Clinical Medicine, Oslo, Norway</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Anna</FirstName>
+<LastName>Ehinger</LastName>
+<Affiliation>Department of Gynecology &amp; Obstetrics, Department of Clinical Sciences, Lund University, Skåne University Hospital Lund, SE-221 85 Lund, Sweden</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Gert G</FirstName>
+<LastName>Van den Eynden</LastName>
+<Affiliation>Translational Cancer Research Unit, GZA Hospitals St.-Augustinus, Antwerp, Belgium</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>C.H.M.</FirstName>
+<LastName>van Deurzen</LastName>
+<Affiliation>Department of Pathology, Erasmus Medical Center, Rotterdam, the Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Roberto</FirstName>
+<LastName>Salgado</LastName>
+<Affiliation>Breast Cancer Translational Research Laboratory, Institut Jules Bordet, Université Libre de Bruxelles, Brussels, Belgium</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jane E</FirstName>
+<LastName>Brock</LastName>
+<Affiliation>Department of Pathology, Brigham and Women's Hospital, Harvard Medical School, 75 Francis St., Boston, Massachusetts 02115, USA</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Sunil R</FirstName>
+<LastName>Lakhani</LastName>
+<AffiliationInfo>
+<Affiliation>The University of Queensland, School of Medicine, Herston, Brisbane, QLD 4006, Australia</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Pathology Queensland: The Royal Brisbane &amp; Women’s Hospital, Brisbane, QLD 4029, Australia</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>The University of Queensland, UQ Centre for Clinical Research, Herston, Brisbane, QLD 4029, Australia</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Dilip D</FirstName>
+<LastName>Giri</LastName>
+<Affiliation>Department of Pathology, Memorial Sloan-Kettering Cancer Center, New York, USA</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Laurent</FirstName>
+<LastName>Arnould</LastName>
+<Affiliation>Centre Georges-François Leclerc, Dijon, France</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jocelyne</FirstName>
+<LastName>Jacquemier</LastName>
+<Affiliation>biopathology department, 0nstitut Paoli Calmettes, Marseille, France</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Isabelle</FirstName>
+<LastName>Treilleux</LastName>
+<Affiliation>Centre Léon Bérard, Lyon, France</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Carlos</FirstName>
+<LastName>Caldas</LastName>
+<AffiliationInfo>
+<Affiliation>Cambridge Breast Unit, Addenbrooke’s Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Oncology, University of Cambridge and Cancer Research UK Cambridge Research Institute, Li Ka Shin Centre, Cambridge</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Suet-Feung</FirstName>
+<LastName>Chin</LastName>
+<Affiliation>Department of Oncology, University of Cambridge and Cancer Research UK Cambridge Research Institute, Li Ka Shin Centre, Cambridge</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Aquila</FirstName>
+<LastName>Fatima</LastName>
+<Affiliation>Department of Cancer Biology, Dana-Farber Cancer Institute, Massachusetts, USA</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Alastair M</FirstName>
+<LastName>Thompson</LastName>
+<Affiliation>Dundee Cancer Centre, Ninewells Hospital, Dundee, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Alasdair</FirstName>
+<LastName>Stenhouse</LastName>
+<Affiliation>Dundee Cancer Centre, Ninewells Hospital, Dundee, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>John</FirstName>
+<LastName>Foekens</LastName>
+<Affiliation>Erasmus MC Cancer Institute, Erasmus University Medical Center, Rotterdam, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>John</FirstName>
+<LastName>Martens</LastName>
+<Affiliation>Erasmus MC Cancer Institute, Erasmus University Medical Center, Rotterdam, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Anieta</FirstName>
+<LastName>Sieuwerts</LastName>
+<Affiliation>Erasmus MC Cancer Institute, Erasmus University Medical Center, Rotterdam, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Arjen</FirstName>
+<LastName>Brinkman</LastName>
+<Affiliation>Department of Molecular Biology, Faculty of Science, Nijmegen Centre for Molecular Life Sciences, Radboud University, Nijmegen, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Henk</FirstName>
+<LastName>Stunnenberg</LastName>
+<Affiliation>Department of Molecular Biology, Faculty of Science, Nijmegen Centre for Molecular Life Sciences, Radboud University, Nijmegen, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Paul N.</FirstName>
+<LastName>Span</LastName>
+<Affiliation>Department of Radiation Oncology, Radboud University Medical Centre, Nijmegen, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Fred</FirstName>
+<LastName>Sweep</LastName>
+<Affiliation>Department of Laboratory Medicine, Radboud University Medical Centre, Nijmegen, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Christine</FirstName>
+<LastName>Desmedt</LastName>
+<Affiliation>Breast Cancer Translational Research Laboratory, Institut Jules Bordet, Université Libre de Bruxelles, Brussels, Belgium</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Christos</FirstName>
+<LastName>Sotiriou</LastName>
+<Affiliation>Breast Cancer Translational Research Laboratory, Institut Jules Bordet, Université Libre de Bruxelles, Brussels, Belgium</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Gilles</FirstName>
+<LastName>Thomas</LastName>
+<Affiliation>Universite Lyon1, INCa-Synergie, Centre Leon Berard, Lyon Cedex 08, France</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Annegein</FirstName>
+<LastName>Broeks</LastName>
+<Affiliation>Department Experimental Therapy, The Netherlands Cancer Institute, Amsterdam, The Netherlands</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Anita</FirstName>
+<LastName>Langerod</LastName>
+<Affiliation>Department of Genetics, Institute for Cancer Research, The Norwegian Radium Hospital, Oslo University Hospital, Oslo, Norway</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Samuel</FirstName>
+<LastName>Aparicio</LastName>
+<Affiliation>Department of Molecular Oncology, BC Cancer Agency, Vancouver</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Peter</FirstName>
+<LastName>Simpson</LastName>
+<Affiliation>The University of Queensland, UQ Centre for Clinical Research, Herston, Brisbane, Australia</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Laura van 't</FirstName>
+<LastName>Veer</LastName>
+<AffiliationInfo>
+<Affiliation>Division of Molecular Carcinogenesis, The Netherlands Cancer Institute, Amsterdam, The Netherlands</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Surgery, University of California, San Francisco, San Francisco, California, United States of America</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Jórunn Erla</FirstName>
+<LastName>Eyfjörd</LastName>
+<Affiliation>Cancer Research Laboratory, Faculty of Medicine, University of Iceland, Reykjavik, Iceland</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Holmfridur</FirstName>
+<LastName>Hilmarsdottir</LastName>
+<Affiliation>Cancer Research Laboratory, Faculty of Medicine, University of Iceland, Reykjavik, Iceland</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jon G</FirstName>
+<LastName>Jonasson</LastName>
+<AffiliationInfo>
+<Affiliation>Department of Pathology, University Hospital, Reykjavik, Iceland</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Icelandic Cancer Registry, Icelandic Cancer Society, Reykjavik, Iceland</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Anne-Lise</FirstName>
+<LastName>Børresen-Dale</LastName>
+<AffiliationInfo>
+<Affiliation>Department of Genetics, Institute for Cancer Research, The Norwegian Radium Hospital, Oslo University Hospital, Oslo, Norway</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Institute for Clinical Medicine, Faculty of Medicine, University of Oslo</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Ming Ta</FirstName>
+<LastName>Michael Lee</LastName>
+<Affiliation>National Genotyping Center, Institute of Biomedical Sciences, Nankang, ROC</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Bernice Huimin</FirstName>
+<LastName>Wong</LastName>
+<Affiliation>NCCS-VARI Translational Research Laboratory, National Cancer Centre Singapore, Singapore</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Benita Kiat</FirstName>
+<LastName>Tee Tan</LastName>
+<Affiliation>Department of General Surgery, Singapore General Hospital, Singapore</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Gerrit K.J.</FirstName>
+<LastName>Hooijer</LastName>
+<Affiliation>Department of Pathology, Academic Medical Center, Amsterdam, The Netherlands</Affiliation>
+</IndividualName>
+</Group>
+<Group>
+<GroupName>ICGC Chronic Myeloid Disorders Group</GroupName>
+<IndividualName>
+<FirstName>Luca</FirstName>
+<LastName>Malcovati</LastName>
+<Affiliation>Fondazione IRCCS Policlinico San Matteo, University of Pavia, Pavia, Italy</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Sudhir</FirstName>
+<LastName>Tauro</LastName>
+<Affiliation>Division of Medial Sciences, University of Dundee, Dundee, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jacqueline</FirstName>
+<LastName>Boultwood</LastName>
+<Affiliation>Nuffield Department of Clinical Laboratory Sciences, University of Oxford, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Andrea</FirstName>
+<LastName>Pellagatti</LastName>
+<Affiliation>Nuffield Department of Clinical Laboratory Sciences, University of Oxford, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Michael</FirstName>
+<LastName>Groves</LastName>
+<Affiliation>Division of Medial Sciences, University of Dundee, Dundee, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Alex</FirstName>
+<LastName>Sternberg</LastName>
+<AffiliationInfo>
+<Affiliation>Weatherall Institute of Molecular Medicine, University of Oxford, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Haematology, Great Western Hospital, Swindon, UK</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Carlo</FirstName>
+<LastName>Gambacorti-Passerini</LastName>
+<Affiliation>Department of Haematology, University of Milan Bicocca, Milan, Italy</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Paresh</FirstName>
+<LastName>Vyas</LastName>
+<Affiliation>Weatherall Institute of Molecular Medicine, University of Oxford, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Eva</FirstName>
+<LastName>Hellstrom-Lindberg</LastName>
+<Affiliation>Department of Haematology, Karolinska Institute, Stockholm, Sweden</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>David</FirstName>
+<LastName>Bowen</LastName>
+<Affiliation>St James Institute of Oncology, St James Hospital, Leeds, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Nicholas CP</FirstName>
+<LastName>Cross</LastName>
+<Affiliation>School of Medicine, University of Southampton, Southampton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Anthony R</FirstName>
+<LastName>Green</LastName>
+<Affiliation>Department of Haematology, University of Cambridge, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Mario</FirstName>
+<LastName>Cazzola</LastName>
+<Affiliation>Fondazione IRCCS Policlinico San Matteo, University of Pavia, Pavia, Italy</Affiliation>
+</IndividualName>
+</Group>
+<Group>
+<GroupName>ICGC Prostate Cancer Group</GroupName>
+<IndividualName>
+<FirstName>Colin</FirstName>
+<LastName>Cooper</LastName>
+<AffiliationInfo>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Biological Sciences and School of Medicine, University of East Anglia, Norwich, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Rosalind</FirstName>
+<LastName>Eeles</LastName>
+<AffiliationInfo>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>David</FirstName>
+<LastName>Wedge</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Peter</FirstName>
+<LastName>Van Loo</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Human Genome Laboratory, Department of Human Genetics, VIB and KU Leuven, Leuven, Belgium</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Gunes</FirstName>
+<LastName>Gundem</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Ludmil</FirstName>
+<LastName>Alexandrov</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Barbara</FirstName>
+<LastName>Kremeyer</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Adam</FirstName>
+<LastName>Butler</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Andrew</FirstName>
+<LastName>Lynch</LastName>
+<Affiliation>Statistics and Computational Biology Laboratory, Cancer Research UK Cambridge Research Institute, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Sandra</FirstName>
+<LastName>Edwards</LastName>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Niedzica</FirstName>
+<LastName>Camacho</LastName>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Charlie</FirstName>
+<LastName>Massie</LastName>
+<Affiliation>Urological Research Laboratory, Cancer Research UK Cambridge Research Institute, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>ZSofia</FirstName>
+<LastName>Kote-Jarai</LastName>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Nening</FirstName>
+<LastName>Dennis</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Sue</FirstName>
+<LastName>Merson</LastName>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jorge</FirstName>
+<LastName>Zamora</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jonathan</FirstName>
+<LastName>Kay</LastName>
+<Affiliation>Urological Research Laboratory, Cancer Research UK Cambridge Research Institute, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Cathy</FirstName>
+<LastName>Corbishley</LastName>
+<Affiliation>Department of Histopathology, St Georges Hospital, London, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Sarah</FirstName>
+<LastName>Thomas</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Serena</FirstName>
+<LastName>Nik-Zainai</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Sarah</FirstName>
+<LastName>O'Meara</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Lucy</FirstName>
+<LastName>Matthews</LastName>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jeremy</FirstName>
+<LastName>Clark</LastName>
+<Affiliation>Department of Biological Sciences and School of Medicine, University of East Anglia, Norwich, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Rachel</FirstName>
+<LastName>Hurst</LastName>
+<Affiliation>Department of Biological Sciences and School of Medicine, University of East Anglia, Norwich, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Richard</FirstName>
+<LastName>Mithen</LastName>
+<Affiliation>Institute of Food Research, Norwich Research Park, Norwich, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Susanna</FirstName>
+<LastName>Cooke</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Keiran</FirstName>
+<LastName>Raine</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>David</FirstName>
+<LastName>Jones</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Andrew</FirstName>
+<LastName>Menzies</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Lucy</FirstName>
+<LastName>Stebbings</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jon</FirstName>
+<LastName>Hinton</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Jon</FirstName>
+<LastName>Teague</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Stuart</FirstName>
+<LastName>McLaren</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Laura</FirstName>
+<LastName>Mudie</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Claire</FirstName>
+<LastName>Hardy</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Elizabeth</FirstName>
+<LastName>Anderson</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Olivia</FirstName>
+<LastName>Joseph</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Victoria</FirstName>
+<LastName>Goody</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Ben</FirstName>
+<LastName>Robinson</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Mark</FirstName>
+<LastName>Maddison</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Stephen</FirstName>
+<LastName>Gamble</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Christopher</FirstName>
+<LastName>Greenman</LastName>
+<Affiliation>School of Computing Sciences, University of East Anglia, Norwich, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Dan</FirstName>
+<LastName>Berney</LastName>
+<Affiliation>Department of Molecular Oncology, Barts Cancer Centre, Barts and the London School of Medicine and Dentistry, London, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Steven</FirstName>
+<LastName>Hazell</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Naomi</FirstName>
+<LastName>Livni</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Cyril</FirstName>
+<LastName>Fisher</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Christopher</FirstName>
+<LastName>Ogden</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Pardeep</FirstName>
+<LastName>Kumar</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Alan</FirstName>
+<LastName>Thompson</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Christopher</FirstName>
+<LastName>Woodhouse</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>David</FirstName>
+<LastName>Nicol</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Erik</FirstName>
+<LastName>Mayer</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Tim</FirstName>
+<LastName>Dudderidge</LastName>
+<Affiliation>Royal Marsden NHS Foundation Trust, London and Sutton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Nimish</FirstName>
+<LastName>Shah</LastName>
+<Affiliation>Urological Research Laboratory, Cancer Research UK Cambridge Research Institute, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Vincent</FirstName>
+<LastName>Gnanapragasam</LastName>
+<Affiliation>Urological Research Laboratory, Cancer Research UK Cambridge Research Institute, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Peter</FirstName>
+<LastName>Campbell</LastName>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Andrew</FirstName>
+<LastName>Futreal</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Douglas</FirstName>
+<LastName>Easton</LastName>
+<AffiliationInfo>
+<Affiliation>Centre for Cancer Genetic Epidemiology, Department of Oncology, University of Cambridge, Cambridge, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Anne Y</FirstName>
+<LastName>Warren</LastName>
+<Affiliation>Department of Histopathology, Cambridge University Hospitals NHS Foundation Trust, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Christopher</FirstName>
+<LastName>Foster</LastName>
+<AffiliationInfo>
+<Affiliation>Bostwick Laboratories, London, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Michael</FirstName>
+<LastName>Stratton</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Hayley</FirstName>
+<LastName>Whitaker</LastName>
+<Affiliation>Urological Research Laboratory, Cancer Research UK Cambridge Research Institute, Cambridge, UK</Affiliation>
+</IndividualName>
+<IndividualName>
+<FirstName>Ultan</FirstName>
+<LastName>McDermott</LastName>
+<AffiliationInfo>
+<Affiliation>Cancer Genome Project,, Wellcome Trust Sanger Institute, Hinxton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>Daniel</FirstName>
+<LastName>Brewer</LastName>
+<AffiliationInfo>
+<Affiliation>Division of Genetics and Epidemiology, The Institute Of Cancer Research, Sutton, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Biological Sciences and School of Medicine, University of East Anglia, Norwich, UK</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+<IndividualName>
+<FirstName>David</FirstName>
+<LastName>Neal</LastName>
+<AffiliationInfo>
+<Affiliation>Urological Research Laboratory, Cancer Research UK Cambridge Research Institute, Cambridge, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Department of Surgical Oncology, University of Cambridge, Addenbrooke's Hospital, Cambridge, UK</Affiliation>
+</AffiliationInfo>
+<AffiliationInfo>
+<Affiliation>Senior Principal Investigators of the Cancer Research UK funded ICGC Prostate Cancer Project</Affiliation>
+</AffiliationInfo>
+</IndividualName>
+</Group>
+</GroupList>
+<PublicationType>Journal Article</PublicationType>
+<ArticleIdList>
+<ArticleId IdType="doi">10.7554/eLife.02935</ArticleId>
+<ArticleId IdType="pii">02935</ArticleId>
+</ArticleIdList>
+<History>
+<PubDate PubStatus="received">
+<Year>2014</Year>
+<Month>03</Month>
+<Day>28</Day>
+</PubDate>
+<PubDate PubStatus="accepted">
+<Year>2014</Year>
+<Month>09</Month>
+<Day>26</Day>
+</PubDate>
+</History>
+<Abstract>
+<AbstractText Label="">Recent sequencing studies have extensively explored the somatic alterations present in the nuclear genomes of cancers. Although mitochondria control energy metabolism and apoptosis, the origins and impact of cancer-associated mutations in mtDNA are unclear. In this study, we analyzed somatic alterations in mtDNA from 1675 tumors. We identified 1907 somatic substitutions, which exhibited dramatic replicative strand bias, predominantly C &gt; T and A &gt; G on the mitochondrial heavy strand. This strand-asymmetric signature differs from those found in nuclear cancer genomes but matches the inferred germline process shaping primate mtDNA sequence content. A number of mtDNA mutations showed considerable heterogeneity across tumor types. Missense mutations were selectively neutral and often gradually drifted towards homoplasmy over time. In contrast, mutations resulting in protein truncation undergo negative selection and were almost exclusively heteroplasmic. Our findings indicate that the endogenous mutational mechanism has far greater impact than any other external mutagens in mitochondria and is fundamentally linked to mtDNA replication.</AbstractText>
+</Abstract>
+<OtherAbstract Language="eng" Type="plain-language-summary">The DNA in a cell's nucleus must be copied faithfully, and divided equally, when a cell divides to produce two new cells. Mistakes—or mutations—are sometimes made during the copying process, and mutations can also be introduced by exposing DNA to damaging agents known as mutagens, such as UV light or cigarette smoke. These mutations are then maintained in all of the descendants of the cell. Most of these mutations have no impact on the cell's characteristics (‘passenger mutations’). However, ‘driver mutations’ that allow cells to divide uncontrollably and spread to other body sites can lead to cancer. Mitochondria are cellular compartments that are responsible for generating the energy a cell needs to survive and are also responsible for initiating programmed cell death. Mitochondria contain their own DNA—entirely separate from that in the nucleus of the cell—that encodes the proteins most essential for energy production. Mitochondrial DNA molecules are frequently exposed to damaging molecules called reactive oxygen species that are produced by the mitochondria. Therefore, these reactive oxygen species have been thought to be one of the most important causes of mitochondrial DNA mutations. In addition, because cancer cells produce energy differently to normal cells, mutations in the mitochondrial DNA that change the ability of the mitochondria to produce energy have been conventionally thought to help normal cells to become cancerous. However, conclusive evidence for a link between cancer and mitochondrial DNA mutations is lacking. Ju et al. examined the mitochondrial DNA sequences taken from 1675 cancer biopsies from over thirty different types of cancer and compared these to normal tissue from the same patients. This revealed 1907 mutations in the mitochondrial DNA taken from the cancer cells. The pattern of the mutations suggests that the majority of the mutations are not introduced from reactive oxygen species, but from the errors the mitochondria themselves make in the process of duplicating their DNA when a cell divides. Unexpectedly, known mutagens, such as cigarette smoke or UV light, had a negligible effect on mitochondrial DNA mutations. Contrary to conventional wisdom, Ju et al. found no evidence that the mitochondrial DNA mutations help cancer to develop or spread. Instead, like passenger mutations found in the DNA in the cell nucleus, most mitochondrial genome mutations have no discernible effect. However, Ju et al. revealed that DNA mutations that damage normal mitochondrial activity are less likely to be maintained in cancer cells. Presumably, mitochondria containing these proteins produce less energy, and so a cell containing too many of these mutations will find it harder to survive. This shows that having enough correctly functioning mitochondria is essential for even cancer cells to thrive.</OtherAbstract>
+<CoiStatement>YJ, LA, MG, IM, SN, MR, HD, EP, GG, AS, NB, SB, PT, JN, CM, AB, JT, GV, AG, MD, AU, JP, BT, NM, MG, PV, AE, TS, VC, RG, JT, DH, DM, CF, AW, HW, DB, RE, CC, DN, TV, WI, GB, AF, PF, AL, PC, UM, MS, PC The authors declare that no competing interests exist.</CoiStatement>
+<ObjectList>
+<Object Type="keyword">
+<Param Name="value">human</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">genomics</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">evolutionary biology</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">mitochondrial DNA</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">somatic mutation</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">mutational signature</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">cancer genome</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">evolution</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">sequencing</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Health Innovation Challenge Fund (HICF)</Param>
+<Param Name="grantor">Wellcome Trust</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">ALTF 1203_2012</Param>
+<Param Name="grantor">European Molecular Biology Organization</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Biomedical Research Center at University College London Hospitals</Param>
+<Param Name="grantor">National Institute for Health Research</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Breast Cancer Somatic Genetics Study (BASIS)</Param>
+<Param Name="grantor">European Union</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">PROMPT: G0500966/75466</Param>
+<Param Name="grantor">National Cancer Research Institute</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Intramural Research Program of the NIH</Param>
+<Param Name="grantor">National Institute of Environmental Health Sciences</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Cambridge Biomedical Research Center</Param>
+<Param Name="grantor">National Institute for Health Research</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">ALTF 1287-2012</Param>
+<Param Name="grantor">European Molecular Biology Organization</Param>
+</Object>
+<Object Type="grant">
+<Param Name="id">Health Innovation Challenge Fund (HICF)</Param>
+<Param Name="grantor">Department of Health</Param>
+</Object>
+</ObjectList>
+</Article>
+</ArticleSet>

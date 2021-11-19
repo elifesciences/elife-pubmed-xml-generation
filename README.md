@@ -97,7 +97,7 @@ Run tests
 pytest
 ```
 
-Run tests with coverage
+Run tests with `coverage` (install it if missing)
 
 ```
 coverage run -m pytest
@@ -106,7 +106,7 @@ coverage run -m pytest
 then report on code coverage
 
 ```
-converage report -m
+coverage report -m
 ```
 
 ## License

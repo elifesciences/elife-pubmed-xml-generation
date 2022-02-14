@@ -119,6 +119,32 @@ def contributor_initials(surname, given_name):
     return "".join([value[0] for value in [given_name, surname] if value is not None])
 
 
+def expand_initial_match_string(match):
+    "for use by separate_initials(), regular express text munging to separate capital letters"
+    if "l_space" in match.groupdict():
+        return match.group("l_space") + " ".join(match.group("content")[:])
+    if "r_space" in match.groupdict():
+        return " ".join(match.group("content")[:]) + match.group("r_space")
+    return " ".join(match.group("content")[:])
+
+
+def separate_initials(given_name):
+    "add spaces between initials of a first name value"
+    if not given_name:
+        return ""
+    # match if there is whitespace to the right of the content
+    match_pattern_r_space = re.compile(r"(?P<content>[A-Z]{2,})(?P<r_space>\s+)")
+    # match if there is whitespace to the left of the content
+    match_pattern_l_space = re.compile(r"(?P<l_space>\s+)(?P<content>[A-Z]{2,})")
+    # match if there is not whitepsace but it is all upper case characters
+    match_pattern_exact = re.compile(r"^(?P<content>[A-Z]{2,})$")
+    # use a text munging function to separate capital letters matched in the regular expression
+    given_name = match_pattern_r_space.sub(expand_initial_match_string, given_name)
+    given_name = match_pattern_l_space.sub(expand_initial_match_string, given_name)
+    given_name = match_pattern_exact.sub(expand_initial_match_string, given_name)
+    return given_name
+
+
 def join_phrases(phrase_list, glue_one=", ", glue_two=" "):
     "join a list of phrases together with commas unless there is already punctuation"
     phrase_text = ""

@@ -336,7 +336,8 @@ def get_group_name_text(poa_article, contributor):
 def set_first_name(parent, contributor):
     if contributor.given_name:
         given_name = SubElement(parent, "FirstName")
-        given_name.text = contributor.given_name
+        # separate author initials with space characters using the utils function
+        given_name.text = utils.separate_initials(contributor.given_name)
     elif contributor.surname:
         # Empty given_name but has a surname
         given_name = SubElement(parent, "FirstName")

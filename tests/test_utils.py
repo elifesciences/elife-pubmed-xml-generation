@@ -127,6 +127,19 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.contributor_initials("Ju", "Young Seok"), "YJ")
         self.assertEqual(utils.contributor_initials("Ju", None), "J")
 
+    def test_separate_initials(self):
+        "test inserting space character between capital letter initials"
+        self.assertEqual(utils.separate_initials(None), "")
+        self.assertEqual(utils.separate_initials("ÅH"), "ÅH")
+        self.assertEqual(utils.separate_initials("AAA"), "A A A")
+        self.assertEqual(utils.separate_initials("BB C-C BB"), "B B C-C B B")
+        self.assertEqual(utils.separate_initials("D.E."), "D.E.")
+        self.assertEqual(utils.separate_initials("FGHI"), "F G H I")
+        self.assertEqual(utils.separate_initials("HI Ju"), "H I Ju")
+        self.assertEqual(utils.separate_initials("Marcel ALM"), "Marcel A L M")
+        self.assertEqual(utils.separate_initials("Wendy XY Zoe"), "Wendy X Y Zoe")
+        self.assertEqual(utils.separate_initials("STrange Example"), "STrange Example")
+
     def test_join_phrases(self):
         "test joining some phrases with punctuation"
         self.assertEqual(utils.join_phrases([None, None]), "")

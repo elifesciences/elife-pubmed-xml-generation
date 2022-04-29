@@ -327,6 +327,8 @@ def get_group_name_text(poa_article, contributor):
             ):
                 # Set the individual GroupName to the collab name
                 group_name_text = collab_contrib.collab
+                # stop looking after finding the first one
+                break
     elif contributor.collab:
         # If a collab value and no group_author_key then use the collab value
         group_name_text = contributor.collab

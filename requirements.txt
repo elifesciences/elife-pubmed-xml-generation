@@ -1,5 +1,6 @@
-elifetools==0.17.0
-elifearticle==0.7.0
 configparser==3.5.0
+coverage==6.4.2
+elifearticle==0.7.0
+elifetools==0.17.0
+pytest==7.1.2
 PyYAML==5.4
-coverage==6.2

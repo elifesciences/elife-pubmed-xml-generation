@@ -195,5 +195,25 @@ class TestUtils(unittest.TestCase):
         )
 
 
+class TestAbstractSec(unittest.TestCase):
+    def test_abstract_sec(self):
+        string = "<title>A title</title><p>Paragraph.</p>"
+        expected = OrderedDict([("text", "Paragraph."), ("label", "A title")])
+        result = utils.abstract_sec(string)
+        self.assertEqual(result, expected)
+
+    def test_abstract_sec_blank(self):
+        string = ""
+        expected = OrderedDict()
+        result = utils.abstract_sec(string)
+        self.assertEqual(result, expected)
+
+    def test_abstract_sec_whitespace(self):
+        string = "  \n   "
+        expected = OrderedDict()
+        result = utils.abstract_sec(string)
+        self.assertEqual(result, expected)
+
+
 if __name__ == "__main__":
     unittest.main()

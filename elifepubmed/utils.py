@@ -202,7 +202,7 @@ def abstract_sec_parts(string):
 def abstract_sec(string):
     "parse an abstract sec tag into section data"
     part = OrderedDict()
-    label, string = abstract_sec_parts(string)
+    label, string = abstract_sec_parts(string.rstrip())
     string = etoolsutils.remove_tag("p", string)
     string = etoolsutils.remove_tag("sec", string)
     string = string.rstrip()

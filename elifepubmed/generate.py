@@ -95,7 +95,6 @@ class PubMedXML:
         self.build(self.root, poa_articles)
 
     def build(self, root, poa_articles):
-
         for poa_article in poa_articles:
             # Initialise these as None for each loop
             self.contributors = None
@@ -195,7 +194,6 @@ class PubMedXML:
             )
             and (contrib.surname or contrib.collab)
         ]:
-
             group_name_text = get_group_name_text(poa_article, contributor)
 
             # Find existing group with the same name or create it if not exists

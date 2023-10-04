@@ -706,10 +706,10 @@ def set_categories(parent, poa_article, split_article_categories):
 def set_grants(parent, poa_article):
     "object tags for funding grants"
     for award in poa_article.funding_awards:
-        for award_id in award.award_ids:
-            if award.institution_name:
+        for award_object in award.awards:
+            if award.institution_name and award_object.award_id:
                 params = OrderedDict()
-                params["id"] = award_id
+                params["id"] = award_object.award_id
                 params["grantor"] = award.institution_name
                 set_object(parent, "grant", params)
 

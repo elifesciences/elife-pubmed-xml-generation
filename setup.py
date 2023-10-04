@@ -13,7 +13,12 @@ setup(
     long_description_content_type="text/markdown",
     packages=["elifepubmed"],
     license="MIT",
-    install_requires=["elifetools", "elifearticle", "configparser", "PyYAML"],
+    install_requires=[
+        "elifetools>=0.33.0",
+        "elifearticle>=0.16.0",
+        "configparser",
+        "PyYAML",
+    ],
     url="https://github.com/elifesciences/elife-pubmed-xml-generation",
     maintainer="eLife Sciences Publications Ltd.",
     maintainer_email="tech-team@elifesciences.org",

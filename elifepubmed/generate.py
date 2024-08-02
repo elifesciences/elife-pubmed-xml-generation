@@ -658,13 +658,19 @@ def set_object(parent, object_type, params):
 
 def set_article_type(parent, poa_article):
     "set the object tag holding the article type"
-    if poa_article.article_type in ["correction", "retraction"]:
+    if poa_article.article_type in [
+        "correction",
+        "expression-of-concern",
+        "retraction",
+    ]:
         for related_article in poa_article.related_articles:
             object_type = None
             if related_article.related_article_type == "corrected-article":
                 object_type = "Erratum"
             elif related_article.related_article_type == "retracted-article":
                 object_type = "Retraction"
+            elif related_article.related_article_type == "object-of-concern":
+                object_type = "ExpressionOfConcernFor"
             if object_type:
                 params = OrderedDict()
                 params["type"] = str(related_article.ext_link_type)

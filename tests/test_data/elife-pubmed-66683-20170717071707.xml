@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ArticleSet
+ PUBLIC "-//NLM//DTD PubMed 2.7//EN"
+  "https://dtd.nlm.nih.gov/ncbi/pubmed/in/PubMed.dtd">
+<ArticleSet>
+<Article>
+<Journal>
+<PublisherName>eLife Sciences Publications, Ltd</PublisherName>
+<JournalTitle>eLife</JournalTitle>
+<Issn>2050-084X</Issn>
+<Volume>10</Volume>
+<PubDate PubStatus="epublish">
+<Year>2021</Year>
+<Month>January</Month>
+<Day>25</Day>
+</PubDate>
+</Journal>
+<ArticleTitle>Expression of Concern: Salt-inducible kinase 3 regulates the mammalian circadian clock by destabilizing PER2 protein</ArticleTitle>
+<ELocationID EIdType="doi">10.7554/eLife.66683</ELocationID>
+<ELocationID EIdType="pii">e66683</ELocationID>
+<Language>EN</Language>
+<AuthorList>
+<Author>
+<FirstName>Naoto</FirstName>
+<LastName>Hayasaka</LastName>
+<Identifier Source="ORCID">http://orcid.org/0000-0003-2844-524X</Identifier>
+</Author>
+<Author>
+<FirstName>Arisa</FirstName>
+<LastName>Hirano</LastName>
+<Identifier Source="ORCID">http://orcid.org/0000-0001-9732-6100</Identifier>
+</Author>
+<Author>
+<FirstName>Yuka</FirstName>
+<LastName>Miyoshi</LastName>
+</Author>
+<Author>
+<FirstName>Isao T</FirstName>
+<LastName>Tokuda</LastName>
+<Identifier Source="ORCID">http://orcid.org/0000-0001-6212-0022</Identifier>
+</Author>
+<Author>
+<FirstName>Hikari</FirstName>
+<LastName>Yoshitane</LastName>
+<Identifier Source="ORCID">https://orcid.org/0000-0001-6319-3354</Identifier>
+</Author>
+<Author>
+<FirstName>Junichiro</FirstName>
+<LastName>Matsuda</LastName>
+</Author>
+<Author>
+<FirstName>Yoshitaka</FirstName>
+<LastName>Fukada</LastName>
+</Author>
+</AuthorList>
+<PublicationType>Journal Article</PublicationType>
+<ArticleIdList>
+<ArticleId IdType="doi">10.7554/eLife.66683</ArticleId>
+<ArticleId IdType="pii">66683</ArticleId>
+</ArticleIdList>
+<History/>
+<Abstract>
+<AbstractText Label=""/>
+</Abstract>
+<CopyrightInformation>© 2021, Hayasaka et al</CopyrightInformation>
+<ObjectList>
+<Object Type="ExpressionOfConcernFor">
+<Param Name="type">doi</Param>
+<Param Name="id">10.7554/eLife.24779</Param>
+</Object>
+<Object Type="keyword">
+<Param Name="value">neuroscience</Param>
+</Object>
+</ObjectList>
+</Article>
+</ArticleSet>

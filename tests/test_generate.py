@@ -88,6 +88,14 @@ class TestGenerate(unittest.TestCase):
                 self.default_pub_date,
             )
         )
+        self.passes.append(
+            (
+                "elife-66683.xml",
+                "elife-pubmed-66683-20170717071707.xml",
+                "elife",
+                self.default_pub_date,
+            )
+        )
 
     def test_parse(self):
         for (

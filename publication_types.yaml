@@ -38,6 +38,10 @@
   case_sensitive: false
   publication_type: Journal Article
 -
+  article_type: expression-of-concern
+  case_sensitive: false
+  publication_type: Expression of Concern
+-
 # default
   article_type: research-article
   case_sensitive: false
